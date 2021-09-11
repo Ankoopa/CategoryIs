@@ -1,2 +1,3 @@
-# EMC134P_GAME_PHYSICS
-Compilation of all activities or tasks on the course Game Physics
+# Game Production and Networking
+A project created in Unity
+
