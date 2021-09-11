@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
+    [Header("Card Attributes")]
+    public int id;
+    public string cardName;
+    public int ability;
+    public string cardAbilityDescription;
+    
     // Start is called before the first frame update
     void Start()
     {
