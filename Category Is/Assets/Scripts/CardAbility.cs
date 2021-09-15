@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum AbilityType : byte {PIECE, LIFE, DEATH, DECK, TURN, SELF}
 
+
 [System.Serializable]
 public struct CardAbility
 {
@@ -17,15 +18,21 @@ public struct CardAbility
     public bool saved;
     public bool dead;
 
-    [Header ("SHUFFLE & GREED")]
+    [Header ("SHUFFLE")]
     public bool shuffle;
+
+    [Header ("GREED")]
     public int CardsToPick;
 
-    [Header ("SKIP & ROTATION")]
+    [Header ("ROTATION")]
     public bool clockwise;
+
+    [Header ("SKIP")]
     public bool skip;
 
-    [Header ("STEAL & TIME")]
+    [Header ("STEAL")]
     //steal code
+    
+    [Header ("TIME")]
     public int TimeIncrease;
 }
