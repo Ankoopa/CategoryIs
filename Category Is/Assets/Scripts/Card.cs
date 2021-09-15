@@ -5,21 +5,26 @@ using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
-    public List<ScriptableCard> thisCard;
+    public string UCardID;
 
     [Header("Image")]
-    public Sprite cardImage;
+    public Sprite image;                                                                
 
     [Header("Properties")]
     public string CardName;
-    public int CardAmount;
-    public List<CardAbility> CardAbilities = new List<CardAbility>();
+    public int CardAmount;                                                              
+    public List<CardAbility> ability = new List<CardAbility>();
 
     [Header("Card Description")]
     [SerializeField, TextArea(1, 30)] public string Description;
 
     public void Start()
     {
-        gameObject.GetComponent<Image>().sprite = cardImage;
+        gameObject.GetComponent<Image>().sprite = image;
     }
+    
+    // public CardInfo(ScriptableCard data)
+    // {
+
+    // }
 }
