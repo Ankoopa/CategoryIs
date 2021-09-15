@@ -15,6 +15,8 @@ public class ScriptableCard : ScriptableObject
     public string CardName;
     public int CardAmount;                                                              //Amount of cards in Available
     public List<CardAbility> ability = new List<CardAbility>();
+
+    [Header("Card Description")]
     [SerializeField, TextArea(1,30)] public string Description;
 
 }

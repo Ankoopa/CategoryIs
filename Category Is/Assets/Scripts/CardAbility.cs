@@ -4,7 +4,6 @@ using UnityEngine;
 
 public enum AbilityType : byte {PIECE, LIFE, DEATH, DECK, TURN, SELF}
 
-
 [System.Serializable]
 public struct CardAbility
 {
