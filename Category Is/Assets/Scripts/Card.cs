@@ -4,23 +4,15 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    [Header("Card Attributes")]
-    public int id;
-    public string cardName;
-    public int ability;
-    public string cardAbilityDescription;
-    
+    public List<ScriptableCard> thisCard;
+
     public void Start()
     {
-        // CardAbility.saved = true;
-        Debug.Log(CardAbility.saved);
+        
     }
     
-    public Card(int Id, string CardName, int Ability, string CardAbilityDescription)
-    {
-        id = Id;
-        cardName = CardName;
-        ability = Ability;
-        cardAbilityDescription = CardAbilityDescription;
-    }
+    // public CardInfo(ScriptableCard data)
+    // {
+
+    // }
 }
