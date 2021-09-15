@@ -39,6 +39,12 @@ public struct CardAbilities
 
 public class CardAbility : MonoBehaviour
 {
+
+    void Update()
+    {
+        Rotation();
+        
+    }
     public void Rotation()
     {
         if (CardAbilities.clockwise){
