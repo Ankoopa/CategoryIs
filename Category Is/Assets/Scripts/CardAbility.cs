@@ -6,7 +6,7 @@ public enum AbilityType : byte {PIECE, LIFE, DEATH, DECK, TURN, SELF}
 
 
 [System.Serializable]
-public struct CardAbilities
+public struct CardAbility
 {
     public AbilityType abilityType; //Just to display/visualize
     //public List<Target> targets;
@@ -35,20 +35,4 @@ public struct CardAbilities
 
     [Header ("TIME")]
     public int TimeIncrease;
-}
-
-public class CardAbility : MonoBehaviour
-{
-
-    void Update()
-    {
-        Rotation();
-        
-    }
-    public void Rotation()
-    {
-        if (CardAbilities.clockwise){
-            //code
-        }
-    }
 }
