@@ -10,12 +10,12 @@ public struct CardAbility
 {
     public AbilityType abilityType; //Just to display/visualize
     //public List<Target> targets;
-    // public ScriptableAbilities ability;
+    //public ScriptableAbilities ability;
     //[Header("Targets")]
     //public List<Target> targets = new List<Target>();
 
     [Header ("LIFE and DEATH")]
-    public bool saved;
+    public static bool saved;
     public bool dead;
 
     [Header ("SHUFFLE")]
@@ -32,7 +32,7 @@ public struct CardAbility
 
     [Header ("STEAL")]
     //steal code
-    
+
     [Header ("TIME")]
     public int TimeIncrease;
 }

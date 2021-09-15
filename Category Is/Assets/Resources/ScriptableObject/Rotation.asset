@@ -16,6 +16,6 @@ MonoBehaviour:
   dead: 0
   shuffle: 0
   CardsToPick: 0
-  clockwise: 0
+  clockwise: 1
   skip: 0
   TimeIncrease: 0

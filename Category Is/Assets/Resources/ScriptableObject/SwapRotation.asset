@@ -16,5 +16,12 @@ MonoBehaviour:
   image: {fileID: 0}
   CardName: 
   CardAmount: 0
-  ability: []
+  ability:
+  - abilityType: 0
+    dead: 0
+    shuffle: 0
+    CardsToPick: 0
+    clockwise: 0
+    skip: 0
+    TimeIncrease: 0
   Description: 

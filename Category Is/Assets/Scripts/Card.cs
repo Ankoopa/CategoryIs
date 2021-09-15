@@ -10,6 +10,11 @@ public class Card : MonoBehaviour
     public int ability;
     public string cardAbilityDescription;
     
+    public void Start()
+    {
+        // CardAbility.saved = true;
+        Debug.Log(CardAbility.saved);
+    }
     
     public Card(int Id, string CardName, int Ability, string CardAbilityDescription)
     {
