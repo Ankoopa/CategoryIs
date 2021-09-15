@@ -30,3 +30,8 @@ public struct CardAbility
     //steal code
     public int TimeIncrease;
 }
+
+public class CardAbility : MonoBehaviour
+{
+    
+}
