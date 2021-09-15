@@ -8,6 +8,6 @@ public class CardDataBase : MonoBehaviour
 
     void Awake()
     {
-    
+        //cardList.Add(new Card());
     }
 }

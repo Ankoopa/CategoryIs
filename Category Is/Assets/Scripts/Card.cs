@@ -10,15 +10,12 @@ public class Card : MonoBehaviour
     public int ability;
     public string cardAbilityDescription;
     
-    // Start is called before the first frame update
-    void Start()
+    
+    public Card(int Id, string CardName, int Ability, string CardAbilityDescription)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        id = Id;
+        cardName = CardName;
+        ability = Ability;
+        cardAbilityDescription = CardAbilityDescription;
     }
 }
