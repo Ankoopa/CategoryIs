@@ -4,7 +4,6 @@ using UnityEngine;
 
 public enum AbilityType : byte {PIECE, LIFE, DEATH, DECK, TURN, SELF}
 
-
 [System.Serializable]
 public struct CardAbility
 {
@@ -29,9 +28,4 @@ public struct CardAbility
     [Header ("STEAL & TIME")]
     //steal code
     public int TimeIncrease;
-}
-
-public class CardAbility : MonoBehaviour
-{
-    
 }
