@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static List<Card> cardList = new List<Card>();
 
-    // Update is called once per frame
-    void Update()
+    void Awake()
     {
-        
+        //cardList.Add(new Card());
     }
 }
