@@ -16,6 +16,9 @@ public class DrawCards : MonoBehaviour
         {
             GameObject playerCard = Instantiate(card, new Vector3(0, 0, 0), Quaternion.identity);
             playerCard.transform.SetParent(playerDeck.transform, false);
+
+            GameObject enemyCard = Instantiate(card, new Vector3(0, 0, 0), Quaternion.identity);
+            enemyCard.transform.SetParent(enemyDeck.transform, false);
         }
     }
 }
