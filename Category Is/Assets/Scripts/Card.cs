@@ -8,7 +8,7 @@ public class Card : MonoBehaviour
     public string UCardID;
 
     [Header("Image")]
-    public Sprite image;                                                                
+    public Sprite[] cardFaces;                                                               
 
     [Header("Properties")]
     public string CardName;
@@ -20,7 +20,7 @@ public class Card : MonoBehaviour
 
     public void Start()
     {
-        gameObject.GetComponent<Image>().sprite = image;
+        gameObject.GetComponent<Image>().sprite = cardFaces[Random.Range(0, cardFaces.Length-1)];
     }
     
     // public CardInfo(ScriptableCard data)
