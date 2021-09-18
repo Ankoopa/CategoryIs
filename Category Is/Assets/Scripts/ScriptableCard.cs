@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "NewCard", menuName = "Card")]
 public class ScriptableCard : ScriptableObject
@@ -9,7 +10,7 @@ public class ScriptableCard : ScriptableObject
     public string UCardID;
     
     [Header ("Image")]
-    public Sprite image;                                                                //card image
+    public Sprite cardImage;                                                                //card image
 
     [Header("Properties")]
     public string CardName;

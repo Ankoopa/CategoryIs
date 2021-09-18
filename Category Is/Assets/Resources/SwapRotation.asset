@@ -12,16 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34df976525b22a4e918485a02fdf51c, type: 3}
   m_Name: SwapRotation
   m_EditorClassIdentifier: 
-  UCardID: 
-  image: {fileID: 0}
-  CardName: 
+  UCardID: C5
+  cardImage: {fileID: 21300000, guid: 5cb7015df0f6263488164255abb094d5, type: 3}
+  CardName: Swap Rotation
   CardAmount: 0
   ability:
   - abilityType: 0
     dead: 0
     shuffle: 0
     CardsToPick: 0
-    clockwise: 0
     skip: 0
     TimeIncrease: 0
   Description: 

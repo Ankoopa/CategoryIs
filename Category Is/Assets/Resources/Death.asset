@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34df976525b22a4e918485a02fdf51c, type: 3}
   m_Name: Death
   m_EditorClassIdentifier: 
-  UCardID: 
-  image: {fileID: 0}
-  CardName: 
+  UCardID: C1
+  cardImage: {fileID: 21300000, guid: 4fa9e44eff715a24a90db19986680090, type: 3}
+  CardName: Death
   CardAmount: 0
   ability:
   - abilityType: 2

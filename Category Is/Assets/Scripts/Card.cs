@@ -5,26 +5,25 @@ using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
-    public string UCardID;
-
+    public string CardID;
     [Header("Image")]
-    public Sprite[] cardFaces;                                                               
-
-    [Header("Properties")]
-    public string CardName;
-    public int CardAmount;                                                              
-    public List<CardAbility> ability = new List<CardAbility>();
-
-    [Header("Card Description")]
-    [SerializeField, TextArea(1, 30)] public string Description;
-
-    public void Start()
-    {
-        gameObject.GetComponent<Image>().sprite = cardFaces[Random.Range(0, cardFaces.Length-1)];
-    }
+    public Image cardFaces; 
+    public string searchCardID;
     
-    // public CardInfo(ScriptableCard data)
-    // {
+    public void RandomizeCards()
+    {
+            
+        SetCard(CardDataBase.GetRandomCard());
+    }
 
-    // }
+    public void SearchCard()
+    {
+        SetCard(CardDataBase.GetCardByID(searchCardID));
+    }
+    private void SetCard(ScriptableCard i)
+    {
+        CardID = i.UCardID;
+        cardFaces.sprite = i.cardImage;
+        Debug.Log(CardID);
+    }
 }
