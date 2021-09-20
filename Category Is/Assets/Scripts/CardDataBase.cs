@@ -6,13 +6,13 @@ using System.Linq;
 public class CardDataBase : MonoBehaviour
 {
     public ScriptableCardDB cards;
-    
+    private static ScriptableCard cardD;
     private static CardDataBase instance;
 
     private void Awake()
     {
         
-        if (instance == null)
+       if (instance == null)
         {
             instance = this;
             
@@ -26,10 +26,10 @@ public class CardDataBase : MonoBehaviour
     }
 
 
-    public static ScriptableCard GetCardByID(string ID)
-    {
-        return instance.cards.allCards.FirstOrDefault(i => i.UCardID == ID);
-    }
+    // public static ScriptableCard GetCardByID(string ID)
+    // {
+    //     return instance.cards.allCards.FirstOrDefault(i => i.UCardID == ID);
+    //  
 
     public static ScriptableCard GetRandomCard()
     {
@@ -37,5 +37,16 @@ public class CardDataBase : MonoBehaviour
         return instance.cards.allCards[Random.Range(0, instance.cards.allCards.Count())];
     }
 
-    
+    public static ScriptableCard DeckBuild(string ID, int cardAmount)
+    {
+        int amount;
+        foreach (var card in instance.cards.allCards)
+        {
+            cardD = card;
+            amount = card.CardAmount;
+            //CardAndAmount.cardAmount = amount;
+            Debug.Log("CardID" + card.UCardID + " card Amount: " + card.CardAmount);
+        }
+        return cardD;
+    }
 }

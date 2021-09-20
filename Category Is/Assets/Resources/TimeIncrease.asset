@@ -15,7 +15,7 @@ MonoBehaviour:
   UCardID: C6
   cardImage: {fileID: 21300000, guid: 3ed074dfd80c1d743bc96a599bbd5b51, type: 3}
   CardName: Time Increase
-  CardAmount: 0
+  CardAmount: 12
   ability:
   - abilityType: 5
     dead: 0

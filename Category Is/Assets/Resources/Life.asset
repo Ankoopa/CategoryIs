@@ -15,7 +15,7 @@ MonoBehaviour:
   UCardID: C2
   cardImage: {fileID: 21300000, guid: 988142fc57eea044f8063e8f4ca25977, type: 3}
   CardName: Extra Life
-  CardAmount: 0
+  CardAmount: 10
   ability:
   - abilityType: 1
     dead: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   UCardID: C3
   cardImage: {fileID: 21300000, guid: c797a4aea67bbec42a7734c62db1f0dc, type: 3}
   CardName: Shuffle
-  CardAmount: 0
+  CardAmount: 8
   ability:
   - abilityType: 3
     dead: 0

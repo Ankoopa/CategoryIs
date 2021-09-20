@@ -9,11 +9,12 @@ public class DrawCards : MonoBehaviour
     public GameObject playerDeck;
     public GameObject enemyDeck;
     public Card cardInfo;
-
+    public Deck DeckInfo;
     public void BtnClick()
     {
         for(int i = -275; i <= 250; i+=105)
         {
+            DeckInfo.ReadCards();
             cardInfo.RandomizeCards();
             GameObject playerCard = Instantiate(card, new Vector3(i, -50+(generateYPos()), 0), Quaternion.identity);
             playerCard.transform.SetParent(playerDeck.transform, false);

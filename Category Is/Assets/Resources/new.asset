@@ -10,17 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e34df976525b22a4e918485a02fdf51c, type: 3}
-  m_Name: Skip
+  m_Name: new
   m_EditorClassIdentifier: 
-  UCardID: C4
-  cardImage: {fileID: 21300000, guid: 304b7a305f5ea4f44abe9094e12fa03f, type: 3}
-  CardName: Skip
-  CardAmount: 8
-  ability:
-  - abilityType: 4
-    dead: 0
-    shuffle: 0
-    CardsToPick: 0
-    skip: 1
-    TimeIncrease: 0
+  UCardID: 
+  cardImage: {fileID: 0}
+  CardName: 
+  CardAmount: 0
+  ability: []
   Description: 

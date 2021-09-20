@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+public struct CardAndAmount
+{
+    ScriptableCard card;
+    public int cardAmount;
+}
 [CreateAssetMenu(fileName = "NewCard", menuName = "Card")]
 public class ScriptableCard : ScriptableObject
 {
