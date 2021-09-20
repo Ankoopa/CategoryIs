@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+
+[System.Serializable]
 public struct CardAndAmount
 {
-    ScriptableCard card;
+    public ScriptableCard card;
     public int cardAmount;
 }
 [CreateAssetMenu(fileName = "NewCard", menuName = "Card")]
 public class ScriptableCard : ScriptableObject
 {
-
     public string UCardID;
     
     [Header ("Image")]
