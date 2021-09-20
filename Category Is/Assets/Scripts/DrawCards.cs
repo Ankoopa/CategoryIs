@@ -10,13 +10,18 @@ public class DrawCards : MonoBehaviour
     public GameObject enemyDeck;
     public Card cardInfo;
     public Deck DeckInfo;
+
+    private int cardNum;
+
     public void BtnClick()
     {
         for(int i = -275; i <= 250; i+=105)
         {
+            cardNum++;
+
             DeckInfo.ReadCards();
             cardInfo.RandomizeCards();
-            GameObject playerCard = Instantiate(card, new Vector3(i, -50+(generateYPos()), 0), Quaternion.identity);
+            GameObject playerCard = Instantiate(card, new Vector3(i, generateYPos(cardNum), 0), Quaternion.identity);
             playerCard.transform.SetParent(playerDeck.transform, false);
 
             // GameObject enemyCard = Instantiate(card, new Vector3(0, 0, 0), Quaternion.identity);
@@ -24,14 +29,18 @@ public class DrawCards : MonoBehaviour
         }
     }
 
-    int generateYPos()
+    int generateYPos(int num)
     {
         int YPos;
-        do
+
+        if(num%2 == 0)
         {
-            YPos = Random.Range(-10, 10);
+            YPos = 30;
         }
-        while (YPos > -5 && YPos < 5);
+        else
+        {
+            YPos = 50;
+        }
 
         return YPos;
     }
