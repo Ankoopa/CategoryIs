@@ -20,6 +20,7 @@ public class Card : MonoBehaviour
     {
         SetCard(CardDataBase.GetCardByID(searchCardID));
     }
+
     private void SetCard(ScriptableCard i)
     {
         CardID = i.UCardID;

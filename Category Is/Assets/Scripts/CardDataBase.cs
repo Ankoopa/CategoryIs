@@ -36,4 +36,6 @@ public class CardDataBase : MonoBehaviour
         Debug.Log(instance);
         return instance.cards.allCards[Random.Range(0, instance.cards.allCards.Count())];
     }
+
+    
 }
