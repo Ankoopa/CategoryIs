@@ -18,8 +18,8 @@ public class DrawCards : MonoBehaviour
         for(int i = -275; i <= 250; i+=105)
         {
             cardNum++;
-
-            DeckInfo.ReadCards();
+            
+            //DeckInfo.LoadingDeck();
             cardInfo.RandomizeCards();
             GameObject playerCard = Instantiate(card, new Vector3(i, generateYPos(cardNum), 0), Quaternion.identity);
             playerCard.transform.SetParent(playerDeck.transform, false);
@@ -35,11 +35,11 @@ public class DrawCards : MonoBehaviour
 
         if(num%2 == 0)
         {
-            YPos = 30;
+            YPos = 20;
         }
         else
         {
-            YPos = 50;
+            YPos = 30;
         }
 
         return YPos;

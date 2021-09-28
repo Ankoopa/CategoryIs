@@ -8,7 +8,7 @@ public class CardDataBase : MonoBehaviour
     public ScriptableCardDB cards;
     private static ScriptableCard cardD;
     private static CardDataBase instance;
-
+    public static int amount;
     private void Awake()
     {
         
@@ -39,12 +39,12 @@ public class CardDataBase : MonoBehaviour
 
     public static ScriptableCard DeckBuild(string ID, int cardAmount)
     {
-        int amount;
+        
         foreach (var card in instance.cards.allCards)
         {
             cardD = card;
             amount = card.CardAmount;
-            //CardAndAmount.cardAmount = amount;
+            //Deck.Sum += amount;
             Debug.Log("CardID" + card.UCardID + " card Amount: " + card.CardAmount);
         }
         return cardD;

@@ -5,23 +5,25 @@ using UnityEngine;
 public class Deck : MonoBehaviour
 {
     public Card cardsInDeck;
-    public CardAndAmount[] startingdeck;
-    public Deck deck;
+    public ScriptableCardDB cards;
+    public List<ScriptableCard> deck;
 
-    public void ReadCards()
+    [SerializeField] public static int Sum = 0;
+    
+    void Awake()
     {
-        cardsInDeck.SetCard(CardDataBase.DeckBuild(cardsInDeck.CardID, cardsInDeck.cardAmount));
+        LoadingDeck();
     }
-
     public void LoadingDeck()
     {
-        for (int i = 0; i < deck.startingdeck.Length; i++)
+        //Debug.Log(Sum);
+        int counterCards = 0;
+        foreach (var cardsInfo in cards.allCards)
         {
-            // CardAndAmount card = deck.startingdeck[i];
-            // for (int n = 0; n < card.cardAmount; ++n)
-            // {
-            //     //deck.startingdeck.Add(card.cardAmount);
-            // }
+            for (int i = 0; i < cardsInfo.CardAmount; i++)
+            {
+                deck.Add(cardsInfo);
+            }
         }
     }
 }

@@ -675,6 +675,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardsInDeck: {fileID: 2091033770614366799, guid: 27b67f5210e604445b3805de0a5afbac, type: 3}
+  cards: {fileID: 11400000, guid: 347f19a4df986a747947526cb85984da, type: 2}
+  deck:
+  - {fileID: 0}
 --- !u!1 &1930061416 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8886959807771374875, guid: 5cfae19fdd91e4a47b8976a3f4f6731f, type: 3}
@@ -838,11 +841,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2473747761642657369, guid: 75ed872d150feb04dbb3ccc096c15539, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0.00012207
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2473747761642657369, guid: 75ed872d150feb04dbb3ccc096c15539, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -430.005
+      value: -405.23
       objectReference: {fileID: 0}
     - target: {fileID: 2473747761642657369, guid: 75ed872d150feb04dbb3ccc096c15539, type: 3}
       propertyPath: m_LocalPosition.x
@@ -878,7 +881,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2473747761642657369, guid: 75ed872d150feb04dbb3ccc096c15539, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -214.99753
+      value: -249.62
       objectReference: {fileID: 0}
     - target: {fileID: 2473747761642657369, guid: 75ed872d150feb04dbb3ccc096c15539, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

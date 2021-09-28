@@ -3,13 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-[System.Serializable]
-public struct CardAndAmount
-{
-    public ScriptableCard card;
-    public int cardAmount;
-}
 [CreateAssetMenu(fileName = "NewCard", menuName = "Card")]
 public class ScriptableCard : ScriptableObject
 {
