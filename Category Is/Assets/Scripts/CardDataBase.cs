@@ -37,16 +37,16 @@ public class CardDataBase : MonoBehaviour
         return instance.cards.allCards[Random.Range(0, instance.cards.allCards.Count())];
     }
 
-    public static ScriptableCard DeckBuild(string ID, int cardAmount)
-    {
+    // public static ScriptableCard DeckBuild(string ID, int cardAmount)
+    // {
         
-        foreach (var card in instance.cards.allCards)
-        {
-            cardD = card;
-            amount = card.CardAmount;
-            //Deck.Sum += amount;
-            Debug.Log("CardID" + card.UCardID + " card Amount: " + card.CardAmount);
-        }
-        return cardD;
-    }
+    //     foreach (var card in instance.cards.allCards)
+    //     {
+    //         cardD = card;
+    //         amount = card.CardAmount;
+    //         //Deck.Sum += amount;
+    //         Debug.Log("CardID" + card.UCardID + " card Amount: " + card.CardAmount);
+    //     }
+    //     return cardD;
+    // }
 }
