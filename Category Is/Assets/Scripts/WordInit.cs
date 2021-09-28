@@ -6,7 +6,7 @@ using System.IO;
 public class WordInit : MonoBehaviour
 {
     public TextAsset textFile;
-    private List<string> wordList;
+    public List<string> wordList;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +15,7 @@ public class WordInit : MonoBehaviour
         var allWords = content.Split('\n');
         wordList = new List<string>(allWords);
 
-        Debug.Log(wordList);
+        Debug.Log(wordList[0]);
     }
 
     // Update is called once per frame
