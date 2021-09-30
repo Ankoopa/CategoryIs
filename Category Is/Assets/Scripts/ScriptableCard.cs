@@ -13,7 +13,7 @@ public class ScriptableCard : ScriptableObject
 
     [Header("Properties")]
     public string CardName;
-    public int CardAmount;                                                              //Amount of cards in Available
+    public int CardAmount;                                                                  //Amount of cards in Available
     public List<CardAbility> ability = new List<CardAbility>();
 
     [Header("Card Description")]
