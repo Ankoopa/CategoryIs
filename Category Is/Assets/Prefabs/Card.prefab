@@ -91,9 +91,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fbc23afc7a3aa9438a24555e39baba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardID: C1
+  CardID: 06
   cardFaces: {fileID: 809053988906267524}
-  searchCardID: C1
+  searchCardID: 02
+  cardAmount: 12
 --- !u!225 &-4146414161780934493
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -171,7 +172,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4fa9e44eff715a24a90db19986680090, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3ed074dfd80c1d743bc96a599bbd5b51, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -29,7 +29,7 @@ public class CardDataBase : MonoBehaviour
     // public static ScriptableCard GetCardByID(string ID)
     // {
     //     return instance.cards.allCards.FirstOrDefault(i => i.UCardID == ID);
-    //  
+    //  }
 
     public static ScriptableCard GetRandomCard()
     {

@@ -628,6 +628,7 @@ GameObject:
   - component: {fileID: 1900022761}
   - component: {fileID: 1900022760}
   - component: {fileID: 1900022762}
+  - component: {fileID: 1900022763}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -676,7 +677,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardsInDeck: {fileID: 2091033770614366799, guid: 27b67f5210e604445b3805de0a5afbac, type: 3}
   cards: {fileID: 11400000, guid: 347f19a4df986a747947526cb85984da, type: 2}
-  deck: []
+  TempDeck1:
+  - {fileID: 0}
+  TempDeck2: []
+  GameDeck: []
+--- !u!114 &1900022763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900022759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a31c990facfe8a04cae9d244b10ecc93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  card: {fileID: 3787027705836675734, guid: 27b67f5210e604445b3805de0a5afbac, type: 3}
+  playerDeck: {fileID: 208699461}
+  enemyDeck: {fileID: 1930061416}
+  cardInfo: {fileID: 2091033770614366799, guid: 27b67f5210e604445b3805de0a5afbac, type: 3}
+  DeckInfo: {fileID: 1900022762}
 --- !u!1 &1930061416 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8886959807771374875, guid: 5cfae19fdd91e4a47b8976a3f4f6731f, type: 3}

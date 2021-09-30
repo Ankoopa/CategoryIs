@@ -10,17 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e34df976525b22a4e918485a02fdf51c, type: 3}
-  m_Name: TimeIncrease
+  m_Name: ShufflePiece
   m_EditorClassIdentifier: 
-  UCardID: 06
-  cardImage: {fileID: 21300000, guid: 3ed074dfd80c1d743bc96a599bbd5b51, type: 3}
-  CardName: Time Increase
-  CardAmount: 11
-  ability:
-  - abilityType: 5
-    dead: 0
-    shuffle: 0
-    CardsToPick: 0
-    skip: 0
-    TimeIncrease: 10
+  UCardID: 07
+  cardImage: {fileID: 21300000, guid: 6bf2ad97aae99574698a1ff7b8065a61, type: 3}
+  CardName: Shuffle Piece Card
+  CardAmount: 12
+  ability: []
   Description: 
