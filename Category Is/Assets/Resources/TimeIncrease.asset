@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34df976525b22a4e918485a02fdf51c, type: 3}
   m_Name: TimeIncrease
   m_EditorClassIdentifier: 
-  UCardID: C6
+  UCardID: 06
   cardImage: {fileID: 21300000, guid: 3ed074dfd80c1d743bc96a599bbd5b51, type: 3}
   CardName: Time Increase
   CardAmount: 12

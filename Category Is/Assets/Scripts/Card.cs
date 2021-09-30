@@ -13,7 +13,7 @@ public class Card : MonoBehaviour
     
     public void RandomizeCards()
     {  
-        SetCard(CardDataBase.GetRandomCard());
+        SetCard(Deck.DrawCardFromDeck());
     }
     
     // public void SearchCard()

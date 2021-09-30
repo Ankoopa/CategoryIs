@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34df976525b22a4e918485a02fdf51c, type: 3}
   m_Name: Shuffle
   m_EditorClassIdentifier: 
-  UCardID: C3
+  UCardID: 03
   cardImage: {fileID: 21300000, guid: c797a4aea67bbec42a7734c62db1f0dc, type: 3}
   CardName: Shuffle
   CardAmount: 8

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34df976525b22a4e918485a02fdf51c, type: 3}
   m_Name: SwapRotation
   m_EditorClassIdentifier: 
-  UCardID: C5
+  UCardID: 05
   cardImage: {fileID: 21300000, guid: 5cb7015df0f6263488164255abb094d5, type: 3}
   CardName: Swap Rotation
   CardAmount: 8

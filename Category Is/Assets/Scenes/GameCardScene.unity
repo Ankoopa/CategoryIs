@@ -676,8 +676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardsInDeck: {fileID: 2091033770614366799, guid: 27b67f5210e604445b3805de0a5afbac, type: 3}
   cards: {fileID: 11400000, guid: 347f19a4df986a747947526cb85984da, type: 2}
-  deck:
-  - {fileID: 0}
+  deck: []
 --- !u!1 &1930061416 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8886959807771374875, guid: 5cfae19fdd91e4a47b8976a3f4f6731f, type: 3}
