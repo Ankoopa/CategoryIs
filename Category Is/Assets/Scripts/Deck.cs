@@ -44,7 +44,7 @@ public class Deck : MonoBehaviour
         {
                 for (int i = 0; i < cardsInfo.CardAmount; i++)
                 {
-                    if (cardsInfo.UCardID == "01" || cardsInfo.UCardID == "02")
+                    if (cardsInfo.UCardID == "01" || cardsInfo.UCardID == "02")         //Seperates the Life and Death card from the rest of the cards and put them into a temporary list;
                     {
                         TempDeck2.Add(cardsInfo);
                     }
@@ -60,7 +60,7 @@ public class Deck : MonoBehaviour
 
     public void ShuffleDeck(IList<ScriptableCard> dList)
     {
-        //using Fisher-yates-Shuffle
+        //using Fisher-yates-Shuffle System
         System.Random random = new System.Random();
         int n = dList.Count;
 
@@ -69,35 +69,15 @@ public class Deck : MonoBehaviour
             n--;
             int rnd = random.Next(1, n+1);
             ScriptableCard value = dList[rnd];
-            dList[rnd] = dList[n];
+            dList[rnd] = dList[n];                                                      //Swaps the old value to the new value
             dList[n] = value;
         }
 
     }
 
-    // private int RandomCardNumber()
-    // {
-    //     for (int i = 0; i < instance.deck.Count; i++)
-    //     {
-    //         if (instance.deck[i].UCardID == "01" || instance.deck[i].UCardID == "02")
-    //         {
-    //             instance.exclude = new HashSet<int>() {i};
-    //             instance.range = Enumerable.Range(0, instance.deck.Count()).Where(i =>!instance.exclude.Contains(i));
-    //             foreach(var h in instance.range)
-    //                 {
-    //                     print("index" + h);
-    //                 }
-    //             var rand = new System.Random();
-    //             instance.index = rand.Next(0, instance.deck.Count() - instance.exclude.Count);
-    //         }
-    //     }
-        
-    //     //Debug.Log(instance.index);
-    //     return instance.range.ElementAt(instance.index);
-    // }
     public static ScriptableCard DrawCardFromDeck()
     {
-
+        //Takes card from the top of the list and removes it from the deck
         instance.TempDeck1.Remove(instance.TempDeck1[0]);
         return instance.TempDeck1[0];
         
@@ -105,6 +85,7 @@ public class Deck : MonoBehaviour
 
     public static ScriptableCard FirstDealtCard()
     {
+        //Takes a life card from the temporary list and removes it
         var rand = instance.TempDeck2[Random.Range(6, instance.TempDeck2.Count())];
         instance.TempDeck2.Remove(rand);
         return rand;

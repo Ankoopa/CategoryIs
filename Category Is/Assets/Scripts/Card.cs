@@ -11,7 +11,7 @@ public class Card : MonoBehaviour
     public string searchCardID;
     public int cardAmount;
     
-    public void RandomizeCards()
+    public void DrawingCards()
     {  
         SetCard(Deck.DrawCardFromDeck());
     }
@@ -20,10 +20,6 @@ public class Card : MonoBehaviour
     {
         SetCard(Deck.FirstDealtCard());
     }
-    // public void SearchCard()
-    // {
-    //     SetCard(CardDataBase.GetCardByID(searchCardID));
-    // }
 
     public void SetCard(ScriptableCard i)
     {

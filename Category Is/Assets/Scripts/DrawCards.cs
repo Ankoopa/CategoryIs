@@ -23,7 +23,7 @@ public class DrawCards : MonoBehaviour
             cardNum++;
             
             //DeckInfo.LoadingDeck();
-            cardInfo.RandomizeCards();
+            cardInfo.DrawingCards();
             playerCard = Instantiate(card, new Vector3(i, generateYPos(cardNum), 0), Quaternion.identity);
             playerCard.transform.SetParent(playerDeck.transform, false);
 
