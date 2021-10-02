@@ -12,11 +12,12 @@ public class DrawCards : MonoBehaviour
     public Deck DeckInfo;
 
     private int cardNum;
+    private GameObject playerCard;
 
     public void BtnClick()
     {
         cardInfo.LifeCardPerPlayer();
-        GameObject playerCard = Instantiate(card, new Vector3(-275, generateYPos(cardNum), 0), Quaternion.identity);
+        playerCard = Instantiate(card, new Vector3(-275, generateYPos(cardNum), 0), Quaternion.identity);
         playerCard.transform.SetParent(playerDeck.transform, false);
         for(int i = -170; i <= 250; i+=105)
         {
@@ -36,6 +37,13 @@ public class DrawCards : MonoBehaviour
         DeckInfo.ShuffleDeck(DeckInfo.GameDeck);
     }
 
+    public void PickCard()
+    {
+        cardInfo.DrawingCards();
+        playerCard = Instantiate(card, new Vector3(250, generateYPos(cardNum), 0), Quaternion.identity);
+        playerCard.transform.SetParent(playerDeck.transform, false);
+    }
+    
     int generateYPos(int num)
     {
         int YPos;

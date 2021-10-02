@@ -297,7 +297,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 589826258}
         m_TargetAssemblyTypeName: DrawCards, Assembly-CSharp
-        m_MethodName: BtnClick
+        m_MethodName: PickCard
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
