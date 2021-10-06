@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Photon.Pun;
 using System.Linq;
 
 public class Deck : MonoBehaviour
@@ -10,6 +12,7 @@ public class Deck : MonoBehaviour
     public List<ScriptableCard> TempDeck1;
     public List<ScriptableCard> TempDeck2;
     public List<ScriptableCard> GameDeck;
+    public Text playerNameText;
 
     private HashSet<int> exclude;
     private IEnumerable<int> range;
@@ -23,6 +26,7 @@ public class Deck : MonoBehaviour
     {
         LoadingDeck();
         ShuffleDeck(TempDeck1);
+        playerNameText.text = PhotonNetwork.NickName;
         if (instance == null)
         {
             instance = this;
