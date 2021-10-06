@@ -543,7 +543,7 @@ GameObject:
   - component: {fileID: 1146789267}
   - component: {fileID: 1146789266}
   m_Layer: 5
-  m_Name: Button
+  m_Name: SubmitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -992,6 +992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2137101fdb5072341977e6941c145d84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  submitBtn: {fileID: 1146789266}
 --- !u!1 &1606043036
 GameObject:
   m_ObjectHideFlags: 0
