@@ -26,7 +26,7 @@ public class Deck : MonoBehaviour
     {
         LoadingDeck();
         ShuffleDeck(TempDeck1);
-        playerNameText.text = PhotonNetwork.NickName;
+        playerNameText.text = "Player 1: " + PhotonNetwork.NickName;
         if (instance == null)
         {
             instance = this;
