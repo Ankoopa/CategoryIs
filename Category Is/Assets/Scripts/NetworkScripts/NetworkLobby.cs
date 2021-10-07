@@ -53,7 +53,7 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
         else
         {
             PhotonNetwork.JoinRandomRoom();
-            submitBtn.interactable = false;
+            submitBtn.gameObject.SetActive(false);
         }
     }
 
@@ -72,11 +72,25 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
         Debug.Log("Room created: Room" + randRmName);
     }
 
+    void LoadLevel()
+    {
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        {
+            PhotonNetwork.LoadLevel("GameCardScene");
+        }
+    }
+
     public override void OnJoinedRoom()
     {
         Debug.Log("Player joined room");
         base.OnJoinedRoom();
-        PhotonNetwork.LoadLevel("GameCardScene");
+        LoadLevel();
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        base.OnPlayerEnteredRoom(newPlayer);
+        LoadLevel();
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
