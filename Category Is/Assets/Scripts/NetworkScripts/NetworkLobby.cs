@@ -10,7 +10,10 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
 {
     const string playerNamePrefKey = "PlayerName";
     public Button submitBtn;
+    public Text RoomCode;
+    public Text roomInputField;
 
+    private RoomOptions rmOpts;
     InputField _inputField;
     // Start is called before the first frame update
     void Start()
@@ -64,10 +67,16 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
         CreateRoom();
     }
 
-    void CreateRoom()
+    public void CreateRoom()
     {
-        int randRmName = Random.Range(1, 100);
-        RoomOptions rmOpts = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = 4 };
+        int randRmName = Random.Range(1, 999999);
+        string rCode = randRmName.ToString();
+        for (int i = 3; i <= rCode.Length; i+=4)
+        {
+            rCode = rCode.Insert(i, " ");
+        }
+        RoomCode.text = rCode;
+        rmOpts = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = 4 };
         PhotonNetwork.CreateRoom("Room" + randRmName, rmOpts);
         Debug.Log("Room created: Room" + randRmName);
     }
@@ -79,7 +88,11 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
             PhotonNetwork.LoadLevel("GameCardScene");
         }
     }
-
+    public void JoinGame()
+    {
+        Debug.Log("Player joined room");
+        PhotonNetwork.JoinOrCreateRoom(roomInputField.text, rmOpts, TypedLobby.Default);
+    }
     public override void OnJoinedRoom()
     {
         Debug.Log("Player joined room");
