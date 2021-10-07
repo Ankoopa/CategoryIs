@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Life
   m_EditorClassIdentifier: 
   UCardID: 02
-  cardImage: {fileID: 21300000, guid: 988142fc57eea044f8063e8f4ca25977, type: 3}
+  cardImage: {fileID: 21300000, guid: ec9070694e5660f498f86fac71fc7299, type: 3}
   CardName: Extra Life
   CardAmount: 10
   ability:

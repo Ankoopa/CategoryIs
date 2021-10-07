@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Death
   m_EditorClassIdentifier: 
   UCardID: 01
-  cardImage: {fileID: 21300000, guid: 4fa9e44eff715a24a90db19986680090, type: 3}
+  cardImage: {fileID: 21300000, guid: 3eaf6029ab653ea4599de7913bfeff17, type: 3}
   CardName: Death
   CardAmount: 5
   ability:

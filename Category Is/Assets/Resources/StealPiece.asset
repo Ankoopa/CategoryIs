@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: StealPiece
   m_EditorClassIdentifier: 
   UCardID: 
-  cardImage: {fileID: 0}
-  CardName: 
-  CardAmount: 0
+  cardImage: {fileID: 21300000, guid: 6bf2ad97aae99574698a1ff7b8065a61, type: 3}
+  CardName: Steal Card Piece
+  CardAmount: 6
   ability: []
   Description: 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Skip
   m_EditorClassIdentifier: 
   UCardID: 04
-  cardImage: {fileID: 21300000, guid: 304b7a305f5ea4f44abe9094e12fa03f, type: 3}
+  cardImage: {fileID: 21300000, guid: a31e00fc4f78b81438748240e9432ffb, type: 3}
   CardName: Skip
   CardAmount: 8
   ability:

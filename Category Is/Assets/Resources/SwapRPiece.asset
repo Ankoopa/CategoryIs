@@ -15,6 +15,6 @@ MonoBehaviour:
   UCardID: 09
   cardImage: {fileID: 21300000, guid: 6bf2ad97aae99574698a1ff7b8065a61, type: 3}
   CardName: Swap Rotation Piece Card
-  CardAmount: 12
+  CardAmount: 9
   ability: []
   Description: 
