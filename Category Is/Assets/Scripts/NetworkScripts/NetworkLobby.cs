@@ -6,7 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 
 [RequireComponent(typeof(InputField))]
-public class PlayerNameInput : MonoBehaviourPunCallbacks
+public class NetworkLobby : MonoBehaviourPunCallbacks
 {
     const string playerNamePrefKey = "PlayerName";
     public Button submitBtn;
@@ -15,6 +15,7 @@ public class PlayerNameInput : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
+
         string defaultName = string.Empty;
         _inputField = this.GetComponent<InputField>();
 
@@ -66,7 +67,7 @@ public class PlayerNameInput : MonoBehaviourPunCallbacks
     void CreateRoom()
     {
         int randRmName = Random.Range(1, 100);
-        RoomOptions rmOpts = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = 2 };
+        RoomOptions rmOpts = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = 4 };
         PhotonNetwork.CreateRoom("Room" + randRmName, rmOpts);
         Debug.Log("Room created: Room" + randRmName);
     }
