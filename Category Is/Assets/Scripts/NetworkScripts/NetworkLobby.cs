@@ -5,51 +5,30 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-[RequireComponent(typeof(InputField))]
 public class NetworkLobby : MonoBehaviourPunCallbacks
 {
-    const string playerNamePrefKey = "PlayerName";
     public Button submitBtn;
+    public GameObject backButton;
+    public GameObject CancelButton;
     public Text RoomCode;
     public Text roomInputField;
-
+    public PlayerNameField playerName;
     private RoomOptions rmOpts;
-    InputField _inputField;
+    
+    private void Awake()
+    {
+        PhotonNetwork.AutomaticallySyncScene = true;
+    }
     // Start is called before the first frame update
     void Start()
     {
 
-        string defaultName = string.Empty;
-        _inputField = this.GetComponent<InputField>();
-
-        if (_inputField != null)
-        {
-            if (PlayerPrefs.HasKey(playerNamePrefKey))
-            {
-                defaultName = PlayerPrefs.GetString(playerNamePrefKey);
-                _inputField.text = defaultName;
-            }
-        }
-
-        PhotonNetwork.NickName = defaultName;
-    }
-
-    public void SetPlayerName(string value)
-    {
-        if (string.IsNullOrEmpty(value))
-        {
-            Debug.LogError("Player Name is null or empty");
-            return;
-        }
-        PhotonNetwork.NickName = value;
-
-        PlayerPrefs.SetString(playerNamePrefKey, value);
     }
 
     public void SubmitName()
     {
         Debug.Log(PhotonNetwork.NickName);
-        if (string.IsNullOrEmpty(PhotonNetwork.NickName) || PhotonNetwork.NickName == playerNamePrefKey)
+        if (string.IsNullOrEmpty(PhotonNetwork.NickName))
         {
             Debug.LogError("Player Name is null or empty");
         }
@@ -69,47 +48,96 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
 
     public void CreateRoom()
     {
+        if (!PhotonNetwork.IsConnected)
+            return;
         int randRmName = Random.Range(1, 999999);
         string rCode = randRmName.ToString();
-        for (int i = 3; i <= rCode.Length; i+=4)
-        {
-            rCode = rCode.Insert(i, " ");
-        }
+        // for (int i = 3; i <= rCode.Length; i+=4)
+        // {
+        //     rCode = rCode.Insert(i, " ");
+        // }
         RoomCode.text = rCode;
         rmOpts = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = 4 };
-        PhotonNetwork.CreateRoom("Room" + randRmName, rmOpts);
+        PhotonNetwork.CreateRoom(rCode, rmOpts);
         Debug.Log("Room created: Room" + randRmName);
     }
 
-    void LoadLevel()
+    public void LoadLevel()
     {
+            //PhotonNetwork.CurrentRoom.IsOpen = false;
         if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
         {
-            PhotonNetwork.LoadLevel("GameCardScene");
-        }
+             PhotonNetwork.LoadLevel("GameCardScene");
+        }    
+           
+
     }
     public void JoinGame()
     {
         Debug.Log("Player joined room");
+        backButton.SetActive(false);
         PhotonNetwork.JoinOrCreateRoom(roomInputField.text, rmOpts, TypedLobby.Default);
+    }
+
+    public void SearchAndJoinRoom()
+    {
+        PhotonNetwork.JoinRoom(roomInputField.text);
     }
     public override void OnJoinedRoom()
     {
-        Debug.Log("Player joined room");
-        base.OnJoinedRoom();
-        LoadLevel();
+        foreach (var playername in PhotonNetwork.CurrentRoom.Players)
+        {
+            Debug.Log(playername);
+        }
+        //Debug.Log(PhotonNetwork.NickName + " has joined room");
+        // if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        // {
+        //     LoadLevel();
+        // }       
+        
     }
 
-    public override void OnPlayerEnteredRoom(Player newPlayer)
+    public override void OnJoinRoomFailed(short returnCode, string message)
     {
-        base.OnPlayerEnteredRoom(newPlayer);
-        LoadLevel();
+        Debug.LogErrorFormat("Room creation failed with error code {0} and error message {1}", returnCode, message);
     }
 
+    // public override void OnPlayerEnteredRoom(Player newPlayer)
+    // {
+    //     base.OnPlayerEnteredRoom(newPlayer);
+    //     LoadLevel();
+    // }
+
+    public override void OnCreatedRoom()
+    {   
+        Debug.Log("Created Successfuly");
+        base.OnCreatedRoom();
+        //LoadLevel();
+    }
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         Debug.LogError("Room creation failed. Trying again...");
         base.OnCreateRoomFailed(returnCode, message);
         CreateRoom();
+    }
+
+    public void OnBackButtonClicked()
+    {
+        Debug.Log("Left the room");
+        backButton.SetActive(true);
+        PhotonNetwork.LeaveRoom();
+    }
+
+    public override void OnPlayerLeftRoom(Player other)
+    {
+        Debug.LogFormat("OnPlayerLeftRoom() {0}", other.NickName);
+    }
+
+    public void JoinLobbyOnClick()
+    {
+        if (!PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.JoinLobby();
+        }
     }
 }

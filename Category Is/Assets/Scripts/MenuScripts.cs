@@ -10,6 +10,8 @@ public class MenuScripts : MonoBehaviour
     public GameObject onlineMenu;
     public GameObject findRoomMenu;
     public GameObject createRoomMenu;
+    public GameObject waitingRoomMenu;
+    public GameObject searchRoomMenu;
 
     void Start()
     {
@@ -47,11 +49,18 @@ public class MenuScripts : MonoBehaviour
     {
         customMenu.SetActive(false);
         findRoomMenu.SetActive(true);
+        searchRoomMenu.SetActive(true);
     }
 
     public void HostRoomMenuOpen()
     {
         customMenu.SetActive(false);
         createRoomMenu.SetActive(true);
+    }
+
+    public void OnWaitingRoomOpen()
+    {
+        searchRoomMenu.SetActive(false);
+        waitingRoomMenu.SetActive(true);
     }
 }
