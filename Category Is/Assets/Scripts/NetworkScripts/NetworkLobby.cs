@@ -60,18 +60,9 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
         rmOpts = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = 4 };
         PhotonNetwork.CreateRoom(rCode, rmOpts);
         Debug.Log("Room created: Room" + randRmName);
-    }
-
-    public void LoadLevel()
-    {
-            //PhotonNetwork.CurrentRoom.IsOpen = false;
-        if (PhotonNetwork.CurrentRoom.PlayerCount == 2 && PhotonNetwork.IsMasterClient)
-        {
-             PhotonNetwork.LoadLevel("GameCardScene");
-        }    
+    } 
            
 
-    }
     public void JoinGame()
     {
         Debug.Log("Player joined room");

@@ -11,7 +11,7 @@ public class PlayerListings : MonoBehaviour
     private Text _nameText;
     //[SerializeField]
     //private Sprite Avatar;
-
+    public bool Ready = false;
     public Player Player { get; private set; }
     
     public void SetPlayerInfo(Player player)
