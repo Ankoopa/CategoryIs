@@ -12,14 +12,17 @@ public class DrawCards : MonoBehaviour
     public Deck DeckInfo;
 
     private int cardNum;
+    private int leftMost = -450;
+    private int step = 225;
+    private int rightMost = 675;
     private GameObject playerCard;
 
     public void BtnClick()
     {
         cardInfo.LifeCardPerPlayer();
-        playerCard = Instantiate(card, new Vector3(-275, generateYPos(cardNum), 0), Quaternion.identity);
+        playerCard = Instantiate(card, new Vector3(leftMost, generateYPos(cardNum), 0), Quaternion.identity);
         playerCard.transform.SetParent(playerDeck.transform, false);
-        for(int i = -170; i <= 250; i+=105)
+        for(int i = leftMost+step; i <= rightMost; i += step)
         {
             cardNum++;
             
