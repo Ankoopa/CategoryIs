@@ -65,7 +65,7 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
     public void LoadLevel()
     {
             //PhotonNetwork.CurrentRoom.IsOpen = false;
-        if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 2 && PhotonNetwork.IsMasterClient)
         {
              PhotonNetwork.LoadLevel("GameCardScene");
         }    

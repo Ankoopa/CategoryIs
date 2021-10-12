@@ -6,7 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 
 [RequireComponent(typeof(InputField))]
-public class PlayerNameField : MonoBehaviour
+public class PlayerNameField : MonoBehaviourPun
 {
     private const string playerNamePrefKey = "PlayerName";
     InputField _inputField;
