@@ -97,6 +97,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
         {
             for (int i = 0; i < _listing.Count; i++)
             {
+                Debug.Log(_listing[i].Player + " is ready " + _listing[i].Ready);
                 if (_listing[i].Player != PhotonNetwork.LocalPlayer)
                 {
                     if (!_listing[i].Ready)
@@ -111,7 +112,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     private void RPC_ChangeReadyState(Player player, bool ready)
     {
         int index = _listing.FindIndex(x => x.Player == player);
-        if (index != 1)
+        if (index != -1)
         {
             _listing[index].Ready = ready;
         }
