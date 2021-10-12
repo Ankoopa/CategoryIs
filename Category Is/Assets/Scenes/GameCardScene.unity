@@ -1358,8 +1358,6 @@ MonoBehaviour:
   card: {fileID: 3787027705836675734, guid: 27b67f5210e604445b3805de0a5afbac, type: 3}
   playerDeck: {fileID: 208699461}
   enemyDeck: {fileID: 1930061416}
-  cardInfo: {fileID: 2091033770614366799, guid: 27b67f5210e604445b3805de0a5afbac, type: 3}
-  DeckInfo: {fileID: 1900022762}
   slots: {fileID: 898737351}
   slots2: {fileID: 1081009285}
   cardSlots:
@@ -1376,6 +1374,8 @@ MonoBehaviour:
   - {fileID: 404860326}
   - {fileID: 1698048904}
   - {fileID: 1510456843}
+  cardInfo: {fileID: 2091033770614366799, guid: 27b67f5210e604445b3805de0a5afbac, type: 3}
+  DeckInfo: {fileID: 1900022762}
   playerNameText1: {fileID: 1136059116}
   playerNameText2: {fileID: 642368165}
 --- !u!1 &1930061416 stripped
@@ -1660,7 +1660,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5246667460196686274, guid: 5cfae19fdd91e4a47b8976a3f4f6731f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.00012207031
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5246667460196686274, guid: 5cfae19fdd91e4a47b8976a3f4f6731f, type: 3}
       propertyPath: m_AnchoredPosition.y

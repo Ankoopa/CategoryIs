@@ -15,6 +15,7 @@ public class Deck : MonoBehaviour
     private IEnumerable<int> range;
     private int index;
     private static Deck instance;
+    private static ScriptableCard back;
     
 
     [SerializeField] public static int Sum = 0;
@@ -45,15 +46,9 @@ public class Deck : MonoBehaviour
         {
                 for (int i = 0; i < cardsInfo.CardAmount; i++)
                 {
-                    if (cardsInfo.UCardID == "01" || cardsInfo.UCardID == "02")         //Seperates the Life and Death card from the rest of the cards and put them into a temporary list;
-                    {
-                        TempDeck2.Add(cardsInfo);
-                    }
-                    else
-                    {
-                        TempDeck1.Add(cardsInfo);
-                    }
-                    
+                    if (cardsInfo.UCardID == "01" || cardsInfo.UCardID == "02") TempDeck2.Add(cardsInfo); //Seperates the Life and Death card from the rest of the cards and put them into a temporary list;
+                    else if (cardsInfo.UCardID == "00") back = cardsInfo; //Back or hidden card
+                    else TempDeck1.Add(cardsInfo);
                 }
             
         }
@@ -70,7 +65,7 @@ public class Deck : MonoBehaviour
             n--;
             int rnd = random.Next(1, n+1);
             ScriptableCard value = dList[rnd];
-            dList[rnd] = dList[n];                                                      //Swaps the old value to the new value
+            dList[rnd] = dList[n]; //Swaps the old value to the new value
             dList[n] = value;
         }
 
@@ -82,6 +77,11 @@ public class Deck : MonoBehaviour
         instance.TempDeck1.Remove(instance.TempDeck1[0]);
         return instance.TempDeck1[0];
         
+    }
+
+    public static ScriptableCard DrawEnemyDeck()
+    {
+        return back;
     }
 
     public static ScriptableCard FirstDealtCard()

@@ -21,6 +21,11 @@ public class Card : MonoBehaviour
         SetCard(Deck.FirstDealtCard());
     }
 
+    public void DrawEnemyCards()
+    {
+        SetCard(Deck.DrawEnemyDeck());
+    }
+
     public void SetCard(ScriptableCard i)
     {
         CardID = i.UCardID;

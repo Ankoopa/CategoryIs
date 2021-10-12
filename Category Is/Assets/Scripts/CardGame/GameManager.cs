@@ -10,10 +10,11 @@ public class GameManager : MonoBehaviour
     public GameObject card;
     public GameObject playerDeck;
     public GameObject enemyDeck;
-    public Card cardInfo;
-    public Deck DeckInfo;
     public GameObject slots, slots2;
     public GameObject[] cardSlots, cardSlots2;
+
+    public Card cardInfo;
+    public Deck DeckInfo;
     public Text playerNameText1, playerNameText2;
 
     private int cardNum = 0;
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
         foreach (GameObject slot in cardSlots2)
         {
             cardNum++;
+            cardInfo.DrawEnemyCards();
             GameObject enemyCard = Instantiate(card, new Vector3(slot.transform.localPosition.x, GenerateYPos(cardNum, true), 0), Quaternion.identity);
             enemyCard.transform.SetParent(slots2.transform, false);
         }
