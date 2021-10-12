@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -91,10 +91,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fbc23afc7a3aa9438a24555e39baba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardID: 09
+  CardID: 05
   cardFaces: {fileID: 809053988906267524}
   searchCardID: 02
-  cardAmount: 9
+  cardAmount: 8
 --- !u!225 &-4146414161780934493
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6bf2ad97aae99574698a1ff7b8065a61, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ac29f67b0a6e7a64cbd89e64af20e9bf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

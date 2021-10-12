@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,26 +12,29 @@ public class GameManager : MonoBehaviour
     public GameObject enemyDeck;
     public Card cardInfo;
     public Deck DeckInfo;
+    public GameObject slots;
+    public GameObject[] cardSlots;
+    public Text playerNameText1, playerNameText2;
 
-    private int cardNum;
+    private int cardNum = 0;
     
     void Start()
     {
+        AssignPlayers();
+
         //Makes sure that each player gets a lifecard at the beginning of the game
         cardInfo.LifeCardPerPlayer();
-        GameObject playerCard = Instantiate(card, new Vector3(-275, generateYPos(cardNum), 0), Quaternion.identity);
-        playerCard.transform.SetParent(playerDeck.transform, false);
-        //Deals cards from the deck
-        for(int i = -170; i <= 250; i+=105)
-        {
-            cardNum++;
-            
-            cardInfo.DrawingCards();
-            playerCard = Instantiate(card, new Vector3(i, generateYPos(cardNum), 0), Quaternion.identity);
-            playerCard.transform.SetParent(playerDeck.transform, false);
+        GameObject playerCard = Instantiate(card, new Vector3(cardSlots[0].transform.localPosition.x, GenerateYPos(cardNum), 0), Quaternion.identity);
+        playerCard.transform.SetParent(slots.transform, false);
 
-            // GameObject enemyCard = Instantiate(card, new Vector3(0, 0, 0), Quaternion.identity);
-            // enemyCard.transform.SetParent(enemyDeck.transform, false);
+        //Deals cards from the deck
+        foreach (GameObject slot in cardSlots)
+        {
+            if (slot == cardSlots[0]) continue;
+            cardNum++;
+            cardInfo.DrawingCards();
+            playerCard = Instantiate(card, new Vector3(slot.transform.localPosition.x, GenerateYPos(cardNum), 0), Quaternion.identity);
+            playerCard.transform.SetParent(slots.transform, false);
         }
 
         DeckInfo.GameDeck.AddRange(DeckInfo.TempDeck1);
@@ -36,19 +42,34 @@ public class GameManager : MonoBehaviour
         DeckInfo.ShuffleDeck(DeckInfo.GameDeck);
     }
 
-    int generateYPos(int num)
+    int GenerateYPos(int num)
     {
         int YPos;
 
-        if(num%2 == 0)
-        {
-            YPos = 20;
-        }
-        else
-        {
-            YPos = 30;
-        }
+        if(num%2 == 0) YPos = 20;
+        else YPos = 0;
 
         return YPos;
+    }
+
+    void AssignPlayers()
+    {
+        try
+        {
+            if (PhotonNetwork.PlayerList[0].NickName == PhotonNetwork.LocalPlayer.NickName)
+            {
+                playerNameText1.text = "Player 1: " + PhotonNetwork.PlayerList[0].NickName;
+                playerNameText2.text = "Player 2: " + PhotonNetwork.PlayerList[1].NickName;
+            }
+            else
+            {
+                playerNameText1.text = "Player 2: " + PhotonNetwork.PlayerList[1].NickName;
+                playerNameText2.text = "Player 1: " + PhotonNetwork.PlayerList[0].NickName;
+            }
+        }
+        catch(System.Exception e)
+        {
+            Debug.LogError(e);
+        }
     }
 }

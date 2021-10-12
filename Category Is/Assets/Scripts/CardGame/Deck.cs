@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using Photon.Pun;
-using Photon.Realtime;
 using System.Linq;
 
 public class Deck : MonoBehaviour
@@ -13,7 +10,6 @@ public class Deck : MonoBehaviour
     public List<ScriptableCard> TempDeck1;
     public List<ScriptableCard> TempDeck2;
     public List<ScriptableCard> GameDeck;
-    public Text playerNameText1, playerNameText2;
 
     private HashSet<int> exclude;
     private IEnumerable<int> range;
@@ -27,17 +23,6 @@ public class Deck : MonoBehaviour
     {
         LoadingDeck();
         ShuffleDeck(TempDeck1);
-
-        if(PhotonNetwork.PlayerList[0].NickName == PhotonNetwork.LocalPlayer.NickName)
-        {
-            playerNameText1.text = "Player 1: " + PhotonNetwork.PlayerList[0].NickName;
-            playerNameText2.text = "Player 2: " + PhotonNetwork.PlayerList[1].NickName;
-        }
-        else
-        {
-            playerNameText1.text = "Player 2: " + PhotonNetwork.PlayerList[1].NickName;
-            playerNameText2.text = "Player 1: " + PhotonNetwork.PlayerList[0].NickName;
-        }
 
         if (instance == null)
         {
