@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
     public GameObject enemyDeck;
     public Card cardInfo;
     public Deck DeckInfo;
-    public GameObject slots;
-    public GameObject[] cardSlots;
+    public GameObject slots, slots2;
+    public GameObject[] cardSlots, cardSlots2;
     public Text playerNameText1, playerNameText2;
 
     private int cardNum = 0;
@@ -28,21 +28,11 @@ public class GameManager : MonoBehaviour
         DeckInfo.ShuffleDeck(DeckInfo.GameDeck);
     }
 
-    int GenerateYPos(int num)
-    {
-        int YPos;
-
-        if(num%2 == 0) YPos = 20;
-        else YPos = 0;
-
-        return YPos;
-    }
-
     void DealCards()
     {
         //Makes sure that each player gets a lifecard at the beginning of the game
         cardInfo.LifeCardPerPlayer();
-        GameObject playerCard = Instantiate(card, new Vector3(cardSlots[0].transform.localPosition.x, GenerateYPos(cardNum), 0), Quaternion.identity);
+        GameObject playerCard = Instantiate(card, new Vector3(cardSlots[0].transform.localPosition.x, GenerateYPos(cardNum, false), 0), Quaternion.identity);
         playerCard.transform.SetParent(slots.transform, false);
 
         //Deals cards from the deck
@@ -51,9 +41,33 @@ public class GameManager : MonoBehaviour
             if (slot == cardSlots[0]) continue;
             cardNum++;
             cardInfo.DrawingCards();
-            playerCard = Instantiate(card, new Vector3(slot.transform.localPosition.x, GenerateYPos(cardNum), 0), Quaternion.identity);
+            playerCard = Instantiate(card, new Vector3(slot.transform.localPosition.x, GenerateYPos(cardNum, false), 0), Quaternion.identity);
             playerCard.transform.SetParent(slots.transform, false);
         }
+
+        cardNum = 0;
+
+        foreach (GameObject slot in cardSlots2)
+        {
+            cardNum++;
+            GameObject enemyCard = Instantiate(card, new Vector3(slot.transform.localPosition.x, GenerateYPos(cardNum, true), 0), Quaternion.identity);
+            enemyCard.transform.SetParent(slots2.transform, false);
+        }
+    }
+
+
+    int GenerateYPos(int num, bool isUpper)
+    {
+        int YPos;
+
+        if (num % 2 == 0)
+        {
+            if(isUpper) YPos = -20;
+            else YPos = 20;
+        }
+        else YPos = 0;
+
+        return YPos;
     }
 
     void AssignPlayers()

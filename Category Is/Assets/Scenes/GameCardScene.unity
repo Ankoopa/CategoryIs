@@ -1361,6 +1361,7 @@ MonoBehaviour:
   cardInfo: {fileID: 2091033770614366799, guid: 27b67f5210e604445b3805de0a5afbac, type: 3}
   DeckInfo: {fileID: 1900022762}
   slots: {fileID: 898737351}
+  slots2: {fileID: 1081009285}
   cardSlots:
   - {fileID: 1159042754}
   - {fileID: 1685817064}
@@ -1368,6 +1369,13 @@ MonoBehaviour:
   - {fileID: 1479728536}
   - {fileID: 641458489}
   - {fileID: 766342531}
+  cardSlots2:
+  - {fileID: 458199095}
+  - {fileID: 1071010625}
+  - {fileID: 1490119639}
+  - {fileID: 404860326}
+  - {fileID: 1698048904}
+  - {fileID: 1510456843}
   playerNameText1: {fileID: 1136059116}
   playerNameText2: {fileID: 642368165}
 --- !u!1 &1930061416 stripped
