@@ -13,16 +13,12 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
     public Text RoomCode;
     public Text roomInputField;
     public PlayerNameField playerName;
+    public PlayerListingMenu playerListScript;
     private RoomOptions rmOpts;
     
     private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-
     }
 
     public void SubmitName()
@@ -52,10 +48,7 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
             return;
         int randRmName = Random.Range(1, 999999);
         string rCode = randRmName.ToString();
-        // for (int i = 3; i <= rCode.Length; i+=4)
-        // {
-        //     rCode = rCode.Insert(i, " ");
-        // }
+
         RoomCode.text = rCode;
         rmOpts = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = 4 };
         PhotonNetwork.CreateRoom(rCode, rmOpts);
@@ -80,12 +73,6 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
         {
             Debug.Log(playername);
         }
-        //Debug.Log(PhotonNetwork.NickName + " has joined room");
-        // if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
-        // {
-        //     LoadLevel();
-        // }       
-        
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
@@ -93,17 +80,10 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
         Debug.LogErrorFormat("Room creation failed with error code {0} and error message {1}", returnCode, message);
     }
 
-    // public override void OnPlayerEnteredRoom(Player newPlayer)
-    // {
-    //     base.OnPlayerEnteredRoom(newPlayer);
-    //     LoadLevel();
-    // }
-
     public override void OnCreatedRoom()
     {   
         Debug.Log("Created Successfuly");
         base.OnCreatedRoom();
-        //LoadLevel();
     }
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
@@ -114,16 +94,35 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
 
     public void OnBackButtonClicked()
     {
-        Debug.Log("Left the room");
-        backButton.SetActive(true);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            Debug.Log("room is closed");
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+            for (int i = 0; i < playerListScript._listing.Count; i++)
+            {
+                Destroy(playerListScript._listing[i].gameObject);
+                playerListScript._listing.RemoveAt(i);
+            }
+        }
+        else
+        {
+            Debug.Log(PhotonNetwork.LocalPlayer);
+            int index = playerListScript._listing.FindIndex(x => x.Player == PhotonNetwork.LocalPlayer);
+            Debug.Log(playerListScript._listing[index].Player + "has left room");
+            if (index != -1)
+            {
+                Destroy(playerListScript._listing[index].gameObject);
+                playerListScript._listing.RemoveAt(index);
+            }
+        }
         PhotonNetwork.LeaveRoom();
     }
 
     public override void OnPlayerLeftRoom(Player other)
     {
-        Debug.LogFormat("OnPlayerLeftRoom() {0}", other.NickName);
+        Debug.Log("left room");
     }
-
+    
     public void JoinLobbyOnClick()
     {
         if (!PhotonNetwork.InLobby)

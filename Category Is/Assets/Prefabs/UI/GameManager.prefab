@@ -51,6 +51,7 @@ MonoBehaviour:
   RoomCode: {fileID: 0}
   roomInputField: {fileID: 0}
   playerName: {fileID: 3226595633446700378}
+  playerListScript: {fileID: 0}
 --- !u!114 &3226595633446700378
 MonoBehaviour:
   m_ObjectHideFlags: 0

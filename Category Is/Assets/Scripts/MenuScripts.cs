@@ -44,6 +44,7 @@ public class MenuScripts : MonoBehaviour
         customMenu.SetActive(true);
         findRoomMenu.SetActive(false);
         createRoomMenu.SetActive(false);
+        playerListingMenu.SetActive(false);
     }
 
     public void FindRoomMenuOpen()

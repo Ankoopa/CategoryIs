@@ -16,11 +16,16 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
 
     public Text _readyUpText;
     
-    [SerializeField]
-    private List<PlayerListings> _listing = new List<PlayerListings>();
+    public List<PlayerListings> _listing = new List<PlayerListings>();
     private bool _ready = false;
     
     public NetworkLobby networkScript;
+    public MenuScripts menuScript;
+
+    private void Awake()
+    {
+        PhotonNetwork.AutomaticallySyncScene = true;
+    }
 
     public override void OnEnable()
     {
@@ -49,6 +54,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     {
         foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
+
             AddPlayerListing(playerInfo.Value);
         }
     }
@@ -69,8 +75,10 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
+        Debug.Log("closed");
         int index = _listing.FindIndex(x => x.Player == otherPlayer);
-        if (index != 1)
+        Debug.Log(_listing[index].Player + "has left room");
+        if (index != -1)
         {
             Destroy(_listing[index].gameObject);
             _listing.RemoveAt(index);
@@ -86,10 +94,17 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
         }
     }
     
-    public override void OnMasterClientSwitched(Player newMasterClient)
-    {
-        networkScript.OnBackButtonClicked();
-    }
+    // public override void OnMasterClientSwitched(Player newMasterClient)
+    // {
+    //     Debug.Log("master left");
+    //     for (int i = 0; i < _listing.Count; i++)
+    //     {
+    //         Destroy(_listing[i].gameObject);
+    //         _listing.RemoveAt(i);
+    //     }
+    //     menuScript.BackToCustomMenu();
+    //     PhotonNetwork.LeaveRoom();
+    // }
     public void LoadLevel()
     {
             //PhotonNetwork.CurrentRoom.IsOpen = false;
