@@ -15,12 +15,19 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
     public PlayerNameField playerName;
     public PlayerListingMenu playerListScript;
     private RoomOptions rmOpts;
-    
+    private bool destroyPlayersList;
+
     private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
     }
-
+    void Update()
+    {
+        if (destroyPlayersList)
+        {
+            DestroyListLocally();
+        }
+    }
     public void SubmitName()
     {
         Debug.Log(PhotonNetwork.NickName);
@@ -96,28 +103,39 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            Debug.Log("room is closed");
-            PhotonNetwork.CurrentRoom.IsOpen = false;
             for (int i = 0; i < playerListScript._listing.Count; i++)
             {
+                Debug.Log(playerListScript._listing.Count);
                 Destroy(playerListScript._listing[i].gameObject);
                 playerListScript._listing.RemoveAt(i);
             }
         }
         else
         {
-            Debug.Log(PhotonNetwork.LocalPlayer);
-            int index = playerListScript._listing.FindIndex(x => x.Player == PhotonNetwork.LocalPlayer);
-            Debug.Log(playerListScript._listing[index].Player + "has left room");
-            if (index != -1)
+            for (int i = 0; i < playerListScript._listing.Count; i++)
             {
-                Destroy(playerListScript._listing[index].gameObject);
-                playerListScript._listing.RemoveAt(index);
+                Debug.Log(playerListScript._listing.Count);
+                Destroy(playerListScript._listing[i].gameObject);
+                playerListScript._listing.RemoveAt(i);
             }
         }
+        destroyPlayersList = true;
         PhotonNetwork.LeaveRoom();
     }
 
+    public void DestroyListLocally()
+    {
+        if (destroyPlayersList)
+        {
+            for (int i = 0; i < playerListScript._listing.Count; i++)
+            {
+                Debug.Log(playerListScript._listing.Count);
+                Destroy(playerListScript._listing[i].gameObject);
+                playerListScript._listing.RemoveAt(i);
+            }
+        }
+        destroyPlayersList = false;
+    }
     public override void OnPlayerLeftRoom(Player other)
     {
         Debug.Log("left room");

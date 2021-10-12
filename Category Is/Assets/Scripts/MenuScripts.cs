@@ -52,6 +52,7 @@ public class MenuScripts : MonoBehaviour
         customMenu.SetActive(false);
         findRoomMenu.SetActive(true);
         searchRoomMenu.SetActive(true);
+        playerListingMenu.SetActive(false);
     }
 
     public void HostRoomMenuOpen()
@@ -66,5 +67,12 @@ public class MenuScripts : MonoBehaviour
         searchRoomMenu.SetActive(false);
         waitingRoomMenu.SetActive(true);
         playerListingMenu.SetActive(true);
+    }
+
+    public void OnWaitingRoomClosed()
+    {
+        searchRoomMenu.SetActive(true);
+        waitingRoomMenu.SetActive(false);
+        playerListingMenu.SetActive(false);
     }
 }

@@ -94,17 +94,14 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
         }
     }
     
-    // public override void OnMasterClientSwitched(Player newMasterClient)
-    // {
-    //     Debug.Log("master left");
-    //     for (int i = 0; i < _listing.Count; i++)
-    //     {
-    //         Destroy(_listing[i].gameObject);
-    //         _listing.RemoveAt(i);
-    //     }
-    //     menuScript.BackToCustomMenu();
-    //     PhotonNetwork.LeaveRoom();
-    // }
+    public override void OnMasterClientSwitched(Player newMasterClient)
+    {
+        Debug.Log("master left");
+        menuScript.OnWaitingRoomClosed();
+        menuScript.BackToCustomMenu();
+        networkScript.OnBackButtonClicked();
+    }
+    
     public void LoadLevel()
     {
             //PhotonNetwork.CurrentRoom.IsOpen = false;

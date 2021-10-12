@@ -2496,7 +2496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3013372806877158297, guid: 73cd2899bf6e28a4bb071db6f9d37816, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: BackToCustomMenu
+      value: OnWaitingRoomClosed
       objectReference: {fileID: 0}
     - target: {fileID: 3013372806877158297, guid: 73cd2899bf6e28a4bb071db6f9d37816, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -6126,8 +6126,8 @@ MonoBehaviour:
   _playersList: {fileID: -1772383203052431988, guid: 2fd48c07ef1a34942aab8313b86b5d8d, type: 3}
   _readyUpText: {fileID: 9058002587417276806}
   _listing: []
-  networkScript: {fileID: 3048426026925813161, guid: 697c449e12f46394aade4b02949ebe61, type: 3}
-  menuScript: {fileID: 0}
+  networkScript: {fileID: 1947521788}
+  menuScript: {fileID: 176044141}
 --- !u!1001 &5589978585658963225
 PrefabInstance:
   m_ObjectHideFlags: 0
