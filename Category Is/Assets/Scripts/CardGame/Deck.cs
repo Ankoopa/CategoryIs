@@ -28,8 +28,16 @@ public class Deck : MonoBehaviour
         LoadingDeck();
         ShuffleDeck(TempDeck1);
 
-        playerNameText1.text = "Player 1: " + PhotonNetwork.PlayerList[0].NickName;
-        playerNameText2.text = "Player 2: " + PhotonNetwork.PlayerList[1].NickName;
+        if(PhotonNetwork.PlayerList[0].NickName == PhotonNetwork.LocalPlayer.NickName)
+        {
+            playerNameText1.text = "Player 1: " + PhotonNetwork.PlayerList[0].NickName;
+            playerNameText2.text = "Player 2: " + PhotonNetwork.PlayerList[1].NickName;
+        }
+        else
+        {
+            playerNameText1.text = "Player 2: " + PhotonNetwork.PlayerList[1].NickName;
+            playerNameText2.text = "Player 1: " + PhotonNetwork.PlayerList[0].NickName;
+        }
 
         if (instance == null)
         {
