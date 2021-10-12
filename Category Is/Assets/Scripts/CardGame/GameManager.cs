@@ -21,21 +21,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         AssignPlayers();
-
-        //Makes sure that each player gets a lifecard at the beginning of the game
-        cardInfo.LifeCardPerPlayer();
-        GameObject playerCard = Instantiate(card, new Vector3(cardSlots[0].transform.localPosition.x, GenerateYPos(cardNum), 0), Quaternion.identity);
-        playerCard.transform.SetParent(slots.transform, false);
-
-        //Deals cards from the deck
-        foreach (GameObject slot in cardSlots)
-        {
-            if (slot == cardSlots[0]) continue;
-            cardNum++;
-            cardInfo.DrawingCards();
-            playerCard = Instantiate(card, new Vector3(slot.transform.localPosition.x, GenerateYPos(cardNum), 0), Quaternion.identity);
-            playerCard.transform.SetParent(slots.transform, false);
-        }
+        DealCards();
 
         DeckInfo.GameDeck.AddRange(DeckInfo.TempDeck1);
         DeckInfo.GameDeck.AddRange(DeckInfo.TempDeck2);
@@ -50,6 +36,24 @@ public class GameManager : MonoBehaviour
         else YPos = 0;
 
         return YPos;
+    }
+
+    void DealCards()
+    {
+        //Makes sure that each player gets a lifecard at the beginning of the game
+        cardInfo.LifeCardPerPlayer();
+        GameObject playerCard = Instantiate(card, new Vector3(cardSlots[0].transform.localPosition.x, GenerateYPos(cardNum), 0), Quaternion.identity);
+        playerCard.transform.SetParent(slots.transform, false);
+
+        //Deals cards from the deck
+        foreach (GameObject slot in cardSlots)
+        {
+            if (slot == cardSlots[0]) continue;
+            cardNum++;
+            cardInfo.DrawingCards();
+            playerCard = Instantiate(card, new Vector3(slot.transform.localPosition.x, GenerateYPos(cardNum), 0), Quaternion.identity);
+            playerCard.transform.SetParent(slots.transform, false);
+        }
     }
 
     void AssignPlayers()
