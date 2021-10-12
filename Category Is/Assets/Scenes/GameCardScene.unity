@@ -1117,8 +1117,8 @@ MonoBehaviour:
   - {fileID: 1479728536}
   - {fileID: 641458489}
   - {fileID: 766342531}
-  playerNameText1: {fileID: 0}
-  playerNameText2: {fileID: 0}
+  playerNameText1: {fileID: 1136059116}
+  playerNameText2: {fileID: 642368165}
 --- !u!1 &1930061416 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8886959807771374875, guid: 5cfae19fdd91e4a47b8976a3f4f6731f, type: 3}
