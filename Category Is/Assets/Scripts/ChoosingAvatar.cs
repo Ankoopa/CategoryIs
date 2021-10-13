@@ -24,6 +24,16 @@ public class ChoosingAvatar : MonoBehaviour
         } 
     }
 
+    // public static ScriptableAvatars.AvatarData avatarList()
+    // {
+    //     int index =0;
+    //     for (int i = 0; i < instance.avatarsList.avatars.Count; i++)
+    //     {
+    //         instance.avatarsList.avatars[index] = instance.avatarsList.avatars[i];
+    //     }
+    //     return instance.avatarsList.avatars[index];
+    // }
+
     public static ScriptableAvatars.AvatarData DefaultAvatar()
     {
         int index = 0;

@@ -65,14 +65,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
             AddPlayerListing(playerInfo.Value);
         }
     }
-    public override void OnJoinedRoom()
-    {
-        // foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
-        // {
 
-        //     AddPlayerListing(playerInfo.Value);
-        // }
-    }
     private void AddPlayerListing(Player player)
     {
         PlayerListings listing = Instantiate(_playersList, _content);
@@ -147,7 +140,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
 
     IEnumerator DelayedSet()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         
         GetCurrentPlayersInRoom();
     }

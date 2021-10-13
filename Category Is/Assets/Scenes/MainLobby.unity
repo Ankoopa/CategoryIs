@@ -4910,6 +4910,7 @@ GameObject:
   - component: {fileID: 1997008535}
   - component: {fileID: 1997008537}
   - component: {fileID: 1997008536}
+  - component: {fileID: 1997008538}
   m_Layer: 5
   m_Name: AvatarsPanel
   m_TagString: Untagged
@@ -4978,6 +4979,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997008534}
   m_CullTransparentMesh: 1
+--- !u!114 &1997008538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997008534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ee9fb69d34681e499bbc2f18599f626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  avatar: {fileID: 5689942840992862958, guid: 9b84b298245ff244c93d846e211dcca8, type: 3}
+  avatarDB: {fileID: 11400000, guid: 0eec97a617357cb4eb60e770cfb502a8, type: 2}
+  parent: {fileID: 1648764059}
+  avatarImage: {fileID: 5689942840992862963, guid: 9b84b298245ff244c93d846e211dcca8, type: 3}
 --- !u!1 &2033666842
 GameObject:
   m_ObjectHideFlags: 0
