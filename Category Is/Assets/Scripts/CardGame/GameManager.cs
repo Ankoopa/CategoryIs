@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerDeck;
     public GameObject enemyDeck;
     public GameObject slots, slots2;
+    public GameObject avatar1, avatar2;
     public GameObject[] cardSlots, cardSlots2;
 
     public Card cardInfo;

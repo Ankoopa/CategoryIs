@@ -55,7 +55,6 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
              Debug.Log("Setting text not ready");
             _readyUpText.text = "Not Ready";
         }
-
     }
     private void GetCurrentPlayersInRoom()
     {

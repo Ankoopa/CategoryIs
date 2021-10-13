@@ -14,9 +14,6 @@ public class PlayerListings : MonoBehaviour
     public bool Ready = false;
     public Player Player { get; private set; }
     
-    void Start()
-    {
-    }
     public void SetPlayerInfo(Player player)
     {
         Player = player;
