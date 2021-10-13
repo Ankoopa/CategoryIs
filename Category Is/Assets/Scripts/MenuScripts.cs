@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuScripts : MonoBehaviour
 {
@@ -13,9 +14,12 @@ public class MenuScripts : MonoBehaviour
     public GameObject waitingRoomMenu;
     public GameObject searchRoomMenu;
     public GameObject playerListingMenu;
-
+    public GameObject AvatarPanel;
+    public GameObject changeAvatarPanel;
+    
     void Start()
     {
+
         MainmenuScreen.SetActive(true);
         onlineMenu.SetActive(false);
         customMenu.SetActive(false);
@@ -45,14 +49,17 @@ public class MenuScripts : MonoBehaviour
         findRoomMenu.SetActive(false);
         createRoomMenu.SetActive(false);
         playerListingMenu.SetActive(false);
+        changeAvatarPanel.SetActive(false);
     }
 
     public void FindRoomMenuOpen()
     {
         customMenu.SetActive(false);
+        changeAvatarPanel.SetActive(true);
         findRoomMenu.SetActive(true);
         searchRoomMenu.SetActive(true);
         playerListingMenu.SetActive(false);
+        
     }
 
     public void HostRoomMenuOpen()
@@ -60,6 +67,7 @@ public class MenuScripts : MonoBehaviour
         customMenu.SetActive(false);
         createRoomMenu.SetActive(true);
         playerListingMenu.SetActive(true);
+        changeAvatarPanel.SetActive(true);
     }
 
     public void OnWaitingRoomOpen()
@@ -67,6 +75,7 @@ public class MenuScripts : MonoBehaviour
         searchRoomMenu.SetActive(false);
         waitingRoomMenu.SetActive(true);
         playerListingMenu.SetActive(true);
+        changeAvatarPanel.SetActive(true);
     }
 
     public void OnWaitingRoomClosed()
@@ -75,4 +84,15 @@ public class MenuScripts : MonoBehaviour
         waitingRoomMenu.SetActive(false);
         playerListingMenu.SetActive(false);
     }
+
+    public void OnAvatarOpen()
+    {
+        AvatarPanel.SetActive(true);
+    }
+
+    public void OnAvatarClose()
+    {
+         AvatarPanel.SetActive(false);
+    }
+
 }
