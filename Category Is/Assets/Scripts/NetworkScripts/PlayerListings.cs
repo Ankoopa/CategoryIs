@@ -16,17 +16,16 @@ public class PlayerListings : MonoBehaviour
     
     void Start()
     {
-        //SetPlayerAvatar(ChoosingAvatar.ChooseAvatar());
     }
     public void SetPlayerInfo(Player player)
     {
         Player = player;
         _nameText.text = player.NickName;
-        // Avatar.sprite = ChoosingAvatar.ChooseAvatar().sprite;
+        SetPlayerAvatar(ChoosingAvatar.DefaultAvatar());
     }
 
-    public void SetPlayerAvatar(Image i)
+    public void SetPlayerAvatar(ScriptableAvatars.AvatarData i)
     {
-        Avatar.sprite = i.sprite;
+        Avatar.sprite = i.AvatarImage;
     }
 }

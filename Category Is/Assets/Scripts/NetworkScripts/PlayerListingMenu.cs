@@ -25,8 +25,15 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
+        
     }
-
+    void Start()
+    {
+        if (this.gameObject.activeSelf)
+        {
+            StartCoroutine(DelayedSet());
+        }
+    }
     public override void OnEnable()
     {
         base.OnEnable();
@@ -50,13 +57,21 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
         }
 
     }
-    public override void OnJoinedRoom()
+    private void GetCurrentPlayersInRoom()
     {
         foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
 
             AddPlayerListing(playerInfo.Value);
         }
+    }
+    public override void OnJoinedRoom()
+    {
+        // foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
+        // {
+
+        //     AddPlayerListing(playerInfo.Value);
+        // }
     }
     private void AddPlayerListing(Player player)
     {
@@ -128,5 +143,12 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
         {
             _listing[index].Ready = ready;
         }
+    }
+
+    IEnumerator DelayedSet()
+    {
+        yield return new WaitForSeconds(1f);
+        
+        GetCurrentPlayersInRoom();
     }
 }
