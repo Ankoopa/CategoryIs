@@ -10,6 +10,7 @@ public class AvatarSelection : MonoBehaviour
     public ScriptableAvatars avatarDB;
     public Transform parent;
     public Image avatarImage;
+    public GameObject YourAvatar;
     private GameObject avatarImageDP;
     public GameObject PLMScript;
     public List<GameObject> avalist = new List<GameObject>();
@@ -17,7 +18,9 @@ public class AvatarSelection : MonoBehaviour
     public static int spriteIndex;
     //public Text avatarName;
 
- 
+    void Start()
+    {
+    }
     void Update()
     {
         
@@ -31,7 +34,7 @@ public class AvatarSelection : MonoBehaviour
                 index++;
             }
         }
-
+        YourAvatar.transform.position = new Vector2(avalist[spriteIndex].transform.position.x, avalist[spriteIndex].transform.position.y + 1.25f);
     }
 
     public void AddAvatarTolist(ScriptableAvatars.AvatarData avatar)

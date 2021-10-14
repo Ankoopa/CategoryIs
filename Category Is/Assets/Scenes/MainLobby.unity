@@ -5467,9 +5467,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 176044140}
     m_Modifications:
+    - target: {fileID: 1005392074814006372, guid: cf9c77ccfed444943b7885b4c28d2e3c, type: 3}
+      propertyPath: YourAvatar
+      value: 
+      objectReference: {fileID: 1005392073354889983}
     - target: {fileID: 1005392074814006376, guid: cf9c77ccfed444943b7885b4c28d2e3c, type: 3}
       propertyPath: m_Name
       value: AvatarsPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1005392074814006376, guid: cf9c77ccfed444943b7885b4c28d2e3c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1005392074814006377, guid: cf9c77ccfed444943b7885b4c28d2e3c, type: 3}
       propertyPath: m_Pivot.x
@@ -5555,12 +5563,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1178376125876555318, guid: cf9c77ccfed444943b7885b4c28d2e3c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -748
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178376125876555318, guid: cf9c77ccfed444943b7885b4c28d2e3c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 267
+      objectReference: {fileID: 0}
     - target: {fileID: 9161689766036846719, guid: cf9c77ccfed444943b7885b4c28d2e3c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 204861033}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf9c77ccfed444943b7885b4c28d2e3c, type: 3}
+--- !u!1 &1005392073354889983 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7193786567049479947, guid: cf9c77ccfed444943b7885b4c28d2e3c, type: 3}
+  m_PrefabInstance: {fileID: 1005392073354889982}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1121969391614122545 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1410595102489629356, guid: bfe74c0746dc57547a2786906d6c4979, type: 3}
