@@ -34,11 +34,10 @@ public class ChoosingAvatar : MonoBehaviour
     //     return instance.avatarsList.avatars[index];
     // }
 
-    public static ScriptableAvatars.AvatarData DefaultAvatar()
+    public static ScriptableAvatars.AvatarData ChooseAvatar()
     {
-        int index = 0;
-        instance.avatarsList.avatars[index] = instance.avatarsList.avatars[0];
-        return instance.avatarsList.avatars[index];
+        instance.avatarsList.avatars[AvatarSelection.spriteIndex] = instance.avatarsList.avatars[AvatarSelection.spriteIndex];
+        return instance.avatarsList.avatars[AvatarSelection.spriteIndex];
     }
     // public static Image ChooseAvatar()
     // {

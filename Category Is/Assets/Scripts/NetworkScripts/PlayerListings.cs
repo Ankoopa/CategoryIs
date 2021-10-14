@@ -18,7 +18,7 @@ public class PlayerListings : MonoBehaviour
     {
         Player = player;
         _nameText.text = player.NickName;
-        SetPlayerAvatar(ChoosingAvatar.DefaultAvatar());
+        SetPlayerAvatar(ChoosingAvatar.ChooseAvatar());
     }
 
     public void SetPlayerAvatar(ScriptableAvatars.AvatarData i)

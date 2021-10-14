@@ -18,7 +18,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     
     public List<PlayerListings> _listing = new List<PlayerListings>();
     private bool _ready = false;
-    
+    public static bool _reInstant = false;
     public NetworkLobby networkScript;
     public MenuScripts menuScript;
 
@@ -34,13 +34,22 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
             StartCoroutine(DelayedSet());
         }
     }
+
+    void Update()
+    {
+        Debug.Log(_reInstant);
+        if (_reInstant)
+        {
+            ReInstatiatePlayer();
+        }
+    }
     public override void OnEnable()
     {
         base.OnEnable();
         SetReadyUp(false);
         Debug.Log("Setting ready");
     }
-
+    
     private void SetReadyUp(bool state)
     {
         _ready = state;
@@ -64,7 +73,31 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
             AddPlayerListing(playerInfo.Value);
         }
     }
+    public void ChangeName()
+    {
+        _reInstant = true;
+    }
+    private void ReInstatiatePlayer()
+    {
+        Player localPlayer = PhotonNetwork.LocalPlayer;
+        for (int i = 0; i < _listing.Count; i++)
+        {
+            if (_listing[i].Player == localPlayer)
+            {
+                Debug.Log("hello");
+                Destroy(_listing[i].gameObject);
+                _listing.RemoveAt(i);
+                
+                Debug.Log(i);
+            }
+        }
+        
+        PlayerListings listingPlayer = Instantiate(_playersList, _content);
+        listingPlayer.SetPlayerInfo(localPlayer);
+        _listing.Add(listingPlayer);
 
+        _reInstant = false;
+    }
     private void AddPlayerListing(Player player)
     {
         PlayerListings listing = Instantiate(_playersList, _content);

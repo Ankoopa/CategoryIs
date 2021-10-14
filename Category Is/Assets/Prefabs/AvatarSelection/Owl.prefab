@@ -146,7 +146,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 81a2df96d26da8f43815ab98247597c7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 361498817428879158, guid: cf9c77ccfed444943b7885b4c28d2e3c, type: 3}
+      - m_Target: {fileID: 1005392074814006372, guid: cf9c77ccfed444943b7885b4c28d2e3c, type: 3}
         m_TargetAssemblyTypeName: AvatarSelection, Assembly-CSharp
         m_MethodName: ChangeAvatar
         m_Mode: 1

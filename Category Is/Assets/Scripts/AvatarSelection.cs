@@ -10,30 +10,28 @@ public class AvatarSelection : MonoBehaviour
     public ScriptableAvatars avatarDB;
     public Transform parent;
     public Image avatarImage;
-    public GameObject avatarImageDP;
-    public List<GameObject> avatarList;
-    private static ChoosingAvatar instance;
+    private GameObject avatarImageDP;
+    public GameObject PLMScript;
+    public List<GameObject> avalist = new List<GameObject>();
     private int index;
+    public static int spriteIndex;
     //public Text avatarName;
-    private void Start()
-    {
-    }
+
  
     void Update()
     {
         
         if (index < avatarDB.avatars.Count)
         {
-            Debug.Log(index);
-            
             for (int i = 0; i < avatarDB.avatars.Count; i++)
             {
                 AddAvatarTolist(avatarDB.avatars[i]);
                 GameObject avatars = Instantiate(avatar, new Vector2(avatar.transform.position.x + 1,0), Quaternion.identity, parent);
-                avatarList.Add(avatars);
+                avalist.Add(avatars);
                 index++;
             }
         }
+
     }
 
     public void AddAvatarTolist(ScriptableAvatars.AvatarData avatar)
@@ -45,15 +43,29 @@ public class AvatarSelection : MonoBehaviour
     public void ChangeAvatar()
     {
         GameObject newAvatar = EventSystem.current.currentSelectedGameObject;
-        if (newAvatar != null)
+        avatarImageDP = GameObject.Find("PlayerAvatarImage");
+        avatarImageDP.GetComponent<Image>().sprite = newAvatar.GetComponent<Image>().sprite;
+
+        if (newAvatar.GetComponent<Image>().sprite.name == "Owl Avatar")
         {
-            Debug.Log(newAvatar.GetComponent<Image>().sprite);
-            avatarImageDP.GetComponent<Image>().sprite = newAvatar.GetComponent<Image>().sprite;
+            spriteIndex = 0;
         }
-        else
+        else if (newAvatar.GetComponent<Image>().sprite.name == "Parrot Avatar")
         {
-            Debug.Log("newAvatar variable is empty");
+            spriteIndex = 1;
         }
+        else if (newAvatar.GetComponent<Image>().sprite.name == "Penguin Avatar")
+        {
+            spriteIndex = 2;
+        }
+        else if (newAvatar.GetComponent<Image>().sprite.name == "Pigeon Avatar")
+        {
+            spriteIndex = 3;
+        }
+
+        PlayerListingMenu._reInstant = true;
         
     }
+    
+    
 }
