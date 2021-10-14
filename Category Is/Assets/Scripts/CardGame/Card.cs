@@ -31,6 +31,5 @@ public class Card : MonoBehaviour
         CardID = i.UCardID;
         cardFaces.sprite = i.cardImage;
         cardAmount = i.CardAmount;
-        //Debug.Log(CardID);
     }
 }

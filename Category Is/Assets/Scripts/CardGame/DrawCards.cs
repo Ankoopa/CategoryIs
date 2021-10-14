@@ -2,64 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class DrawCards : MonoBehaviour
 {
     public GameObject card;
-    public GameObject playerDeck;
-    public GameObject enemyDeck;
+    public GameObject cardPanel;
+    public Text playerText;
+
     public Card cardInfo;
-    public Deck DeckInfo;
+    public Deck deckInfo;
 
-    private int cardNum;
-    private int leftMost = -450;
-    private int step = 225;
-    private int rightMost = 675;
-    private GameObject playerCard;
+    void Start()
+    {
+        AssignPlayers();
+        DealCards();
 
-    public void BtnClick()
+        deckInfo.GameDeck.AddRange(deckInfo.TempDeck1);
+        deckInfo.GameDeck.AddRange(deckInfo.TempDeck2);
+        deckInfo.ShuffleDeck(deckInfo.GameDeck);
+    }
+
+    void DealCards()
     {
         cardInfo.LifeCardPerPlayer();
-        playerCard = Instantiate(card, new Vector3(leftMost, generateYPos(cardNum), 0), Quaternion.identity);
-        playerCard.transform.SetParent(playerDeck.transform, false);
-        for(int i = leftMost+step; i <= rightMost; i += step)
+        GameObject playerCard = Instantiate(card);
+        playerCard.transform.SetParent(cardPanel.transform, false);
+
+        for (int i = 0; i < 5; i++)
         {
-            cardNum++;
-            
-            //DeckInfo.LoadingDeck();
             cardInfo.DrawingCards();
-            playerCard = Instantiate(card, new Vector3(i, generateYPos(cardNum), 0), Quaternion.identity);
-            playerCard.transform.SetParent(playerDeck.transform, false);
-
-            // GameObject enemyCard = Instantiate(card, new Vector3(0, 0, 0), Quaternion.identity);
-            // enemyCard.transform.SetParent(enemyDeck.transform, false);
+            playerCard = Instantiate(card);
+            playerCard.transform.SetParent(cardPanel.transform, false);
         }
-
-        DeckInfo.GameDeck.AddRange(DeckInfo.TempDeck1);
-        DeckInfo.GameDeck.AddRange(DeckInfo.TempDeck2);
-        DeckInfo.ShuffleDeck(DeckInfo.GameDeck);
     }
 
-    public void PickCard()
+    void AssignPlayers()
     {
-        cardInfo.DrawingCards();
-        playerCard = Instantiate(card, new Vector3(250, generateYPos(cardNum), 0), Quaternion.identity);
-        playerCard.transform.SetParent(playerDeck.transform, false);
-    }
-    
-    int generateYPos(int num)
-    {
-        int YPos;
+        playerText.text = PhotonNetwork.LocalPlayer.NickName;
 
-        if(num%2 == 0)
-        {
-            YPos = 20;
-        }
-        else
-        {
-            YPos = 30;
-        }
-
-        return YPos;
+        //TODO: Instantiate opponent panels.
     }
 }

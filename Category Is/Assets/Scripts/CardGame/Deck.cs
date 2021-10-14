@@ -41,7 +41,6 @@ public class Deck : MonoBehaviour
     private void LoadingDeck()
     {
         //Loads the scriptable cards from the database and add to deck
-        int counterCards = 0;
         foreach (var cardsInfo in cards.allCards)
         {
                 for (int i = 0; i < cardsInfo.CardAmount; i++)
