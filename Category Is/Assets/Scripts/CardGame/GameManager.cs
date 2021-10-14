@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     public GameObject enemyDeck;
     public GameObject slots, slots2;
     public GameObject avatar1, avatar2;
-    public GameObject[] cardSlots, cardSlots2;
 
     public Card cardInfo;
     public Deck DeckInfo;
@@ -23,13 +22,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         AssignPlayers();
-        DealCards();
+        //DealCards();
 
         DeckInfo.GameDeck.AddRange(DeckInfo.TempDeck1);
         DeckInfo.GameDeck.AddRange(DeckInfo.TempDeck2);
         DeckInfo.ShuffleDeck(DeckInfo.GameDeck);
     }
 
+    /*
     void DealCards()
     {
         //Makes sure that each player gets a lifecard at the beginning of the game
@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
             enemyCard.transform.SetParent(slots2.transform, false);
         }
     }
+    */
 
 
     int GenerateYPos(int num, bool isUpper)
