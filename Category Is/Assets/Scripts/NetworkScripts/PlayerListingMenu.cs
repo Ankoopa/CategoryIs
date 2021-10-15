@@ -18,6 +18,8 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     
     public List<PlayerListings> _listing = new List<PlayerListings>();
     private bool _ready = false;
+    private Player remotePlayer;
+    private PlayerListings remP;
     public static bool _reInstant = false;
     public NetworkLobby networkScript;
     public MenuScripts menuScript;
@@ -72,8 +74,10 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     {
         foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
-
-            AddPlayerListing(playerInfo.Value);
+            if (playerInfo.Value == PhotonNetwork.LocalPlayer)
+                AddPlayerListing(playerInfo.Value);
+            else
+                AddPlayerListing(playerInfo.Value);
         }
     }
     public void ChangeName()
@@ -95,12 +99,26 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
                     _listing.RemoveAt(i);
                     
                     Debug.Log(i);
+
+                    Debug.Log("inroom");
+                    PlayerListings listingPlayer = Instantiate(_playersList, _content);
+                    listingPlayer.SetPlayerInfo(localPlayer);
+                    _listing.Add(listingPlayer);
+                }
+                else
+                {
+                    Debug.Log(_listing[i].Player + " the other player");
+                    Destroy(_listing[i].gameObject);
+                    _listing.RemoveAt(i);
+                    remotePlayer =_listing[i].Player;
+                    Debug.Log(i);
+
+                     Debug.Log("inroomotherPlayer");
+                    PlayerListings otherPlayer = Instantiate(_playersList, _content);
+                    otherPlayer.SetPlayerInfo(remotePlayer);
+                    _listing.Add(otherPlayer);
                 }
             }
-            Debug.Log("inroom");
-            PlayerListings listingPlayer = Instantiate(_playersList, _content);
-            listingPlayer.SetPlayerInfo(localPlayer);
-            _listing.Add(listingPlayer);
         }
         else
         {
@@ -112,10 +130,16 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     private void AddPlayerListing(Player player)
     {
         PlayerListings listing = Instantiate(_playersList, _content);
-        if (listing != null)
+        if (listing != null && player == PhotonNetwork.LocalPlayer)
         {
             listing.SetPlayerInfo(player);
             _listing.Add(listing);
+        }else
+        {
+            listing.SetPlayerInfo(player);
+            _listing.Add(listing);
+            Debug.Log(_listing[0].Avatar.sprite.name);
+            _reInstant = true;
         }
     }
     
