@@ -16,6 +16,7 @@ public class MenuScripts : MonoBehaviour
     public GameObject playerListingMenu;
     public GameObject AvatarPanel;
     public GameObject changeAvatarPanel;
+    public GameObject ChangeNameButton;
     
     void Start()
     {
@@ -59,6 +60,7 @@ public class MenuScripts : MonoBehaviour
         findRoomMenu.SetActive(true);
         searchRoomMenu.SetActive(true);
         playerListingMenu.SetActive(false);
+        ChangeNameButton.SetActive(false);
         
     }
 
@@ -76,6 +78,7 @@ public class MenuScripts : MonoBehaviour
         waitingRoomMenu.SetActive(true);
         playerListingMenu.SetActive(true);
         changeAvatarPanel.SetActive(true);
+        ChangeNameButton.SetActive(true);
     }
 
     public void OnWaitingRoomClosed()
@@ -83,6 +86,7 @@ public class MenuScripts : MonoBehaviour
         searchRoomMenu.SetActive(true);
         waitingRoomMenu.SetActive(false);
         playerListingMenu.SetActive(false);
+        ChangeNameButton.SetActive(false);
     }
 
     public void OnAvatarOpen()

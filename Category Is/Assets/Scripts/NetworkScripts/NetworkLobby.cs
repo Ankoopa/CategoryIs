@@ -23,6 +23,7 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
     }
     void Update()
     {
+        Debug.Log(PhotonNetwork.InRoom);
         if (destroyPlayersList)
         {
             DestroyListLocally();
@@ -101,6 +102,7 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
 
     public void OnBackButtonClicked()
     {
+        PhotonNetwork.LeaveRoom();
         if (PhotonNetwork.IsMasterClient)
         {
             for (int i = 0; i < playerListScript._listing.Count; i++)
@@ -120,7 +122,6 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
             }
         }
         destroyPlayersList = true;
-        PhotonNetwork.LeaveRoom();
     }
 
     public void DestroyListLocally()

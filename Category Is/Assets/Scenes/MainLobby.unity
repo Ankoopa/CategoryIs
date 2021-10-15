@@ -3755,7 +3755,7 @@ GameObject:
   - component: {fileID: 1477503678}
   - component: {fileID: 1477503677}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ChangeNameButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5875,6 +5875,10 @@ PrefabInstance:
       propertyPath: waitingRoomMenu
       value: 
       objectReference: {fileID: 20888230}
+    - target: {fileID: 6328479309414630791, guid: 8d009eefeb834164988cbb113f689522, type: 3}
+      propertyPath: ChangeNameButton
+      value: 
+      objectReference: {fileID: 1477503675}
     - target: {fileID: 6328479309414630791, guid: 8d009eefeb834164988cbb113f689522, type: 3}
       propertyPath: changeAvatarPanel
       value: 

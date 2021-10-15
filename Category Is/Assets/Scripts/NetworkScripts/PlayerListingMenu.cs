@@ -29,15 +29,18 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     }
     void Start()
     {
-        if (this.gameObject.activeSelf)
-        {
-            StartCoroutine(DelayedSet());
-        }
+        // if (this.gameObject.activeSelf)
+        // {
+        //     StartCoroutine(DelayedSet());
+        // }
     }
-
+    public override void OnJoinedRoom()
+    {
+        Debug.Log("Player has joined");
+        GetCurrentPlayersInRoom();
+    }
     void Update()
     {
-        Debug.Log(_reInstant);
         if (_reInstant)
         {
             ReInstatiatePlayer();
@@ -79,23 +82,31 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     }
     private void ReInstatiatePlayer()
     {
-        Player localPlayer = PhotonNetwork.LocalPlayer;
-        for (int i = 0; i < _listing.Count; i++)
-        {
-            if (_listing[i].Player == localPlayer)
-            {
-                Debug.Log("hello");
-                Destroy(_listing[i].gameObject);
-                _listing.RemoveAt(i);
-                
-                Debug.Log(i);
-            }
-        }
         
-        PlayerListings listingPlayer = Instantiate(_playersList, _content);
-        listingPlayer.SetPlayerInfo(localPlayer);
-        _listing.Add(listingPlayer);
-
+        Player localPlayer = PhotonNetwork.LocalPlayer;
+        if (PhotonNetwork.InRoom)
+        {
+            for (int i = 0; i < _listing.Count; i++)
+            {
+                if (_listing[i].Player == localPlayer)
+                {
+                    Debug.Log("hello");
+                    Destroy(_listing[i].gameObject);
+                    _listing.RemoveAt(i);
+                    
+                    Debug.Log(i);
+                }
+            }
+            Debug.Log("inroom");
+            PlayerListings listingPlayer = Instantiate(_playersList, _content);
+            listingPlayer.SetPlayerInfo(localPlayer);
+            _listing.Add(listingPlayer);
+        }
+        else
+        {
+            Debug.Log("Notinroom");
+            _reInstant = false;
+        }
         _reInstant = false;
     }
     private void AddPlayerListing(Player player)
@@ -110,12 +121,12 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
+        Debug.Log(newPlayer + " has entered");
         AddPlayerListing(newPlayer);
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        Debug.Log("closed");
         int index = _listing.FindIndex(x => x.Player == otherPlayer);
         Debug.Log(_listing[index].Player + "has left room");
         if (index != -1)
