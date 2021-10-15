@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     {
         cardInfo.LifeCardPerPlayer();
         GameObject playerCard = Instantiate(card);
+
         playerCard.transform.SetParent(playerDeck.transform, false);
 
         for (int i = 0; i < 5; i++)
@@ -39,6 +40,8 @@ public class GameManager : MonoBehaviour
             playerCard = Instantiate(card);
             playerCard.transform.SetParent(playerDeck.transform, false);
         }
+
+        //TODO: each local player has their own set of cards. their set must be reflected on the server side.
     }
 
     void AssignPlayers()
