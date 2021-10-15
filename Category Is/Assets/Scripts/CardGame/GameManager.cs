@@ -60,6 +60,6 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        //TODO: opponent decks have cards and avatar.
+        //TODO: opponent decks have cards and avatar. opponent card dimensions: w70 h105
     }
 }
