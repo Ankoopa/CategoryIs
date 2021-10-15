@@ -75,7 +75,6 @@ public class Deck : MonoBehaviour
         //Takes card from the top of the list and removes it from the deck
         instance.TempDeck1.Remove(instance.TempDeck1[0]);
         return instance.TempDeck1[0];
-        
     }
 
     public static ScriptableCard DrawEnemyDeck()

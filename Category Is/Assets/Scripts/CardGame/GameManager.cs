@@ -5,6 +5,7 @@ using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class GameManager : MonoBehaviour
 {
     public GameObject card;
@@ -13,14 +14,16 @@ public class GameManager : MonoBehaviour
     public GameObject enemyDeck;
     public GameObject playerAvatar;
 
+    private List<GameObject> playerCards = new List<GameObject>();
+
     public Card cardInfo;
     public Deck deckInfo;
     public Text playerText;
 
     void Start()
     {
-        AssignPlayers();
         DealCards();
+        AssignPlayers();
 
         deckInfo.GameDeck.AddRange(deckInfo.TempDeck1);
         deckInfo.GameDeck.AddRange(deckInfo.TempDeck2);
@@ -30,17 +33,13 @@ public class GameManager : MonoBehaviour
     void DealCards()
     {
         cardInfo.LifeCardPerPlayer();
-        GameObject playerCard = Instantiate(card);
-
-        playerCard.transform.SetParent(playerDeck.transform, false);
+        Instantiate(card, playerDeck.transform);
 
         for (int i = 0; i < 5; i++)
         {
             cardInfo.DrawingCards();
-            playerCard = Instantiate(card);
-            playerCard.transform.SetParent(playerDeck.transform, false);
+            Instantiate(card, playerDeck.transform);
         }
-
         //TODO: each local player has their own set of cards. their set must be reflected on the server side.
     }
 
@@ -54,9 +53,10 @@ public class GameManager : MonoBehaviour
             if (plr.IsLocal) continue;
             else // Instantiate opponent decks on the panel and sets their name accordingly
             {
-                Instantiate(enemyDeck, enemyPanel.transform);
-                Text enemyName = enemyDeck.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
+                GameObject curDeck = Instantiate(enemyDeck, enemyPanel.transform);
+                Text enemyName = curDeck.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
                 enemyName.text = plr.NickName;
+                GameObject enemyCardPanel = curDeck.transform.GetChild(1).gameObject;
             }
         }
 

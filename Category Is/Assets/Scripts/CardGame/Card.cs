@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
+
 
 public class Card : MonoBehaviour
 {
@@ -31,5 +35,9 @@ public class Card : MonoBehaviour
         CardID = i.UCardID;
         cardFaces.sprite = i.cardImage;
         cardAmount = i.CardAmount;
+
+        Hashtable hash = new Hashtable();
+        hash.Add("OwnCards", CardID);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
     }
 }

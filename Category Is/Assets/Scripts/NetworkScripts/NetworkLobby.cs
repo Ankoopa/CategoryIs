@@ -23,7 +23,7 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
     }
     void Update()
     {
-        Debug.Log(PhotonNetwork.InRoom);
+        //Debug.Log(PhotonNetwork.InRoom);
         if (destroyPlayersList)
         {
             DestroyListLocally();
