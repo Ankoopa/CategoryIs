@@ -28,7 +28,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true; 
         if (this.gameObject.activeSelf)
         {
-            StartCoroutine(DelayedSet());
+            //StartCoroutine(DelayedSet());
         }
         
     }
@@ -39,7 +39,8 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Player has joined");
-        //GetCurrentPlayersInRoom();
+        GetCurrentPlayersInRoom();
+        _reInstant = true;
 
     }
     void Update()
@@ -120,7 +121,6 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
         {
             listing.SetPlayerInfo(player);
             _listing.Add(listing);
-            _reInstant = true;
         }
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
