@@ -797,6 +797,7 @@ MonoBehaviour:
   cardInfo: {fileID: 2091033770614366799, guid: 27b67f5210e604445b3805de0a5afbac, type: 3}
   deckInfo: {fileID: 1900022762}
   playerText: {fileID: 2788686177978585050}
+  cardDB: {fileID: 11400000, guid: 347f19a4df986a747947526cb85984da, type: 2}
 --- !u!1001 &26618921600065192
 PrefabInstance:
   m_ObjectHideFlags: 0

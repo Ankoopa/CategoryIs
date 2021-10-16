@@ -4,9 +4,10 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPunCallbacks
 {
     public GameObject card;
     public GameObject playerDeck;
@@ -14,11 +15,20 @@ public class GameManager : MonoBehaviour
     public GameObject enemyDeck;
     public GameObject playerAvatar;
 
-    private List<GameObject> playerCards = new List<GameObject>();
-
     public Card cardInfo;
     public Deck deckInfo;
     public Text playerText;
+
+    public ScriptableCardDB cardDB;
+
+    void Awake()
+    {
+        /*
+        Hashtable cards = new Hashtable();
+        cards.Add("OwnCards", playerCards);
+        PhotonNetwork.LocalPlayer.CustomProperties = cards;
+        */
+    }
 
     void Start()
     {
@@ -57,6 +67,22 @@ public class GameManager : MonoBehaviour
                 Text enemyName = curDeck.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
                 enemyName.text = plr.NickName;
                 GameObject enemyCardPanel = curDeck.transform.GetChild(1).gameObject;
+
+                string[] cardList = (string[])plr.CustomProperties["OwnCards"];
+                Debug.Log(cardList);
+
+                /* NOT WORKING
+                foreach(string cardStr in cardList)
+                {
+                    foreach(ScriptableCard sc in cardDB.allCards)
+                    {
+                        if (sc.UCardID.Equals(cardStr))
+                        {
+                            GameObject cardInst = Instantiate(card, enemyCardPanel.transform);
+                        }
+                    }
+                }
+                */
             }
         }
 
