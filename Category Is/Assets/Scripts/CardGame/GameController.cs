@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 using Photon.Pun.UtilityScripts;
 
 
-public class GameController : MonoBehaviourPunCallbacks
+public class GameController : MonoBehaviourPun
 {
     private bool isTurn;
-    private int PlayerTurnNumber;
+    public int PlayerTurnNumber;
     public GameObject endTurnButton;
     void Start()
     {
         PlayerTurnNumber = 1;
     }
-    // Update is called once per frame
+
     void Update()
     {
         foreach(var player in PhotonNetwork.PlayerList)
@@ -38,18 +39,34 @@ public class GameController : MonoBehaviourPunCallbacks
             }
         }
     }
-
-    public void EndTurn()
+    public void OnClickEndTurn()
     {
-        Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
+        
+        base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
+        
+        //base.photonView.RPC("ChatMessage", RpcTarget.AllBufferedViaServer, "jup", "and jup.");
+    }
+    [PunRPC]
+    private void RPC_EndTurn()
+    {
+        Debug.Log("endTurn");
         if (PlayerTurnNumber < PhotonNetwork.CurrentRoom.PlayerCount)
         {
             isTurn = false;
             Debug.Log("endTurn");
             PlayerTurnNumber += 1;
+            //this.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer, PlayerTurnNumber);
+            
         }
-        // else
-            // if (PlayerTurnNumber > PhotonNetwork.CurrentRoom.PlayerCount)
-                //PlayerTurnNumber = 1;
+        else
+            if (PlayerTurnNumber >= PhotonNetwork.CurrentRoom.PlayerCount)
+                PlayerTurnNumber = 1;
     }
+
+    [PunRPC]
+    void ChatMessage(string a, string b)
+    {
+        Debug.Log(string.Format("ChatMessage {0} {1}", a, b));
+    }
+
 }

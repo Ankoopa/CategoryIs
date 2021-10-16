@@ -52,7 +52,7 @@ public class PunTurnManager : MonoBehaviourPunCallbacks
 
     public void Start()
     {
-        //PhotonNetwork.NetworkingClient.EventReceived(EventData);
+        //PhotonNetwork.NetworkingClient.EventReceived = OnEvent;
     }
 
 

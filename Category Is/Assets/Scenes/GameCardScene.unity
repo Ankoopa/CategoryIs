@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b5089a67d3fc8349a6b3f8aa216d036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerTurnNumber: 0
   endTurnButton: {fileID: 1346886824}
 --- !u!4 &272687981
 Transform:
@@ -177,11 +178,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 272687979}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 293532200f3d2e74dad2510746c2f01b, type: 3}
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TurnDuration: 0
-  ActionList: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,7 +764,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 272687980}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: EndTurn
+        m_MethodName: OnClickEndTurn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
