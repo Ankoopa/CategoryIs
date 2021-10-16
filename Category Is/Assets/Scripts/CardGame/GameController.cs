@@ -35,22 +35,21 @@ public class GameController : MonoBehaviourPunCallbacks
                     Debug.Log("NotMyTurn");
                     endTurnButton.SetActive(false);
                 }
-            }else
-            {
-                PlayerTurnNumber += 1;
             }
         }
     }
 
     public void EndTurn()
     {
+        Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
         if (PlayerTurnNumber < PhotonNetwork.CurrentRoom.PlayerCount)
         {
-             Debug.Log("endTurn");
+            isTurn = false;
+            Debug.Log("endTurn");
             PlayerTurnNumber += 1;
         }
-           
-        else
-            PlayerTurnNumber = 1;
+        // else
+            // if (PlayerTurnNumber > PhotonNetwork.CurrentRoom.PlayerCount)
+                //PlayerTurnNumber = 1;
     }
 }
