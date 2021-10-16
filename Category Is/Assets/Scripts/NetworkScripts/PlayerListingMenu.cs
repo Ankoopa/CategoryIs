@@ -19,27 +19,28 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     public List<PlayerListings> _listing = new List<PlayerListings>();
     private bool _ready = false;
     private Player remotePlayer;
-    private PlayerListings remP;
     public static bool _reInstant = false;
     public NetworkLobby networkScript;
     public MenuScripts menuScript;
 
     private void Awake()
     {
-        PhotonNetwork.AutomaticallySyncScene = true;
+        PhotonNetwork.AutomaticallySyncScene = true; 
+        if (this.gameObject.activeSelf)
+        {
+            StartCoroutine(DelayedSet());
+        }
         
     }
     void Start()
     {
-        // if (this.gameObject.activeSelf)
-        // {
-        //     StartCoroutine(DelayedSet());
-        // }
+        _reInstant = true;
     }
     public override void OnJoinedRoom()
     {
         Debug.Log("Player has joined");
-        GetCurrentPlayersInRoom();
+        //GetCurrentPlayersInRoom();
+
     }
     void Update()
     {
@@ -74,9 +75,6 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     {
         foreach (KeyValuePair<int, Player> playerInfo in PhotonNetwork.CurrentRoom.Players)
         {
-            if (playerInfo.Value == PhotonNetwork.LocalPlayer)
-                AddPlayerListing(playerInfo.Value);
-            else
                 AddPlayerListing(playerInfo.Value);
         }
     }
@@ -84,6 +82,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     {
         _reInstant = true;
     }
+
     private void ReInstatiatePlayer()
     {
         
@@ -105,19 +104,6 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
                     listingPlayer.SetPlayerInfo(localPlayer);
                     _listing.Add(listingPlayer);
                 }
-                else
-                {
-                    Debug.Log(_listing[i].Player + " the other player");
-                    Destroy(_listing[i].gameObject);
-                    _listing.RemoveAt(i);
-                    remotePlayer =_listing[i].Player;
-                    Debug.Log(i);
-
-                     Debug.Log("inroomotherPlayer");
-                    PlayerListings otherPlayer = Instantiate(_playersList, _content);
-                    otherPlayer.SetPlayerInfo(remotePlayer);
-                    _listing.Add(otherPlayer);
-                }
             }
         }
         else
@@ -130,19 +116,13 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     private void AddPlayerListing(Player player)
     {
         PlayerListings listing = Instantiate(_playersList, _content);
-        if (listing != null && player == PhotonNetwork.LocalPlayer)
+        if (listing != null)
         {
             listing.SetPlayerInfo(player);
             _listing.Add(listing);
-        }else
-        {
-            listing.SetPlayerInfo(player);
-            _listing.Add(listing);
-            Debug.Log(_listing[0].Avatar.sprite.name);
             _reInstant = true;
         }
     }
-    
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Debug.Log(newPlayer + " has entered");

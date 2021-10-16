@@ -28,6 +28,14 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
         {
             DestroyListLocally();
         }
+
+        for (int i = 0; i < playerListScript._listing.Count; i++)
+        {
+            if (playerListScript._listing[i].Player != PhotonNetwork.LocalPlayer)
+            {
+                Debug.Log(playerListScript._listing[i].Avatar.sprite.name);
+            }
+        }
     }
     public void SubmitName()
     {
