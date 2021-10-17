@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerTurnNumber: 0
-  endTurnButton: {fileID: 1346886824}
+  endTurnButton: {fileID: 451775746}
   timerText: {fileID: 940582426}
 --- !u!4 &272687981
 Transform:
@@ -350,10 +350,22 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 451775749}
+  m_TargetGraphic: {fileID: 1346886827}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 272687980}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: OnClickEndTurn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &451775749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1123,7 +1135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1346886825
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1380,7 +1392,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 824, y: -118.81}
+  m_AnchoredPosition: {x: 807.99994, y: -42.655018}
   m_SizeDelta: {x: 185.61, y: 185.61}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1699473688

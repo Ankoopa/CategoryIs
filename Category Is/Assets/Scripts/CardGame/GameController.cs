@@ -15,6 +15,7 @@ public class GameController : MonoBehaviourPun
     public int PlayerTurnNumber;
     public GameObject endTurnButton;
     public Text timerText;
+
     void Start()
     {
         timeLeft = 15f;
@@ -58,6 +59,7 @@ public class GameController : MonoBehaviourPun
     {  
         base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
     }
+
     [PunRPC]
     private void RPC_EndTurn()
     {
@@ -81,7 +83,6 @@ public class GameController : MonoBehaviourPun
     }
 
     [PunRPC]
-
     private void RPC_timerCountDown()
     {
         timeLeft -=  0.1f * Time.deltaTime;
@@ -93,6 +94,7 @@ public class GameController : MonoBehaviourPun
             isTimeRunning = false;
         }
     }
+
     [PunRPC]
     private void RPC_randomPlayerTurn(int rand)
     {
