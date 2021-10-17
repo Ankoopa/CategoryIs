@@ -8,18 +8,23 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviourPun
 {
+    public int PlayerTurnNumber;
+    public GameObject endTurnButton;
+    public GameObject wordTextbox;
+    public Text timerText;
+
+    private InputField wordInput;
     private bool isTurn;
     private bool isAlive;
     private float timeLeft;
     private bool isTimeRunning;
-    public int PlayerTurnNumber;
-    public GameObject endTurnButton;
-    public Text timerText;
 
     void Start()
     {
         timeLeft = 15f;
         isTimeRunning = true;
+        wordInput = wordTextbox.GetComponent<InputField>();
+
         Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
         if (PhotonNetwork.IsMasterClient)
         {
@@ -46,11 +51,14 @@ public class GameController : MonoBehaviourPun
                 if (isTurn && player.NickName == PhotonNetwork.LocalPlayer.NickName)
                 {
                     endTurnButton.SetActive(true);
+                    wordInput.interactable = true;
                 }
                 else
                 {
                     Debug.Log("NotMyTurn");
                     endTurnButton.SetActive(false);
+                    wordInput.text = string.Empty;
+                    wordInput.interactable = false;
                 }
             }
         }
