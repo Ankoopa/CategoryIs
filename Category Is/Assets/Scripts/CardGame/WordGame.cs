@@ -53,6 +53,10 @@ public class WordGame : MonoBehaviourPun
             wordList = new List<string>(allWords);
             categoryConfirmed = false;
         }
+        if (wordInput == null)
+        {
+            return;
+        }
     }
     public void OnSubmit()
     {
