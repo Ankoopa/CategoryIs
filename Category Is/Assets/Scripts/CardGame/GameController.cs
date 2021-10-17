@@ -12,7 +12,7 @@ public class GameController : MonoBehaviourPun
     public GameObject endTurnButton;
     public GameObject wordTextbox;
     public Text timerText;
-
+    public static bool isStartingGame;
     private InputField wordInput;
     private bool isAlive;
     public bool isMyTurn;
@@ -21,46 +21,48 @@ public class GameController : MonoBehaviourPun
 
     void Start()
     {
-        timeLeft = 15f;
-        isTimeRunning = true;
-        wordInput = wordTextbox.GetComponent<InputField>();
+             timeLeft = 15f;
+            isTimeRunning = true;
+            wordInput = wordTextbox.GetComponent<InputField>();
 
-        Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
-        if (PhotonNetwork.IsMasterClient)
-        {
             Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
-            int RandTurnNumber = Random.Range(1, PhotonNetwork.CurrentRoom.PlayerCount + 1);
-            base.photonView.RPC("RPC_randomPlayerTurn", RpcTarget.AllBufferedViaServer, RandTurnNumber);
-        }
+            if (PhotonNetwork.IsMasterClient)
+            {
+                Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
+                int RandTurnNumber = Random.Range(1, PhotonNetwork.CurrentRoom.PlayerCount + 1);
+                base.photonView.RPC("RPC_randomPlayerTurn", RpcTarget.AllBufferedViaServer, RandTurnNumber);
+            }
     }
 
     void Update()
     { 
-        if (isTimeRunning)
+        if (isStartingGame)
         {
-            base.photonView.RPC("RPC_timerCountDown", RpcTarget.AllBufferedViaServer);
-        }
-        foreach(var player in PhotonNetwork.PlayerList)
-        {
-            Debug.Log(PlayerTurnNumber);
-            if (player.ActorNumber == PlayerTurnNumber)
+            if (isTimeRunning)
             {
-                Debug.Log(player.ActorNumber + " " + player.NickName);
-                isMyTurn = true;
-                if (isMyTurn && player.NickName == PhotonNetwork.LocalPlayer.NickName)
+                base.photonView.RPC("RPC_timerCountDown", RpcTarget.AllBufferedViaServer);
+            }
+            foreach(var player in PhotonNetwork.PlayerList)
+            {
+                if (player.ActorNumber == PlayerTurnNumber)
                 {
-                    endTurnButton.SetActive(true);
-                    wordInput.interactable = true;
-                }
-                else
-                {
-                    Debug.Log("EndTurnButtonNotOn");
-                    endTurnButton.SetActive(false);
-                    wordInput.text = string.Empty;
-                    wordInput.interactable = false;
+                    isMyTurn = true;
+                    if (isMyTurn && player.NickName == PhotonNetwork.LocalPlayer.NickName)
+                    {
+                        endTurnButton.SetActive(true);
+                        wordInput.interactable = true;
+                    }
+                    else
+                    {
+                        Debug.Log("EndTurnButtonNotOn");
+                        endTurnButton.SetActive(false);
+                        wordInput.text = string.Empty;
+                        wordInput.interactable = false;
+                    }
                 }
             }
         }
+        
     }
     public void OnClickEndTurn()
     {  
