@@ -17,7 +17,6 @@ public class WordGame : MonoBehaviour
     private List<string> submittedWords = new List<string>();
     private string submittedWord;
     private string lastWord = "";
-    private WordInit initScript;
     private bool wordFound;
 
     // Start is called before the first frame update
