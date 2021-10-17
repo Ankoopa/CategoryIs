@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.42265823, g: 0.9622642, b: 0.29503384, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.69710135, b: 0.2941177, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -1105,6 +1105,7 @@ GameObject:
   - component: {fileID: 970593169}
   - component: {fileID: 970593171}
   - component: {fileID: 970593170}
+  - component: {fileID: 970593172}
   m_Layer: 5
   m_Name: CategoryTitle
   m_TagString: Untagged
@@ -1173,6 +1174,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 970593168}
   m_CullTransparentMesh: 1
+--- !u!114 &970593172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970593168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.8113208, g: 0.36391813, b: 0, a: 0.5}
+  m_EffectDistance: {x: 5.87, y: 0.21}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1012487083
 GameObject:
   m_ObjectHideFlags: 0
@@ -2000,6 +2016,7 @@ GameObject:
   - component: {fileID: 1781690668}
   - component: {fileID: 1781690670}
   - component: {fileID: 1781690669}
+  - component: {fileID: 1781690671}
   m_Layer: 5
   m_Name: CategoryText
   m_TagString: Untagged
@@ -2068,6 +2085,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1781690667}
   m_CullTransparentMesh: 1
+--- !u!114 &1781690671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781690667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2.27, y: -2.66}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1830456715
 GameObject:
   m_ObjectHideFlags: 0
@@ -2610,7 +2642,7 @@ PrefabInstance:
     - target: {fileID: 26618921264982760, guid: fe129836165391e439c36c4cfc85d23c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1e4ab25ceb056bd4d81d1d5c6470530e, type: 3}
+      objectReference: {fileID: 21300000, guid: e619a223455458643b6419c7459f5173, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe129836165391e439c36c4cfc85d23c, type: 3}
 --- !u!1001 &2788686177978585049
@@ -2620,6 +2652,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1357955700}
     m_Modifications:
+    - target: {fileID: 3933384873515277011, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -751.7299
+      objectReference: {fileID: 0}
     - target: {fileID: 4195105115502446427, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
       propertyPath: m_Name
       value: PlayerPanel
@@ -2714,11 +2750,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8666596301421417122, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -769.05
+      value: -751.73
       objectReference: {fileID: 0}
     - target: {fileID: 8666596301421417122, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 110
+      value: 117
       objectReference: {fileID: 0}
     - target: {fileID: 8666596301421417125, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
       propertyPath: m_FontData.m_Font
@@ -2727,6 +2763,10 @@ PrefabInstance:
     - target: {fileID: 8666596301421417125, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
       propertyPath: m_FontData.m_FontSize
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666596301421417125, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8666596301829713155, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
       propertyPath: m_LocalScale.x
