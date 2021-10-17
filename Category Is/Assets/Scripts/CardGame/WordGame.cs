@@ -11,6 +11,7 @@ public class WordGame : MonoBehaviourPun
     //public Text categoryText;
     public Text msg;
     public Text scoreTxt;
+    public Text lastWordTxt;
 
     private int score;
     private List<string> wordList;
@@ -71,7 +72,8 @@ public class WordGame : MonoBehaviourPun
             Debug.Log("accepted word");
             score++;
             scoreTxt.text = "Score: " + score.ToString();
-            msg.text = "Word accepted";
+            msg.text = submittedWord + "Word accepted";
+            base.photonView.RPC("lastWordChanged", RpcTarget.AllBufferedViaServer, lastWord);
             base.photonView.RPC("UpdateValues", RpcTarget.AllBufferedViaServer, submittedWords.ToArray(), lastWord);
         }
         else if (WordExists(submittedWord))
@@ -94,7 +96,15 @@ public class WordGame : MonoBehaviourPun
 
         return exists;
     }
-
+    [PunRPC]
+    void lastWordChanged(string word)
+    {
+        if (lastWordTxt != null)
+        {
+            lastWordTxt.text = word.ToUpper();
+        }else
+            return;
+    }
     [PunRPC]
     void UpdateValues(string[] subWords, string prevWord)
     {
