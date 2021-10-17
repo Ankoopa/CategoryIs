@@ -13,22 +13,25 @@ public class GameController : MonoBehaviourPun
     public GameObject endTurnButton;
     void Start()
     {
-        PlayerTurnNumber = 1;
+        Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
+        int RandTurnNumber = Random.Range(1, PhotonNetwork.CurrentRoom.PlayerCount + 1);
+        PlayerTurnNumber = RandTurnNumber;
+        Debug.Log(PlayerTurnNumber + " is first turn");
+        
     }
 
     void Update()
-    {
+    { 
+        Debug.Log(PlayerTurnNumber);
         foreach(var player in PhotonNetwork.PlayerList)
         {
-            Debug.Log(PhotonNetwork.LocalPlayer.ActorNumber + " " + PhotonNetwork.NickName);
             if (player.ActorNumber == PlayerTurnNumber)
             {
                 isTurn = true;
-                Debug.Log(player.ActorNumber + " " +player.NickName + " turn");
                 if (isTurn && player.NickName == PhotonNetwork.LocalPlayer.NickName)
                 {
                     
-                    Debug.Log(PlayerTurnNumber);
+                   
                     endTurnButton.SetActive(true);
                 }
                 else
@@ -40,11 +43,8 @@ public class GameController : MonoBehaviourPun
         }
     }
     public void OnClickEndTurn()
-    {
-        
+    {  
         base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
-        
-        //base.photonView.RPC("ChatMessage", RpcTarget.AllBufferedViaServer, "jup", "and jup.");
     }
     [PunRPC]
     private void RPC_EndTurn()
@@ -54,19 +54,11 @@ public class GameController : MonoBehaviourPun
         {
             isTurn = false;
             Debug.Log("endTurn");
-            PlayerTurnNumber += 1;
-            //this.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer, PlayerTurnNumber);
-            
+            PlayerTurnNumber += 1;          
         }
         else
             if (PlayerTurnNumber >= PhotonNetwork.CurrentRoom.PlayerCount)
                 PlayerTurnNumber = 1;
-    }
-
-    [PunRPC]
-    void ChatMessage(string a, string b)
-    {
-        Debug.Log(string.Format("ChatMessage {0} {1}", a, b));
     }
 
 }
