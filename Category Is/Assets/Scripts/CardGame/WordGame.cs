@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class WordGame : MonoBehaviour
+public class WordGame : MonoBehaviourPun
 {
     public TextAsset textFile;
     public InputField wordInput;
@@ -58,6 +59,7 @@ public class WordGame : MonoBehaviour
         }
 
         wordInput.text = "";
+        //base.photonView.RPC("UpdateValues", RpcTarget.AllBufferedViaServer, submittedWords);
     }
 
     void ProcessWord()
@@ -70,6 +72,7 @@ public class WordGame : MonoBehaviour
             score++;
             scoreTxt.text = "Score: " + score.ToString();
             msg.text = "Word accepted";
+            base.photonView.RPC("UpdateValues", RpcTarget.AllBufferedViaServer, submittedWords.ToArray(), lastWord);
         }
         else if (WordExists(submittedWord))
         {
@@ -90,5 +93,12 @@ public class WordGame : MonoBehaviour
         else exists = true;
 
         return exists;
+    }
+
+    [PunRPC]
+    void UpdateValues(string[] subWords, string prevWord)
+    {
+        submittedWords = new List<string>(subWords);
+        lastWord = prevWord;
     }
 }
