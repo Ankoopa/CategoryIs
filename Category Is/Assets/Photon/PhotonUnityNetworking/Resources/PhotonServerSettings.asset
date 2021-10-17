@@ -45,7 +45,7 @@ MonoBehaviour:
   - RPC_EndTurn
   - RPC_timerCountDown
   - RPC_randomPlayerTurn
-  - UpdateValues
+  - RPC_UIPlayerActive
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

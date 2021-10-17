@@ -44,20 +44,20 @@ public class Card : MonoBehaviour
         Hashtable newCards = new Hashtable() { { "OwnCards", cardArr } };
 
         PhotonNetwork.LocalPlayer.CustomProperties = newCards;
-        Debug.Log(PhotonNetwork.LocalPlayer.CustomProperties["OwnCards"]);
+        // Debug.Log(PhotonNetwork.LocalPlayer.CustomProperties["OwnCards"]);
 
-        Debug.Log(CardID);
+        // Debug.Log(CardID);
 
         //DEBUG: DELETE LATER
         if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("OwnCards"))
         {
             PhotonNetwork.LocalPlayer.SetCustomProperties(newCards);
-            Debug.Log("TEST: " + PhotonNetwork.LocalPlayer.CustomProperties["OwnCards"].ToString());
+            //Debug.Log("TEST: " + PhotonNetwork.LocalPlayer.CustomProperties["OwnCards"].ToString());
             string[] cardStrings = (string[])PhotonNetwork.LocalPlayer.CustomProperties["OwnCards"];
 
             foreach(string s in cardStrings)
             {
-                Debug.Log("Card: " + s);
+                //Debug.Log("Card: " + s);
             }
         }
         //DEBUG: DELETE LATER

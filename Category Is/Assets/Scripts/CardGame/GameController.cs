@@ -14,8 +14,8 @@ public class GameController : MonoBehaviourPun
     public Text timerText;
 
     private InputField wordInput;
-    private bool isTurn;
     private bool isAlive;
+    public bool isMyTurn;
     private float timeLeft;
     private bool isTimeRunning;
 
@@ -28,11 +28,10 @@ public class GameController : MonoBehaviourPun
         Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
         if (PhotonNetwork.IsMasterClient)
         {
+            Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
             int RandTurnNumber = Random.Range(1, PhotonNetwork.CurrentRoom.PlayerCount + 1);
             base.photonView.RPC("RPC_randomPlayerTurn", RpcTarget.AllBufferedViaServer, RandTurnNumber);
-            Debug.Log("IsHost");
         }
-        
     }
 
     void Update()
@@ -41,21 +40,21 @@ public class GameController : MonoBehaviourPun
         {
             base.photonView.RPC("RPC_timerCountDown", RpcTarget.AllBufferedViaServer);
         }
-        
-        Debug.Log(PlayerTurnNumber);
         foreach(var player in PhotonNetwork.PlayerList)
         {
+            Debug.Log(PlayerTurnNumber);
             if (player.ActorNumber == PlayerTurnNumber)
             {
-                isTurn = true;
-                if (isTurn && player.NickName == PhotonNetwork.LocalPlayer.NickName)
+                Debug.Log(player.ActorNumber + " " + player.NickName);
+                isMyTurn = true;
+                if (isMyTurn && player.NickName == PhotonNetwork.LocalPlayer.NickName)
                 {
                     endTurnButton.SetActive(true);
                     wordInput.interactable = true;
                 }
                 else
                 {
-                    Debug.Log("NotMyTurn");
+                    Debug.Log("EndTurnButtonNotOn");
                     endTurnButton.SetActive(false);
                     wordInput.text = string.Empty;
                     wordInput.interactable = false;
@@ -71,12 +70,10 @@ public class GameController : MonoBehaviourPun
     [PunRPC]
     private void RPC_EndTurn()
     {
-        Debug.Log("endTurn");
         isTimeRunning = false;
         if (PlayerTurnNumber < PhotonNetwork.CurrentRoom.PlayerCount)
         {
-            isTurn = false;
-            Debug.Log("endTurn");
+            isMyTurn = false;
             timeLeft = 15f;
             PlayerTurnNumber += 1;          
         }
@@ -109,4 +106,5 @@ public class GameController : MonoBehaviourPun
         PlayerTurnNumber = rand;
         Debug.Log(PlayerTurnNumber + " is first turn");
     }
+
 }
