@@ -13,6 +13,7 @@ public class GameController : MonoBehaviourPun
     public GameObject wordTextbox;
     public Text timerText;
     public static bool isStartingGame;
+    public static bool isValid;
     private InputField wordInput;
     private bool isAlive;
     public bool isMyTurn;
@@ -66,7 +67,10 @@ public class GameController : MonoBehaviourPun
     }
     public void OnClickEndTurn()
     {  
-        base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
+        if (isValid)
+        {
+            base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
+        }
     }
 
     [PunRPC]

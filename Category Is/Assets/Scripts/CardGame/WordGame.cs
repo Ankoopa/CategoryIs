@@ -75,10 +75,12 @@ public class WordGame : MonoBehaviourPun
         if (wordFound)
         {
             ProcessWord();
+            GameController.isValid = true;
         }
         else
         {
             msg.text = "'"+submittedWord+"' is an invalid word for this category.";
+            GameController.isValid = false;
         }
 
         wordInput.text = "";
