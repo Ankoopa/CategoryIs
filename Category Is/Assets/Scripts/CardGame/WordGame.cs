@@ -6,9 +6,8 @@ using UnityEngine.UI;
 public class WordGame : MonoBehaviour
 {
     public TextAsset textFile;
-    public GameObject eventSystem;
     public InputField wordInput;
-    public Text categoryText;
+    //public Text categoryText;
     public Text msg;
     public Text scoreTxt;
 
