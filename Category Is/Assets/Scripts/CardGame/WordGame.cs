@@ -59,10 +59,12 @@ public class WordGame : MonoBehaviourPun
         }
     }
     public void OnSubmit()
-    {
+    {   
+        if (wordInput == null)
+            return;
         wordFound = false;
         submittedWord = wordInput.text.ToLower();
-
+        
         foreach (string word in wordList)
         {
             if (word.Contains(submittedWord))
