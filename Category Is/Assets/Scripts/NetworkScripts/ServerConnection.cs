@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ServerConnection : MonoBehaviourPunCallbacks
 {
     string gameVersion = "0.01a";
-
     void Awake()
     {
 
@@ -20,7 +20,6 @@ public class ServerConnection : MonoBehaviourPunCallbacks
         Connect();
         PhotonNetwork.ConnectUsingSettings();
     }
-
     public override void OnConnectedToMaster()
     {
        PhotonNetwork.JoinLobby();
