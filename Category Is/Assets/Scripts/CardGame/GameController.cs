@@ -11,12 +11,14 @@ public class GameController : MonoBehaviourPun
     private bool isTurn;
     private bool isAlive;
     private float timeLeft;
+    private bool isTimeRunning;
     public int PlayerTurnNumber;
     public GameObject endTurnButton;
     public Text timerText;
     void Start()
     {
         timeLeft = 15f;
+        isTimeRunning = true;
         Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
         if (PhotonNetwork.IsMasterClient)
         {
@@ -29,7 +31,11 @@ public class GameController : MonoBehaviourPun
 
     void Update()
     { 
-        //base.photonView.RPC("RPC_timerCountDown", RpcTarget.AllBufferedViaServer);
+        if (isTimeRunning)
+        {
+            base.photonView.RPC("RPC_timerCountDown", RpcTarget.AllBufferedViaServer);
+        }
+        
         Debug.Log(PlayerTurnNumber);
         foreach(var player in PhotonNetwork.PlayerList)
         {
@@ -56,15 +62,22 @@ public class GameController : MonoBehaviourPun
     private void RPC_EndTurn()
     {
         Debug.Log("endTurn");
+        isTimeRunning = false;
         if (PlayerTurnNumber < PhotonNetwork.CurrentRoom.PlayerCount)
         {
             isTurn = false;
             Debug.Log("endTurn");
+            timeLeft = 15f;
             PlayerTurnNumber += 1;          
         }
         else
             if (PlayerTurnNumber >= PhotonNetwork.CurrentRoom.PlayerCount)
+            {
+                timeLeft = 15f;
                 PlayerTurnNumber = 1;
+            }
+        isTimeRunning = true;
+                
     }
 
     [PunRPC]
@@ -77,12 +90,13 @@ public class GameController : MonoBehaviourPun
         {
             timerText.text = "0";
             Debug.Log("Game Over");
+            isTimeRunning = false;
         }
     }
     [PunRPC]
     private void RPC_randomPlayerTurn(int rand)
     {
         PlayerTurnNumber = rand;
-        Debug.LogError(PlayerTurnNumber + " is first turn");
+        Debug.Log(PlayerTurnNumber + " is first turn");
     }
 }
