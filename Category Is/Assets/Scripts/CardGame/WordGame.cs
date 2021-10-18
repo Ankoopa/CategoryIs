@@ -12,7 +12,7 @@ public class WordGame : MonoBehaviourPun
     public Text scoreTxt;
     public Text lastWordTxt;
     public Text categoryTxt;
-
+    public GameController GM;
     private int score;
     private int indexFile;
     private List<string> wordList;
@@ -52,15 +52,9 @@ public class WordGame : MonoBehaviourPun
             wordList = new List<string>(allWords);
             categoryConfirmed = false;
         }
-        if (wordInput == null)
-        {
-            return;
-        }
     }
     public void OnSubmit()
     {   
-        if (wordInput == null)
-            return;
         wordFound = false;
         submittedWord = wordInput.text.ToLower();
         
@@ -76,6 +70,7 @@ public class WordGame : MonoBehaviourPun
         if (wordFound)
         {
             ProcessWord();
+            GM.OnClickEndTurn();
         }
         else
         {

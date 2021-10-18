@@ -308,18 +308,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 272687980}
-        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: OnClickEndTurn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &451775749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2220,6 +2208,7 @@ MonoBehaviour:
   scoreTxt: {fileID: 1093742154}
   lastWordTxt: {fileID: 2113426790}
   categoryTxt: {fileID: 1781690669}
+  GM: {fileID: 272687980}
 --- !u!114 &1900022765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2593,15 +2582,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2788686177978585051, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
       propertyPath: m_ChildScaleWidth
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2788686177978585051, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
       propertyPath: m_Padding.m_Right
-      value: -300
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2788686177978585051, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
       propertyPath: m_ChildScaleHeight
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2788686177978585051, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
       propertyPath: m_ChildForceExpandWidth

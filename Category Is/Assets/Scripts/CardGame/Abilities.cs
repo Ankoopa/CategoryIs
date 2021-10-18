@@ -24,7 +24,9 @@ public class Abilities : MonoBehaviour
         {
             if (ability.clockwise)
             {
-                GameController.isReverseClockwise = true;
+                GameController.isRotUsed = true;
+                GameController.isReverseClockwise = !GameController.isReverseClockwise;
+                Debug.Log(GameController.isReverseClockwise);
                 GM.OnClickEndTurn();
             }
             else if(ability.skip)
@@ -35,7 +37,6 @@ public class Abilities : MonoBehaviour
             else if(ability.isTime)
             {
                 GameController.isTime = true;
-                GameController.timeLeft += 10;
             }
             else if(ability.shuffle)
             {

@@ -22,6 +22,7 @@ public class GameController : MonoBehaviourPun
     public static bool isValid;
     [Header ("Abilities")]
     public static bool isReverseClockwise;
+    public static bool isRotUsed;
     public static bool isSkip;
     public static float timeLeft;
     public static bool isTime;
@@ -33,6 +34,7 @@ public class GameController : MonoBehaviourPun
     {
         timeLeft = 15f;
         isTimeRunning = true;
+        isReverseClockwise = false;
         wordInput = wordTextbox.GetComponent<InputField>();
 
         if (PhotonNetwork.IsMasterClient)
@@ -46,13 +48,13 @@ public class GameController : MonoBehaviourPun
     { 
         if (isStartingGame)
         {
-            if (isTime)
-            {
-                base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
-                isTime = false;
-            }
             if (isTimeRunning)
             {
+                if (isTime)
+                {
+                    timeLeft += 10f;
+                    isTime = false;
+                }
                 base.photonView.RPC("RPC_timerCountDown", RpcTarget.AllBufferedViaServer);
             }
             foreach(var player in PhotonNetwork.PlayerList)
@@ -68,7 +70,6 @@ public class GameController : MonoBehaviourPun
                     }
                     else
                     {
-                        Debug.Log("EndTurnButtonNotOn");
                         endTurnButton.SetActive(false);
                         wordInput.text = string.Empty;
                         wordInput.interactable = false;
@@ -83,9 +84,10 @@ public class GameController : MonoBehaviourPun
     {  
         if (isValid)
         {
-            if (isSkip || isReverseClockwise)
+            if (isSkip || isRotUsed)
             {
                 base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
+                isRotUsed = false;
                 isSkip = false;
             }
             else
@@ -111,12 +113,9 @@ public class GameController : MonoBehaviourPun
     private void RPC_EndTurn()
     {
         isTimeRunning = false;
-        if (isTime)
-        {
-            timeLeft += 10f;
-        }
         if (!isReverseClockwise && !isTime)
         {
+            Debug.Log("ClockWise");
             if (PlayerTurnNumber < PhotonNetwork.CurrentRoom.PlayerCount)
             {
                 isMyTurn = false;
@@ -124,22 +123,25 @@ public class GameController : MonoBehaviourPun
                 PlayerTurnNumber += 1;          
             }
             else
+            {
                 if (PlayerTurnNumber >= PhotonNetwork.CurrentRoom.PlayerCount)
                 {
                     timeLeft = 15f;
                     PlayerTurnNumber = 1;
                 }
+            }
         }
         else
         {
-            if (PlayerTurnNumber < PhotonNetwork.CurrentRoom.PlayerCount)
+            Debug.Log("ReverseClockWise");
+            if (PlayerTurnNumber <= PhotonNetwork.CurrentRoom.PlayerCount && PlayerTurnNumber != 1)
             {
                 isMyTurn = false;
                 timeLeft = 15f;
                 PlayerTurnNumber -= 1;          
             }
             else
-                if (PlayerTurnNumber >= 1)
+                if (PlayerTurnNumber > 0)
                 {
                     timeLeft = 15f;
                     PlayerTurnNumber = PhotonNetwork.CurrentRoom.PlayerCount;
