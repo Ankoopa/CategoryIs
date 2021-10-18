@@ -28,6 +28,7 @@ public class GameController : MonoBehaviourPun
     public static bool isTime;
     private InputField wordInput;
     public List<GameObject> cardsInDeck = new List<GameObject>();
+    public List<GameObject> enemyCardsinHand = new List<GameObject>();
     private bool isTimeRunning;
 
     void Start()
@@ -78,7 +79,10 @@ public class GameController : MonoBehaviourPun
                 }
             }
         }
-        Debug.Log(PlayerTurnNumber);
+    }
+    public void DeleteEnemyCard(int enemyCard)
+    {
+        base.photonView.RPC("RPC_EnemyUsedCard", RpcTarget.OthersBuffered, enemyCard);
     }
     public void DrawCards()
     {
@@ -91,6 +95,7 @@ public class GameController : MonoBehaviourPun
         }
         
     }
+
     public void OnClickEndTurn()
     {  
         if (isValid)
@@ -98,7 +103,6 @@ public class GameController : MonoBehaviourPun
             if (isSkip || isRotUsed)
             {
                 base.photonView.RPC("RPC_Rotation", RpcTarget.AllBufferedViaServer, isRotUsed);
-                Debug.Log(isRotUsed);
                 base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
                 isSkip = false;
             }
@@ -130,12 +134,10 @@ public class GameController : MonoBehaviourPun
             if (!isReverseClockwise)
             {
                 isReverseClockwise = true;
-                Debug.Log("reverse");
             }
             else
             {
                 isReverseClockwise = false;
-                Debug.Log("notreversed");
             }
                 
             isRotUsed = false;
@@ -144,12 +146,9 @@ public class GameController : MonoBehaviourPun
     [PunRPC]
     private void RPC_EndTurn()
     {
-        
-        Debug.Log(isReverseClockwise);
         isTimeRunning = false;
         if (!isReverseClockwise && !isTime)
         {
-            Debug.Log("ClockWise");
             if (PlayerTurnNumber < PhotonNetwork.CurrentRoom.PlayerCount)
             {
                 isMyTurn = false;
@@ -169,7 +168,6 @@ public class GameController : MonoBehaviourPun
         {
             if (PlayerTurnNumber <= PhotonNetwork.CurrentRoom.PlayerCount && PlayerTurnNumber != 1)
             {
-                Debug.Log("ReverseClockWise");
                 isMyTurn = false;
                 timeLeft = 15f;
                 PlayerTurnNumber -= 1;          
@@ -177,7 +175,6 @@ public class GameController : MonoBehaviourPun
             else
                 if (PlayerTurnNumber > 0)
                 {
-                    Debug.Log("ReverseClockWise last player");
                     timeLeft = 15f;
                     PlayerTurnNumber = PhotonNetwork.CurrentRoom.PlayerCount;
                 }
@@ -191,8 +188,18 @@ public class GameController : MonoBehaviourPun
     {
         enemyCardPanel = GameObject.Find("EnemyCardsPanel");
         cardInfo.DrawEnemyCards();
-        Instantiate(enemyCard, enemyCardPanel.transform);
+        enemyCardsinHand.Add(Instantiate(enemyCard, enemyCardPanel.transform));
     }
+
+    [PunRPC]
+    public void RPC_EnemyUsedCard(int card)
+    {
+        GameObject deletedCard;
+        deletedCard = enemyCardsinHand[card];
+        enemyCardsinHand.RemoveAt(card);
+        Destroy(deletedCard);
+    }
+
     [PunRPC]
     private void RPC_timerCountDown()
     {
@@ -202,7 +209,6 @@ public class GameController : MonoBehaviourPun
         {
             timeLeft = 0;
             timerText.text = "0";
-            Debug.Log("Game Over");
             isTimeRunning = false;
         }
     }
@@ -211,7 +217,6 @@ public class GameController : MonoBehaviourPun
     private void RPC_randomPlayerTurn(int rand)
     {
         PlayerTurnNumber = rand;
-        Debug.Log(PlayerTurnNumber + " is first turn");
     }
 
 }

@@ -20,12 +20,13 @@ public class Abilities : MonoBehaviourPun
         clickedCard = EventSystem.current.currentSelectedGameObject;
         cardAbilities = clickedCard.GetComponent<Card>();
 
+        GM.DeleteEnemyCard(0);
+        
         foreach (var ability in cardAbilities.cardAbility)
         {
             if (ability.clockwise)
             {
                 GameController.isRotUsed = true;
-                Debug.Log(GameController.isReverseClockwise);
                 GM.OnClickEndTurn();
             }
             else if(ability.skip)

@@ -52,6 +52,7 @@ MonoBehaviour:
   - RPC_CategoryChosen
   - RPC_EnemyCard
   - RPC_Rotation
+  - RPC_EnemyUsedCard
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
