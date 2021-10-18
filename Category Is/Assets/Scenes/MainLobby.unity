@@ -7459,6 +7459,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1645553075}
     - target: {fileID: 3048426026925813161, guid: 697c449e12f46394aade4b02949ebe61, type: 3}
+      propertyPath: waitingRoomCode
+      value: 
+      objectReference: {fileID: 45045855}
+    - target: {fileID: 3048426026925813161, guid: 697c449e12f46394aade4b02949ebe61, type: 3}
       propertyPath: playerListScript
       value: 
       objectReference: {fileID: 1306480502578867894}
