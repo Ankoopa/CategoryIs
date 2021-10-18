@@ -42,6 +42,10 @@ public class Abilities : MonoBehaviour
             {
                 deck.ShuffleDeck(deck.GameDeck);
             }
+            else if (ability.isGreed)
+            {
+                GM.DrawCards();
+            }
         }
         Destroy(this.gameObject);
     }

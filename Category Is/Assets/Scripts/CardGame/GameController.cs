@@ -80,6 +80,15 @@ public class GameController : MonoBehaviourPun
         }
         
     }
+    public void DrawCards()
+    {
+        for (int i =0 ; i < 3; i++)
+        {
+            cardInfo.DrawingCards();
+            cardsInDeck.Add(Instantiate(card, playerDeck.transform));
+        }
+        
+    }
     public void OnClickEndTurn()
     {  
         if (isValid)
