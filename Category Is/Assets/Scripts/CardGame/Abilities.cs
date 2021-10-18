@@ -47,6 +47,7 @@ public class Abilities : MonoBehaviour
                 GM.DrawCards();
             }
         }
+        GM.cardsInDeck.Remove(this.gameObject);
         Destroy(this.gameObject);
     }
 }

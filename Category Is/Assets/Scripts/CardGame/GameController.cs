@@ -27,7 +27,7 @@ public class GameController : MonoBehaviourPun
     public static float timeLeft;
     public static bool isTime;
     private InputField wordInput;
-    private List<GameObject> cardsInDeck = new List<GameObject>();
+    public List<GameObject> cardsInDeck = new List<GameObject>();
     private bool isTimeRunning;
 
     void Start()
@@ -73,7 +73,6 @@ public class GameController : MonoBehaviourPun
                         endTurnButton.SetActive(false);
                         wordInput.text = string.Empty;
                         wordInput.interactable = false;
-                        EnableDisableCards(false);
                     }
                 }
             }
@@ -107,7 +106,7 @@ public class GameController : MonoBehaviourPun
                 cardsInDeck.Add(Instantiate(card, playerDeck.transform));
                 base.photonView.RPC("RPC_EnemyCard", RpcTarget.OthersBuffered);
             }
-            
+            EnableDisableCards(false);
         }
     }
 
