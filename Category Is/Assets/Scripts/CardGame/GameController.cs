@@ -76,12 +76,8 @@ public class GameController : MonoBehaviourPun
         if (isValid)
         {
             base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
-            if(numCards > 0)
-            {
-                cardInfo.DrawingCards();
-                Instantiate(card, playerDeck.transform);
-            }
-            numCards++;
+            cardInfo.DrawingCards();
+            Instantiate(card, playerDeck.transform);
         }
     }
 
