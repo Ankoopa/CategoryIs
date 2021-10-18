@@ -51,6 +51,7 @@ public class GameController : MonoBehaviourPun
             if (isTime)
             {
                 base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
+                isTime = false;
             }
             if (isTimeRunning)
             {
@@ -105,7 +106,6 @@ public class GameController : MonoBehaviourPun
         if (isTime)
         {
             timeLeft += 10f;
-            isTime = false;
         }
         if (!isReverseClockwise && !isTime)
         {
