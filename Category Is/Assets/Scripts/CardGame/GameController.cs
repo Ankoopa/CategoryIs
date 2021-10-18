@@ -14,6 +14,7 @@ public class GameController : MonoBehaviourPun
     public GameObject wordTextbox;
     public GameObject card;
     public GameObject playerDeck;
+    public GameObject enemyCardPanel;
     public Text timerText;
     public bool isMyTurn;
     public static bool isStartingGame;
@@ -27,6 +28,7 @@ public class GameController : MonoBehaviourPun
 
     void Start()
     {
+        enemyCardPanel = GameObject.Find("EnemyCardsPanel");
         numCards = 0;
         timeLeft = 15f;
         isTimeRunning = true;
@@ -78,6 +80,7 @@ public class GameController : MonoBehaviourPun
             base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
             cardInfo.DrawingCards();
             Instantiate(card, playerDeck.transform);
+            base.photonView.RPC("RPC_EnemyCard", RpcTarget.OthersBuffered);
         }
     }
 
@@ -100,7 +103,12 @@ public class GameController : MonoBehaviourPun
         isTimeRunning = true;
                 
     }
-
+    [PunRPC]
+    private void RPC_EnemyCard()
+    {
+        cardInfo.DrawEnemyCards();
+        Instantiate(card, enemyCardPanel.transform);
+    }
     [PunRPC]
     private void RPC_timerCountDown()
     {

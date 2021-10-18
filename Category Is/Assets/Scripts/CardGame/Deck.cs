@@ -24,7 +24,7 @@ public class Deck : MonoBehaviour
     void Awake()
     {
         LoadingDeck();
-        ShuffleDeck(TempDeck1);
+        ShuffleDeck(GameDeck);
 
         if (instance == null)
         {
@@ -75,4 +75,10 @@ public class Deck : MonoBehaviour
         instance.GameDeck.Remove(instance.GameDeck[0]);
         return instance.GameDeck[0];
     }
+
+    public static ScriptableCard DrawEnemyDeck()
+    {
+        return back;
+    }
+
 }

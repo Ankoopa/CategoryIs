@@ -50,6 +50,7 @@ MonoBehaviour:
   - lastWordChanged
   - RPC_RandomCategory
   - RPC_CategoryChosen
+  - RPC_EnemyCard
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
