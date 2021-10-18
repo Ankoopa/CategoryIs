@@ -14,7 +14,7 @@ public struct CardAbility
     //public List<Target> targets = new List<Target>();
 
     [Header ("LIFE and DEATH")]
-    public static bool saved;
+    public bool saved;
     public bool dead;
 
     [Header ("SHUFFLE")]
@@ -24,7 +24,7 @@ public struct CardAbility
     public int CardsToPick;
 
     [Header ("ROTATION")]
-    public static bool clockwise;
+    public bool clockwise;
 
     [Header ("SKIP")]
     public bool skip;

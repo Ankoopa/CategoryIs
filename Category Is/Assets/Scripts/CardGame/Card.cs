@@ -13,6 +13,7 @@ public class Card : MonoBehaviour
     public Image cardFaces; 
     public string searchCardID;
     public int cardAmount;
+    public List<CardAbility> cardAbility;
 
     private List<string> cardIDs = new List<string>();
     private string[] cardArr;
@@ -32,5 +33,6 @@ public class Card : MonoBehaviour
         CardID = i.UCardID;
         cardFaces.sprite = i.cardImage;
         cardAmount = i.CardAmount;
+        cardAbility = i.ability;
     }
 }
