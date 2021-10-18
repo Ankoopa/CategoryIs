@@ -73,6 +73,7 @@ public class GameController : MonoBehaviourPun
                         endTurnButton.SetActive(false);
                         wordInput.text = string.Empty;
                         wordInput.interactable = false;
+                        EnableDisableCards(false);
                     }
                 }
             }
@@ -106,7 +107,6 @@ public class GameController : MonoBehaviourPun
                 cardsInDeck.Add(Instantiate(card, playerDeck.transform));
                 base.photonView.RPC("RPC_EnemyCard", RpcTarget.OthersBuffered);
             }
-            EnableDisableCards(false);
         }
     }
 
