@@ -82,6 +82,7 @@ public class GameController : MonoBehaviourPun
     }
     public void DrawCards()
     {
+        SoundManager.PlaySound("new_card");
         for (int i =0 ; i < 3; i++)
         {
             cardInfo.DrawingCards();
@@ -103,6 +104,7 @@ public class GameController : MonoBehaviourPun
             }
             else
             {
+                SoundManager.PlaySound("new_card");
                 base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
                 cardInfo.DrawingCards();
                 cardsInDeck.Add(Instantiate(card, playerDeck.transform));

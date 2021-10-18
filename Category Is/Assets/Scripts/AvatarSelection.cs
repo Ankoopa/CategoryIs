@@ -51,18 +51,22 @@ public class AvatarSelection : MonoBehaviour
 
         if (newAvatar.GetComponent<Image>().sprite.name == "Owl Avatar")
         {
+            SoundManager.PlaySound("owl");
             spriteIndex = 0;
         }
         else if (newAvatar.GetComponent<Image>().sprite.name == "Parrot Avatar")
         {
+            SoundManager.PlaySound("parrot");
             spriteIndex = 1;
         }
         else if (newAvatar.GetComponent<Image>().sprite.name == "Penguin Avatar")
         {
+            SoundManager.PlaySound("penguin");
             spriteIndex = 2;
         }
         else if (newAvatar.GetComponent<Image>().sprite.name == "Pigeon Avatar")
         {
+            SoundManager.PlaySound("pigeon");
             spriteIndex = 3;
         }
 

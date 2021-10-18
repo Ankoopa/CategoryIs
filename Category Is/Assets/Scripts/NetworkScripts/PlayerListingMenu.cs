@@ -142,6 +142,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
 
     public void OnClickReadyUp()
     {
+        SoundManager.PlaySound("4");
         if (!PhotonNetwork.IsMasterClient)
         {
             SetReadyUp(!_ready);
@@ -159,7 +160,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     
     public void LoadLevel()
     {
-            //PhotonNetwork.CurrentRoom.IsOpen = false;
+        SoundManager.PlaySound("4");
         if (PhotonNetwork.CurrentRoom.PlayerCount >= 2 && PhotonNetwork.IsMasterClient)
         {
             for (int i = 0; i < _listing.Count; i++)

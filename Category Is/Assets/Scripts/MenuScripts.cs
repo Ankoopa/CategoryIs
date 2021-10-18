@@ -27,18 +27,21 @@ public class MenuScripts : MonoBehaviour
     }
     public void CustomMenuOpen()
     {
+        SoundManager.PlaySound("4");
         MainmenuScreen.SetActive(false);
         customMenu.SetActive(true);
     }
 
     public void OnlineMenuOpen()
     {
+        SoundManager.PlaySound("4");
         MainmenuScreen.SetActive(false);
         onlineMenu.SetActive(true);
     }
 
     public void ReturnToMainMenu()
     {
+        SoundManager.PlaySound("4");
         MainmenuScreen.SetActive(true);
         onlineMenu.SetActive(false);
         customMenu.SetActive(false);
@@ -46,6 +49,7 @@ public class MenuScripts : MonoBehaviour
 
     public void BackToCustomMenu()
     {
+        SoundManager.PlaySound("4");
         customMenu.SetActive(true);
         findRoomMenu.SetActive(false);
         createRoomMenu.SetActive(false);
@@ -55,6 +59,7 @@ public class MenuScripts : MonoBehaviour
 
     public void FindRoomMenuOpen()
     {
+        SoundManager.PlaySound("4");
         customMenu.SetActive(false);
         changeAvatarPanel.SetActive(true);
         findRoomMenu.SetActive(true);
@@ -66,6 +71,7 @@ public class MenuScripts : MonoBehaviour
 
     public void HostRoomMenuOpen()
     {
+        SoundManager.PlaySound("4");
         customMenu.SetActive(false);
         createRoomMenu.SetActive(true);
         playerListingMenu.SetActive(true);
@@ -74,6 +80,7 @@ public class MenuScripts : MonoBehaviour
 
     public void OnWaitingRoomOpen()
     {
+        SoundManager.PlaySound("4");
         searchRoomMenu.SetActive(false);
         waitingRoomMenu.SetActive(true);
         playerListingMenu.SetActive(true);
@@ -83,6 +90,7 @@ public class MenuScripts : MonoBehaviour
 
     public void OnWaitingRoomClosed()
     {
+        SoundManager.PlaySound("4");
         searchRoomMenu.SetActive(true);
         waitingRoomMenu.SetActive(false);
         playerListingMenu.SetActive(false);
@@ -91,11 +99,13 @@ public class MenuScripts : MonoBehaviour
 
     public void OnAvatarOpen()
     {
+        SoundManager.PlaySound("4");
         AvatarPanel.SetActive(true);
     }
 
     public void OnAvatarClose()
     {
+        SoundManager.PlaySound("4");
          AvatarPanel.SetActive(false);
     }
 

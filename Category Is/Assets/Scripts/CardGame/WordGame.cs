@@ -55,6 +55,7 @@ public class WordGame : MonoBehaviourPun
     }
     public void OnSubmit()
     {   
+        SoundManager.PlaySound("4");
         wordFound = false;
         submittedWord = wordInput.text.ToLower();
         
