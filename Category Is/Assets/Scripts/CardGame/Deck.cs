@@ -16,7 +16,8 @@ public class Deck : MonoBehaviour
     private IEnumerable<int> range;
     private int index;
     private static Deck instance;
-    private static ScriptableCard back;
+    
+    [SerializeField] private ScriptableCard back;
     
 
     [SerializeField] public static int Sum = 0;
@@ -78,7 +79,7 @@ public class Deck : MonoBehaviour
 
     public static ScriptableCard DrawEnemyDeck()
     {
-        return back;
+        return instance.back;
     }
 
 }
