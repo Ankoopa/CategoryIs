@@ -53,7 +53,7 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
     {
         if (!PhotonNetwork.IsConnected)
             return;
-        int randRmName = Random.Range(1, 999999);
+        int randRmName = Random.Range(100000, 1000000);
         string rCode = randRmName.ToString();
 
         RoomCode.text = rCode;
