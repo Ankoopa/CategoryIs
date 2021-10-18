@@ -33,7 +33,7 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
         {
             if (playerListScript._listing[i].Player != PhotonNetwork.LocalPlayer)
             {
-                Debug.Log(playerListScript._listing[i].Avatar.sprite.name);
+                //Debug.Log(playerListScript._listing[i].Avatar.sprite.name);
             }
         }
     }
