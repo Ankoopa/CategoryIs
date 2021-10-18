@@ -15,12 +15,14 @@ MonoBehaviour:
   UCardID: 04
   cardImage: {fileID: 21300000, guid: a31e00fc4f78b81438748240e9432ffb, type: 3}
   CardName: Skip
-  CardAmount: 8
+  CardAmount: 10
   ability:
   - abilityType: 4
+    saved: 0
     dead: 0
     shuffle: 0
     CardsToPick: 0
+    clockwise: 0
     skip: 1
     TimeIncrease: 0
   Description: 

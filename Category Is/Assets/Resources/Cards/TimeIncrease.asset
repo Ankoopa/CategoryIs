@@ -15,12 +15,14 @@ MonoBehaviour:
   UCardID: 06
   cardImage: {fileID: 21300000, guid: 956ef738191d70e4d8474de32470529e, type: 3}
   CardName: Time Increase
-  CardAmount: 8
+  CardAmount: 20
   ability:
   - abilityType: 5
+    saved: 0
     dead: 0
     shuffle: 0
     CardsToPick: 0
+    clockwise: 0
     skip: 0
     TimeIncrease: 10
   Description: 

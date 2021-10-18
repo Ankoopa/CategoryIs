@@ -17,10 +17,12 @@ MonoBehaviour:
   CardName: Steal
   CardAmount: 4
   ability:
-  - abilityType: 0
+  - abilityType: 5
+    saved: 0
     dead: 0
     shuffle: 0
     CardsToPick: 0
+    clockwise: 0
     skip: 0
     TimeIncrease: 0
   Description: 

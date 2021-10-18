@@ -15,12 +15,14 @@ MonoBehaviour:
   UCardID: 03
   cardImage: {fileID: 21300000, guid: 5d0b2ba59b1406945ae135f65d0f169c, type: 3}
   CardName: Shuffle
-  CardAmount: 8
+  CardAmount: 15
   ability:
   - abilityType: 3
+    saved: 0
     dead: 0
     shuffle: 1
     CardsToPick: 0
+    clockwise: 0
     skip: 0
     TimeIncrease: 0
   Description: 

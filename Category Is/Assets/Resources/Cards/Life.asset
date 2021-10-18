@@ -15,12 +15,14 @@ MonoBehaviour:
   UCardID: 02
   cardImage: {fileID: 21300000, guid: ec9070694e5660f498f86fac71fc7299, type: 3}
   CardName: Extra Life
-  CardAmount: 10
+  CardAmount: 5
   ability:
   - abilityType: 1
+    saved: 1
     dead: 0
     shuffle: 0
     CardsToPick: 0
+    clockwise: 0
     skip: 0
     TimeIncrease: 0
   Description: 
