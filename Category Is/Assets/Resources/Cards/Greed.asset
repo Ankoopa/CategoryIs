@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34df976525b22a4e918485a02fdf51c, type: 3}
   m_Name: Greed
   m_EditorClassIdentifier: 
-  UCardID: 
+  UCardID: 07
   cardImage: {fileID: 21300000, guid: ce344b166e0ecaf4d943680d07e7016b, type: 3}
   CardName: Greed
   CardAmount: 5

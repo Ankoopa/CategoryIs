@@ -2591,6 +2591,22 @@ PrefabInstance:
       propertyPath: m_Spacing
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 2788686177978585051, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
+      propertyPath: m_ChildScaleWidth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2788686177978585051, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
+      propertyPath: m_ChildScaleHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2788686177978585051, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
+      propertyPath: m_ChildForceExpandWidth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2788686177978585051, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
+      propertyPath: m_ChildForceExpandHeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4195105115502446427, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
       propertyPath: m_Name
       value: PlayerPanel
