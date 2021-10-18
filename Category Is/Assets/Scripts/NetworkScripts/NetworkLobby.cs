@@ -11,6 +11,7 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
     public GameObject backButton;
     public GameObject CancelButton;
     public Text RoomCode;
+    public Text waitingRoomCode;
     public Text roomInputField;
     public PlayerNameField playerName;
     public PlayerListingMenu playerListScript;
@@ -23,23 +24,13 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
     }
     void Update()
     {
-        //Debug.Log(PhotonNetwork.InRoom);
         if (destroyPlayersList)
         {
             DestroyListLocally();
         }
-
-        for (int i = 0; i < playerListScript._listing.Count; i++)
-        {
-            if (playerListScript._listing[i].Player != PhotonNetwork.LocalPlayer)
-            {
-                //Debug.Log(playerListScript._listing[i].Avatar.sprite.name);
-            }
-        }
     }
     public void SubmitName()
     {
-        Debug.Log(PhotonNetwork.NickName);
         if (string.IsNullOrEmpty(PhotonNetwork.NickName))
         {
             Debug.LogError("Player Name is null or empty");
@@ -85,6 +76,7 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedRoom()
     {
+        waitingRoomCode.text = PhotonNetwork.CurrentRoom.Name;
         foreach (var playername in PhotonNetwork.CurrentRoom.Players)
         {
             Debug.Log(playername);
@@ -115,7 +107,6 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
         {
             for (int i = 0; i < playerListScript._listing.Count; i++)
             {
-                Debug.Log(playerListScript._listing.Count);
                 Destroy(playerListScript._listing[i].gameObject);
                 playerListScript._listing.RemoveAt(i);
             }
@@ -124,7 +115,6 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
         {
             for (int i = 0; i < playerListScript._listing.Count; i++)
             {
-                Debug.Log(playerListScript._listing.Count);
                 Destroy(playerListScript._listing[i].gameObject);
                 playerListScript._listing.RemoveAt(i);
             }
@@ -138,7 +128,6 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
         {
             for (int i = 0; i < playerListScript._listing.Count; i++)
             {
-                Debug.Log(playerListScript._listing.Count);
                 Destroy(playerListScript._listing[i].gameObject);
                 playerListScript._listing.RemoveAt(i);
             }
