@@ -8,7 +8,6 @@ public class WordGame : MonoBehaviourPun
 {
     public List<TextAsset> textFile;
     public InputField wordInput;
-    //public Text categoryText;
     public Text msg;
     public Text scoreTxt;
     public Text lastWordTxt;
@@ -77,7 +76,6 @@ public class WordGame : MonoBehaviourPun
         if (wordFound)
         {
             ProcessWord();
-            GameController.isValid = true;
         }
         else
         {
@@ -86,7 +84,6 @@ public class WordGame : MonoBehaviourPun
         }
 
         wordInput.text = "";
-        //base.photonView.RPC("UpdateValues", RpcTarget.AllBufferedViaServer, submittedWords);
     }
 
     void ProcessWord()
@@ -101,14 +98,17 @@ public class WordGame : MonoBehaviourPun
             msg.text = submittedWord + "Word accepted";
             base.photonView.RPC("lastWordChanged", RpcTarget.AllBufferedViaServer, lastWord);
             base.photonView.RPC("UpdateValues", RpcTarget.AllBufferedViaServer, submittedWords.ToArray(), lastWord);
+            GameController.isValid = true;
         }
         else if (WordExists(submittedWord))
         {
             msg.text = "'"+ submittedWord +"' has been already submitted.";
+            GameController.isValid = false;
         }
         else
         {
             msg.text = "'"+submittedWord+"' must start the same letter as the last word: " + lastWord;
+            GameController.isValid = false;
         }
     }
 

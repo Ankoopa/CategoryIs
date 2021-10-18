@@ -154,8 +154,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerTurnNumber: 0
+  cardInfo: {fileID: 2091033770614366799, guid: 27b67f5210e604445b3805de0a5afbac, type: 3}
   endTurnButton: {fileID: 451775746}
   wordTextbox: {fileID: 498533889}
+  card: {fileID: 3787027705836675734, guid: 27b67f5210e604445b3805de0a5afbac, type: 3}
+  playerDeck: {fileID: 2788686177978585052}
   timerText: {fileID: 940582426}
   isMyTurn: 0
 --- !u!4 &272687981
@@ -1288,7 +1291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1093580993
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2256,7 +2259,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a31c990facfe8a04cae9d244b10ecc93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 3787027705836675734, guid: 27b67f5210e604445b3805de0a5afbac, type: 3}
   playerDeck: {fileID: 2788686177978585052}
   enemyPanel: {fileID: 592629934}
   enemyDeck: {fileID: 3943294095523639059, guid: 04192e0669936f443a0224789a9a534e, type: 3}
@@ -2264,7 +2266,6 @@ MonoBehaviour:
   cardInfo: {fileID: 2091033770614366799, guid: 27b67f5210e604445b3805de0a5afbac, type: 3}
   deckInfo: {fileID: 1900022762}
   playerText: {fileID: 2788686177978585050}
-  cardDB: {fileID: 11400000, guid: 347f19a4df986a747947526cb85984da, type: 2}
 --- !u!114 &1900022764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2653,14 +2654,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1357955700}
     m_Modifications:
-    - target: {fileID: 3624990960504995735, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3933384873515277011, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -751.7299
-      objectReference: {fileID: 0}
     - target: {fileID: 4195105115502446427, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
       propertyPath: m_Name
       value: PlayerPanel
@@ -2748,50 +2741,6 @@ PrefabInstance:
     - target: {fileID: 6490086258556413456, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8666596301421417122, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 308.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8666596301421417122, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -751.73
-      objectReference: {fileID: 0}
-    - target: {fileID: 8666596301421417122, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 117
-      objectReference: {fileID: 0}
-    - target: {fileID: 8666596301421417125, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 495c9e2a934bcc640a8d7427b13cb680, type: 3}
-    - target: {fileID: 8666596301421417125, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 8666596301421417125, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8666596301829713155, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 41
-      objectReference: {fileID: 0}
-    - target: {fileID: 8666596301829713155, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 41
-      objectReference: {fileID: 0}
-    - target: {fileID: 8666596301829713155, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -757
-      objectReference: {fileID: 0}
-    - target: {fileID: 8666596301829713155, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -28
-      objectReference: {fileID: 0}
-    - target: {fileID: 9043359249236575656, guid: a8d7d39a689297242810db47a5406fb6, type: 3}
-      propertyPath: m_Color.a
-      value: 0.7490196
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8d7d39a689297242810db47a5406fb6, type: 3}

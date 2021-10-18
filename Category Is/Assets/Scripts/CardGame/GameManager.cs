@@ -9,7 +9,6 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
-    public GameObject card;
     public GameObject playerDeck;
     public GameObject enemyPanel;
     public GameObject enemyDeck;
@@ -19,20 +18,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public Deck deckInfo;
     public Text playerText;
 
-    public ScriptableCardDB cardDB;
-
-    void Awake()
-    {
-        /*
-        Hashtable cards = new Hashtable();
-        cards.Add("OwnCards", playerCards);
-        PhotonNetwork.LocalPlayer.CustomProperties = cards;
-        */
-    }
-
     void Start()
     {
-        DealCards();
         AssignPlayers();
 
         deckInfo.GameDeck.AddRange(deckInfo.TempDeck1);
@@ -42,6 +29,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     void DealCards()
     {
+
+        /*
         cardInfo.LifeCardPerPlayer();
         Instantiate(card, playerDeck.transform);
 
@@ -50,7 +39,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             cardInfo.DrawingCards();
             Instantiate(card, playerDeck.transform);
         }
-        //TODO: each local player has their own set of cards. their set must be reflected on the server side.
+        */
     }
 
     void AssignPlayers()
@@ -66,23 +55,6 @@ public class GameManager : MonoBehaviourPunCallbacks
                 GameObject curDeck = Instantiate(enemyDeck, enemyPanel.transform);
                 Text enemyName = curDeck.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
                 enemyName.text = plr.NickName;
-                GameObject enemyCardPanel = curDeck.transform.GetChild(1).gameObject;
-
-                string[] cardList = (string[])plr.CustomProperties["OwnCards"];
-                Debug.Log(cardList);
-
-                /* NOT WORKING
-                foreach(string cardStr in cardList)
-                {
-                    foreach(ScriptableCard sc in cardDB.allCards)
-                    {
-                        if (sc.UCardID.Equals(cardStr))
-                        {
-                            GameObject cardInst = Instantiate(card, enemyCardPanel.transform);
-                        }
-                    }
-                }
-                */
             }
         }
 

@@ -9,30 +9,36 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviourPun
 {
     public int PlayerTurnNumber;
+    public Card cardInfo;
     public GameObject endTurnButton;
     public GameObject wordTextbox;
+    public GameObject card;
+    public GameObject playerDeck;
     public Text timerText;
+    public bool isMyTurn;
     public static bool isStartingGame;
     public static bool isValid;
+
+    private int numCards;
     private InputField wordInput;
     private bool isAlive;
-    public bool isMyTurn;
     private float timeLeft;
     private bool isTimeRunning;
 
     void Start()
     {
-             timeLeft = 15f;
-            isTimeRunning = true;
-            wordInput = wordTextbox.GetComponent<InputField>();
+        numCards = 0;
+        timeLeft = 15f;
+        isTimeRunning = true;
+        wordInput = wordTextbox.GetComponent<InputField>();
 
+        Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
+        if (PhotonNetwork.IsMasterClient)
+        {
             Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
-            if (PhotonNetwork.IsMasterClient)
-            {
-                Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
-                int RandTurnNumber = Random.Range(1, PhotonNetwork.CurrentRoom.PlayerCount + 1);
-                base.photonView.RPC("RPC_randomPlayerTurn", RpcTarget.AllBufferedViaServer, RandTurnNumber);
-            }
+            int RandTurnNumber = Random.Range(1, PhotonNetwork.CurrentRoom.PlayerCount + 1);
+            base.photonView.RPC("RPC_randomPlayerTurn", RpcTarget.AllBufferedViaServer, RandTurnNumber);
+        }
     }
 
     void Update()
@@ -70,6 +76,17 @@ public class GameController : MonoBehaviourPun
         if (isValid)
         {
             base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
+            if(numCards > 0)
+            {
+                cardInfo.DrawingCards();
+                Instantiate(card, playerDeck.transform);
+            }
+            else
+            {
+                cardInfo.LifeCardPerPlayer();
+                Instantiate(card, playerDeck.transform);
+            }
+            numCards++;
         }
     }
 
