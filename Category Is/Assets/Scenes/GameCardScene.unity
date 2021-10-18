@@ -733,11 +733,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17f2660d8727b8b4a90d1cca8b46bb25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 3787027705836675734, guid: 27b67f5210e604445b3805de0a5afbac, type: 3}
-  cardPanel: {fileID: 0}
-  playerText: {fileID: 0}
-  cardInfo: {fileID: 2091033770614366799, guid: 27b67f5210e604445b3805de0a5afbac, type: 3}
-  deckInfo: {fileID: 0}
 --- !u!1 &592629934
 GameObject:
   m_ObjectHideFlags: 0
@@ -2734,6 +2729,10 @@ PrefabInstance:
       propertyPath: endTurnButton
       value: 
       objectReference: {fileID: 451775746}
+    - target: {fileID: 5313552424912421090, guid: 167fe3971e5d51a48990ee3aa90e2b2a, type: 3}
+      propertyPath: enemyCardPanel
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5313552424912421091, guid: 167fe3971e5d51a48990ee3aa90e2b2a, type: 3}
       propertyPath: m_RootOrder
       value: 5

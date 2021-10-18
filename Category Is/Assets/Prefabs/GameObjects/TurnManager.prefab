@@ -49,8 +49,9 @@ MonoBehaviour:
   endTurnButton: {fileID: 0}
   wordTextbox: {fileID: 0}
   card: {fileID: 3787027705836675734, guid: 27b67f5210e604445b3805de0a5afbac, type: 3}
+  enemyCard: {fileID: 8498560827668261192, guid: 8bf7744e229366a44ab0b5887f4ecf2c, type: 3}
   playerDeck: {fileID: 0}
-  EnemyDeck: {fileID: 0}
+  enemyCardPanel: {fileID: 0}
   timerText: {fileID: 0}
   isMyTurn: 0
 --- !u!114 &5313552424912421088
