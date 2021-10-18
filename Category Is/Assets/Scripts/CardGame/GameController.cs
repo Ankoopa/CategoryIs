@@ -31,7 +31,6 @@ public class GameController : MonoBehaviourPun
 
     void Start()
     {
-        numCards = 0;
         timeLeft = 15f;
         isTimeRunning = true;
         wordInput = wordTextbox.GetComponent<InputField>();
