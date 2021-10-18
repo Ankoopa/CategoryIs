@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Abilities : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private GameObject clickedCard;
+    private Card cardAbilities;
+    public void OnClickCard()
     {
-        
-    }
+        clickedCard = EventSystem.current.currentSelectedGameObject;
+        cardAbilities = clickedCard.GetComponent<Card>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        foreach (var ability in cardAbilities.cardAbility)
+        {
+            Debug.Log(ability.skip);
+        }
     }
 }
