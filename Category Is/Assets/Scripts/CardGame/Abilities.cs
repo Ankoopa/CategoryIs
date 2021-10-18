@@ -25,7 +25,7 @@ public class Abilities : MonoBehaviour
             if (ability.clockwise)
             {
                 GameController.isRotUsed = true;
-                GameController.isReverseClockwise = !GameController.isReverseClockwise;
+                // GameController.isReverseClockwise = !GameController.isReverseClockwise;
                 Debug.Log(GameController.isReverseClockwise);
                 GM.OnClickEndTurn();
             }

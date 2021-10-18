@@ -48,6 +48,10 @@ public class GameController : MonoBehaviourPun
     { 
         if (isStartingGame)
         {
+            if (isRotUsed)
+            {
+                isReverseClockwise = !isReverseClockwise;
+            }
             if (isTimeRunning)
             {
                 if (isTime)
@@ -78,7 +82,7 @@ public class GameController : MonoBehaviourPun
                 }
             }
         }
-        
+        Debug.Log(PlayerTurnNumber);
     }
     public void DrawCards()
     {
@@ -142,9 +146,9 @@ public class GameController : MonoBehaviourPun
         }
         else
         {
-            Debug.Log("ReverseClockWise");
             if (PlayerTurnNumber <= PhotonNetwork.CurrentRoom.PlayerCount && PlayerTurnNumber != 1)
             {
+                Debug.Log("ReverseClockWise");
                 isMyTurn = false;
                 timeLeft = 15f;
                 PlayerTurnNumber -= 1;          
@@ -152,6 +156,7 @@ public class GameController : MonoBehaviourPun
             else
                 if (PlayerTurnNumber > 0)
                 {
+                    Debug.Log("ReverseClockWise last player");
                     timeLeft = 15f;
                     PlayerTurnNumber = PhotonNetwork.CurrentRoom.PlayerCount;
                 }
