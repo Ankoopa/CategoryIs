@@ -81,11 +81,6 @@ public class GameController : MonoBehaviourPun
                 cardInfo.DrawingCards();
                 Instantiate(card, playerDeck.transform);
             }
-            else
-            {
-                cardInfo.LifeCardPerPlayer();
-                Instantiate(card, playerDeck.transform);
-            }
             numCards++;
         }
     }

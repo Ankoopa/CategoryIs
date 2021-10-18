@@ -22,15 +22,6 @@ public class Card : MonoBehaviour
         SetCard(Deck.DrawCardFromDeck());
     }
     
-    public void LifeCardPerPlayer()
-    {
-        SetCard(Deck.FirstDealtCard());
-    }
-
-    public void DrawEnemyCards()
-    {
-        SetCard(Deck.DrawEnemyDeck());
-    }
 
     public void SetCard(ScriptableCard i)
     {

@@ -21,10 +21,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     void Start()
     {
         AssignPlayers();
-
-        deckInfo.GameDeck.AddRange(deckInfo.TempDeck1);
-        deckInfo.GameDeck.AddRange(deckInfo.TempDeck2);
-        deckInfo.ShuffleDeck(deckInfo.GameDeck);
     }
 
     void DealCards()

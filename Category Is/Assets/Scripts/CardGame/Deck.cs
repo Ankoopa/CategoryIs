@@ -46,9 +46,7 @@ public class Deck : MonoBehaviour
         {
                 for (int i = 0; i < cardsInfo.CardAmount; i++)
                 {
-                    if (cardsInfo.UCardID == "01" || cardsInfo.UCardID == "02") TempDeck2.Add(cardsInfo); //Seperates the Life and Death card from the rest of the cards and put them into a temporary list;
-                    else if (cardsInfo.UCardID == "00") back = cardsInfo; //Back or hidden card
-                    else TempDeck1.Add(cardsInfo);
+                    GameDeck.Add(cardsInfo);
                 }
             
         }
@@ -74,20 +72,7 @@ public class Deck : MonoBehaviour
     public static ScriptableCard DrawCardFromDeck()
     {
         //Takes card from the top of the list and removes it from the deck
-        instance.TempDeck1.Remove(instance.TempDeck1[0]);
-        return instance.TempDeck1[0];
-    }
-
-    public static ScriptableCard DrawEnemyDeck()
-    {
-        return back;
-    }
-
-    public static ScriptableCard FirstDealtCard()
-    {
-        //Takes a life card from the temporary list and removes it
-        var rand = instance.TempDeck2[Random.Range(6, instance.TempDeck2.Count())];
-        instance.TempDeck2.Remove(rand);
-        return rand;
+        instance.GameDeck.Remove(instance.GameDeck[0]);
+        return instance.GameDeck[0];
     }
 }
