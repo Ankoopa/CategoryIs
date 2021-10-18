@@ -86,6 +86,7 @@ public class GameController : MonoBehaviourPun
         {
             cardInfo.DrawingCards();
             cardsInDeck.Add(Instantiate(card, playerDeck.transform));
+            base.photonView.RPC("RPC_EnemyCard", RpcTarget.OthersBuffered);
         }
         
     }
