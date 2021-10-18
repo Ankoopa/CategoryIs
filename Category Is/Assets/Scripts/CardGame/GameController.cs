@@ -48,10 +48,6 @@ public class GameController : MonoBehaviourPun
     { 
         if (isStartingGame)
         {
-            if (isRotUsed)
-            {
-                isReverseClockwise = !isReverseClockwise;
-            }
             if (isTimeRunning)
             {
                 if (isTime)
@@ -100,8 +96,9 @@ public class GameController : MonoBehaviourPun
         {
             if (isSkip || isRotUsed)
             {
+                base.photonView.RPC("RPC_Rotation", RpcTarget.AllBufferedViaServer, isRotUsed);
+                Debug.Log(isRotUsed);
                 base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
-                isRotUsed = false;
                 isSkip = false;
             }
             else
@@ -123,8 +120,30 @@ public class GameController : MonoBehaviourPun
     }
 
     [PunRPC]
+    public void RPC_Rotation(bool rotation)
+    {
+        isRotUsed = rotation;
+        if (isRotUsed)
+        {
+            if (!isReverseClockwise)
+            {
+                isReverseClockwise = true;
+                Debug.Log("reverse");
+            }
+            else
+            {
+                isReverseClockwise = false;
+                Debug.Log("notreversed");
+            }
+                
+            isRotUsed = false;
+        }
+    }
+    [PunRPC]
     private void RPC_EndTurn()
     {
+        
+        Debug.Log(isReverseClockwise);
         isTimeRunning = false;
         if (!isReverseClockwise && !isTime)
         {

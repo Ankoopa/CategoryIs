@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
-public class Abilities : MonoBehaviour
+using Photon.Pun;
+public class Abilities : MonoBehaviourPun
 {
     public GameController GM;
     public Deck deck;
@@ -25,7 +25,6 @@ public class Abilities : MonoBehaviour
             if (ability.clockwise)
             {
                 GameController.isRotUsed = true;
-                // GameController.isReverseClockwise = !GameController.isReverseClockwise;
                 Debug.Log(GameController.isReverseClockwise);
                 GM.OnClickEndTurn();
             }
