@@ -25,9 +25,8 @@ public class GameController : MonoBehaviourPun
     public static bool isSkip;
     public static float timeLeft;
     public static bool isTime;
-    private int numCards;
     private InputField wordInput;
-    
+    private List<GameObject> cardsInDeck = new List<GameObject>();
     private bool isTimeRunning;
 
     void Start()
@@ -66,6 +65,7 @@ public class GameController : MonoBehaviourPun
                     {
                         endTurnButton.SetActive(true);
                         wordInput.interactable = true;
+                        EnableDisableCards(true);
                     }
                     else
                     {
@@ -73,6 +73,7 @@ public class GameController : MonoBehaviourPun
                         endTurnButton.SetActive(false);
                         wordInput.text = string.Empty;
                         wordInput.interactable = false;
+                        EnableDisableCards(false);
                     }
                 }
             }
@@ -92,10 +93,18 @@ public class GameController : MonoBehaviourPun
             {
                 base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
                 cardInfo.DrawingCards();
-                Instantiate(card, playerDeck.transform);
+                cardsInDeck.Add(Instantiate(card, playerDeck.transform));
                 base.photonView.RPC("RPC_EnemyCard", RpcTarget.OthersBuffered);
             }
             
+        }
+    }
+
+    void EnableDisableCards(bool isEnable)
+    {
+        foreach (GameObject c in cardsInDeck)
+        {
+            c.GetComponent<Button>().interactable = isEnable;
         }
     }
 
