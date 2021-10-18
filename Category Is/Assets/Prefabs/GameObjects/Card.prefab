@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2091033770614366799}
   - component: {fileID: -4146414161780934493}
   - component: {fileID: -4229542244599358242}
+  - component: {fileID: -309100095606330563}
   - component: {fileID: -7229438959295133086}
   m_Layer: 0
   m_Name: Card
@@ -97,6 +98,7 @@ MonoBehaviour:
   cardFaces: {fileID: 809053988906267524}
   searchCardID: 02
   cardAmount: 5
+  cardAbility: []
 --- !u!225 &-4146414161780934493
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -152,7 +154,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5602722938470676510}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -309100095606330563}
+        m_TargetAssemblyTypeName: Abilities, Assembly-CSharp
+        m_MethodName: OnClickCard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-309100095606330563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3787027705836675734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d357818baed3c45b8fbd1a859390f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GM: {fileID: 0}
 --- !u!95 &-7229438959295133086
 Animator:
   serializedVersion: 3

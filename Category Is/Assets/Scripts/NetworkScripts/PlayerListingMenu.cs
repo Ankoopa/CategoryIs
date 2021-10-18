@@ -160,7 +160,7 @@ public class PlayerListingMenu : MonoBehaviourPunCallbacks
     public void LoadLevel()
     {
             //PhotonNetwork.CurrentRoom.IsOpen = false;
-        if (PhotonNetwork.CurrentRoom.PlayerCount == 2 && PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 3 && PhotonNetwork.IsMasterClient)
         {
             for (int i = 0; i < _listing.Count; i++)
             {

@@ -20,11 +20,14 @@ public class GameController : MonoBehaviourPun
     public bool isMyTurn;
     public static bool isStartingGame;
     public static bool isValid;
-
+    [Header ("Abilities")]
+    public static bool isReverseClockwise;
+    public static bool isSkip;
+    public static float timeLeft;
+    public static bool isTime;
     private int numCards;
     private InputField wordInput;
-    private bool isAlive;
-    private float timeLeft;
+    
     private bool isTimeRunning;
 
     void Start()
@@ -45,6 +48,10 @@ public class GameController : MonoBehaviourPun
     { 
         if (isStartingGame)
         {
+            if (isTime)
+            {
+                base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
+            }
             if (isTimeRunning)
             {
                 base.photonView.RPC("RPC_timerCountDown", RpcTarget.AllBufferedViaServer);
@@ -75,10 +82,19 @@ public class GameController : MonoBehaviourPun
     {  
         if (isValid)
         {
-            base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
-            cardInfo.DrawingCards();
-            Instantiate(card, playerDeck.transform);
-            base.photonView.RPC("RPC_EnemyCard", RpcTarget.OthersBuffered);
+            if (isSkip || isReverseClockwise)
+            {
+                base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
+                isSkip = false;
+            }
+            else
+            {
+                base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
+                cardInfo.DrawingCards();
+                Instantiate(card, playerDeck.transform);
+                base.photonView.RPC("RPC_EnemyCard", RpcTarget.OthersBuffered);
+            }
+            
         }
     }
 
@@ -86,18 +102,42 @@ public class GameController : MonoBehaviourPun
     private void RPC_EndTurn()
     {
         isTimeRunning = false;
-        if (PlayerTurnNumber < PhotonNetwork.CurrentRoom.PlayerCount)
+        if (isTime)
         {
-            isMyTurn = false;
-            timeLeft = 15f;
-            PlayerTurnNumber += 1;          
+            timeLeft += 10f;
+            isTime = false;
+        }
+        if (!isReverseClockwise && !isTime)
+        {
+            if (PlayerTurnNumber < PhotonNetwork.CurrentRoom.PlayerCount)
+            {
+                isMyTurn = false;
+                timeLeft = 15f;
+                PlayerTurnNumber += 1;          
+            }
+            else
+                if (PlayerTurnNumber >= PhotonNetwork.CurrentRoom.PlayerCount)
+                {
+                    timeLeft = 15f;
+                    PlayerTurnNumber = 1;
+                }
         }
         else
-            if (PlayerTurnNumber >= PhotonNetwork.CurrentRoom.PlayerCount)
+        {
+            if (PlayerTurnNumber < PhotonNetwork.CurrentRoom.PlayerCount)
             {
+                isMyTurn = false;
                 timeLeft = 15f;
-                PlayerTurnNumber = 1;
+                PlayerTurnNumber -= 1;          
             }
+            else
+                if (PlayerTurnNumber >= 1)
+                {
+                    timeLeft = 15f;
+                    PlayerTurnNumber = PhotonNetwork.CurrentRoom.PlayerCount;
+                }
+        }
+      
         isTimeRunning = true;
                 
     }
@@ -115,6 +155,7 @@ public class GameController : MonoBehaviourPun
         timerText.text = Mathf.Round(timeLeft).ToString();
         if (timeLeft < 0)
         {
+            timeLeft = 0;
             timerText.text = "0";
             Debug.Log("Game Over");
             isTimeRunning = false;

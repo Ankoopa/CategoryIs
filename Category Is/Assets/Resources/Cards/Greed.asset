@@ -18,9 +18,13 @@ MonoBehaviour:
   CardAmount: 5
   ability:
   - abilityType: 0
+    saved: 0
     dead: 0
     shuffle: 0
+    isGreed: 1
     CardsToPick: 3
+    clockwise: 0
     skip: 0
+    isTime: 0
     TimeIncrease: 0
   Description: 

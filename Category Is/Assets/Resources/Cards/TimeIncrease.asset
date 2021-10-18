@@ -21,8 +21,10 @@ MonoBehaviour:
     saved: 0
     dead: 0
     shuffle: 0
+    isGreed: 0
     CardsToPick: 0
     clockwise: 0
     skip: 0
+    isTime: 1
     TimeIncrease: 10
   Description: 

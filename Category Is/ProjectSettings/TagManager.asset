@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Avatars
+  - GM
   layers:
   - Default
   - TransparentFX

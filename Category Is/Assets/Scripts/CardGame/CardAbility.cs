@@ -21,6 +21,7 @@ public struct CardAbility
     public bool shuffle;
 
     [Header ("GREED")]
+    public bool isGreed;
     public int CardsToPick;
 
     [Header ("ROTATION")]
@@ -33,5 +34,6 @@ public struct CardAbility
     //steal code
 
     [Header ("TIME")]
+    public bool isTime;
     public int TimeIncrease;
 }
