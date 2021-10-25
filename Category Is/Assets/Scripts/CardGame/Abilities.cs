@@ -7,6 +7,7 @@ public class Abilities : MonoBehaviourPun
 {
     public GameController GM;
     public Deck deck;
+
     private GameObject clickedCard;
     private Card cardAbilities;
 
@@ -26,17 +27,15 @@ public class Abilities : MonoBehaviourPun
         {
             if (ability.clockwise)
             {
-                GameController.isRotUsed = true;
-                GM.OnClickEndTurn();
+                GM.AbilityUsed(GameController.CardAbilities.Rotation);
             }
             else if(ability.skip)
             {
-                GameController.isSkip = true;
-                GM.OnClickEndTurn(); 
+                GM.AbilityUsed(GameController.CardAbilities.Skip);
             }
             else if(ability.isTime)
             {
-                GameController.isTime = true;
+                GM.AbilityUsed(GameController.CardAbilities.AddTime);
             }
             else if(ability.shuffle)
             {

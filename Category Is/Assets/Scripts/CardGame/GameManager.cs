@@ -23,21 +23,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         AssignPlayers();
     }
 
-    void DealCards()
-    {
-
-        /*
-        cardInfo.LifeCardPerPlayer();
-        Instantiate(card, playerDeck.transform);
-
-        for (int i = 0; i < 5; i++)
-        {
-            cardInfo.DrawingCards();
-            Instantiate(card, playerDeck.transform);
-        }
-        */
-    }
-
     void AssignPlayers()
     {
         playerText.text = PhotonNetwork.LocalPlayer.NickName;

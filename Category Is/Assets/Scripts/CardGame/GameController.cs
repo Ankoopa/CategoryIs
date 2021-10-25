@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviourPun
 {
+    //public vars
     public int PlayerTurnNumber;
     public Card cardInfo;
     public GameObject endTurnButton;
@@ -25,11 +26,14 @@ public class GameController : MonoBehaviourPun
     public static bool isRotUsed;
     public static bool isSkip;
     public static float timeLeft;
-    public static bool isTime;
-    private InputField wordInput;
     public List<GameObject> cardsInDeck = new List<GameObject>();
     public List<GameObject> enemyCardsinHand = new List<GameObject>();
+
+    //private vars
     private bool isTimeRunning;
+    private InputField wordInput;
+    [HideInInspector]
+    public enum CardAbilities {Rotation, Skip, AddTime, Shuffle, Greed};
 
     void Start()
     {
@@ -49,51 +53,80 @@ public class GameController : MonoBehaviourPun
     { 
         if (isStartingGame)
         {
-            if (isTimeRunning)
+            foreach(Player player in PhotonNetwork.PlayerList)
             {
-                if (isTime)
-                {
-                    timeLeft += 10f;
-                    isTime = false;
-                }
-                base.photonView.RPC("RPC_timerCountDown", RpcTarget.AllBufferedViaServer);
+                CheckTurn(player);
             }
-            foreach(var player in PhotonNetwork.PlayerList)
+            CountdownTimer();
+        }
+    }
+
+    void CheckTurn(Player player)
+    {
+        if (player.ActorNumber == PlayerTurnNumber)
+        {
+            isMyTurn = true;
+            if (isMyTurn && player.NickName == PhotonNetwork.LocalPlayer.NickName)
             {
-                if (player.ActorNumber == PlayerTurnNumber)
-                {
-                    isMyTurn = true;
-                    if (isMyTurn && player.NickName == PhotonNetwork.LocalPlayer.NickName)
-                    {
-                        endTurnButton.SetActive(true);
-                        wordInput.interactable = true;
-                        EnableDisableCards(true);
-                    }
-                    else
-                    {
-                        endTurnButton.SetActive(false);
-                        wordInput.text = string.Empty;
-                        wordInput.interactable = false;
-                        EnableDisableCards(false);
-                    }
-                }
+                endTurnButton.SetActive(true);
+                wordInput.interactable = true;
+                EnableDisableCards(true);
+            }
+            else
+            {
+                endTurnButton.SetActive(false);
+                wordInput.text = string.Empty;
+                wordInput.interactable = false;
+                EnableDisableCards(false);
             }
         }
     }
+
+    void CountdownTimer()
+    {
+        if (isTimeRunning)
+        {
+            base.photonView.RPC("RPC_timerCountDown", RpcTarget.AllBufferedViaServer, timeLeft);
+        }
+    }
+
     public void DeleteEnemyCard(int enemyCard)
     {
         base.photonView.RPC("RPC_EnemyUsedCard", RpcTarget.OthersBuffered, enemyCard);
     }
+
     public void DrawCards()
     {
         SoundManager.PlaySound("new_card");
-        for (int i =0 ; i < 3; i++)
+        for (int i = 0 ; i < 3; i++)
         {
             cardInfo.DrawingCards();
             cardsInDeck.Add(Instantiate(card, playerDeck.transform));
             base.photonView.RPC("RPC_EnemyCard", RpcTarget.OthersBuffered);
         }
         
+    }
+
+    public void AbilityUsed(CardAbilities ability)
+    {
+        switch (ability)
+        {
+            case CardAbilities.Rotation:
+                isRotUsed = true;
+                OnClickEndTurn();
+                break;
+            case CardAbilities.Skip:
+                isSkip = true;
+                OnClickEndTurn();
+                break;
+            case CardAbilities.AddTime:
+                timeLeft += 10f;
+                base.photonView.RPC("RPC_timerCountDown", RpcTarget.AllBufferedViaServer, timeLeft);
+                break;
+            case CardAbilities.Greed:
+                DrawCards();
+                break;
+        }
     }
 
     public void OnClickEndTurn()
@@ -147,7 +180,7 @@ public class GameController : MonoBehaviourPun
     private void RPC_EndTurn()
     {
         isTimeRunning = false;
-        if (!isReverseClockwise && !isTime)
+        if (!isReverseClockwise)
         {
             if (PlayerTurnNumber < PhotonNetwork.CurrentRoom.PlayerCount)
             {
@@ -180,9 +213,9 @@ public class GameController : MonoBehaviourPun
                 }
         }
       
-        isTimeRunning = true;
-                
+        isTimeRunning = true;             
     }
+
     [PunRPC]
     private void RPC_EnemyCard()
     {
@@ -201,8 +234,9 @@ public class GameController : MonoBehaviourPun
     }
 
     [PunRPC]
-    private void RPC_timerCountDown()
+    private void RPC_timerCountDown(float time)
     {
+        timeLeft = time;
         timeLeft -=  0.1f * Time.deltaTime;
         timerText.text = Mathf.Round(timeLeft).ToString();
         if (timeLeft < 0)
