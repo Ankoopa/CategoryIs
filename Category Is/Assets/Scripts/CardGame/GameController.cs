@@ -20,19 +20,24 @@ public class GameController : MonoBehaviourPun
     public bool isMyTurn;
     public static bool isStartingGame;
     public static bool isValid;
+
     [Header ("Abilities")]
     public static bool isReverseClockwise;
     public static bool isRotUsed;
     public static bool isSkip;
     public static float timeLeft;
     public static bool isTime;
-    private InputField wordInput;
+
     public List<GameObject> cardsInDeck = new List<GameObject>();
     public List<GameObject> enemyCardsinHand = new List<GameObject>();
+
+    private int activePlayers;
+    private InputField wordInput;
     private bool isTimeRunning;
 
     void Start()
     {
+        activePlayers = PhotonNetwork.CountOfPlayers;
         timeLeft = 15f;
         isTimeRunning = true;
         isReverseClockwise = false;

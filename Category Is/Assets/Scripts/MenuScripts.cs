@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using Photon.Pun;
 
 public class MenuScripts : MonoBehaviour
 {
@@ -107,6 +107,17 @@ public class MenuScripts : MonoBehaviour
     {
         SoundManager.PlaySound("4");
          AvatarPanel.SetActive(false);
+    }
+
+    public void BackToMenuScene()
+    {
+        PhotonNetwork.LeaveRoom();
+        SceneManager.LoadScene("MainLobby");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
 }
