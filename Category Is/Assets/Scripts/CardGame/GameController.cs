@@ -215,6 +215,15 @@ public class GameController : MonoBehaviourPun
             timeLeft = 0;
             timerText.text = "0";
             isTimeRunning = false;
+            activePlayers -= 1;
+            if(activePlayers <= 1)
+            {
+                PhotonNetwork.LoadLevel("GameOverScene");
+            }
+            else
+            {
+                OnClickEndTurn();
+            }
         }
     }
 
