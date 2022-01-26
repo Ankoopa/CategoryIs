@@ -48,8 +48,8 @@ public class GameManager : MonoBehaviourPunCallbacks
             if (plr.IsLocal) continue;
             else // Instantiate opponent decks on the panel and sets their name accordingly
             {
-                GameObject curDeck = PhotonNetwork.Instantiate("enemyDeck", new Vector3(enemyPanel.transform.position.x, enemyPanel.transform.position.y, 0), Quaternion.identity);
-                curDeck.transform.parent = enemyPanel.transform;
+                GameObject curDeck = PhotonNetwork.Instantiate("EnemyHand", new Vector3(enemyPanel.transform.position.x, enemyPanel.transform.position.y, 0), Quaternion.identity);
+                curDeck.transform.SetParent(enemyPanel.transform);
                 Text enemyName = curDeck.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
                 enemyName.text = plr.NickName;
             }
