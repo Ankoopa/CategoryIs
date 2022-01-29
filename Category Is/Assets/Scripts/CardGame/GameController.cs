@@ -31,6 +31,7 @@ public class GameController : MonoBehaviourPun
     public List<GameObject> cardsInDeck = new List<GameObject>();
     public List<GameObject> enemyCardsinHand = new List<GameObject>();
 
+    private List<int> endedPlayers = new List<int>();
     private int activePlayers;
     private InputField wordInput;
     private bool isTimeRunning;
@@ -65,7 +66,7 @@ public class GameController : MonoBehaviourPun
             }
             foreach(var player in PhotonNetwork.PlayerList)
             {
-                if (player.ActorNumber == PlayerTurnNumber)
+                if ((player.ActorNumber == PlayerTurnNumber) && !endedPlayers.Contains(PlayerTurnNumber))
                 {
                     isMyTurn = true;
                     if (isMyTurn && player.NickName == PhotonNetwork.LocalPlayer.NickName)
@@ -222,7 +223,8 @@ public class GameController : MonoBehaviourPun
             }
             else
             {
-                OnClickEndTurn();
+                endedPlayers.Add(PlayerTurnNumber);
+                base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
             }
         }
     }
