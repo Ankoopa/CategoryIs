@@ -45,6 +45,9 @@ public class Abilities : MonoBehaviourPun
             else if (ability.isGreed)
             {
                 GM.DrawCards();
+            }else if(ability.stealing)
+            {
+                GM.OnClickSteal();
             }
         }
         GM.cardsInDeck.Remove(this.gameObject);

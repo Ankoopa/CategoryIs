@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 369963172157309898}
   - component: {fileID: 6624099704726675361}
-  - component: {fileID: -5344836366064557000}
-  - component: {fileID: -2749491231384026435}
+  - component: {fileID: -3385074553141942880}
+  - component: {fileID: -7835049355804832432}
   m_Layer: 5
-  m_Name: EnemyHand
+  m_Name: enemyDeck
   m_TagString: EnemyHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3943294095523639059}
   m_CullTransparentMesh: 1
---- !u!114 &-5344836366064557000
+--- !u!114 &-3385074553141942880
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,7 +104,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &-2749491231384026435
+--- !u!114 &-7835049355804832432
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -462,7 +462,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyCardsPanel
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2292739891916946605, guid: a90d28787deec1d439fcf0984b1a8cbd, type: 3}
+    - {fileID: 930072387818065400, guid: a90d28787deec1d439fcf0984b1a8cbd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a90d28787deec1d439fcf0984b1a8cbd, type: 3}
 --- !u!224 &4288806433533106592 stripped
 RectTransform:
