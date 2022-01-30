@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Avatars
   - GM
+  - players
   layers:
   - Default
   - TransparentFX

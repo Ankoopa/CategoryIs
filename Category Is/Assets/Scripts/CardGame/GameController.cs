@@ -16,6 +16,8 @@ public class GameController : MonoBehaviourPun
     public GameObject enemyCard;
     public GameObject playerDeck;
     public GameObject enemyCardPanel;
+    public GameObject parentName;
+    public string playerOn;
     public Text timerText;
     public bool isMyTurn;
     public static bool isStartingGame;
@@ -27,7 +29,8 @@ public class GameController : MonoBehaviourPun
     public static bool isSkip;
     public static float timeLeft;
     public static bool isTime;
-
+    public List<GameObject> playerNames = new List<GameObject>();
+    public List<GameObject> StolenCards = new List<GameObject>();
     public List<GameObject> cardsInDeck = new List<GameObject>();
     public List<GameObject> enemyCardsinHand = new List<GameObject>();
 
@@ -115,10 +118,10 @@ public class GameController : MonoBehaviourPun
             else
             {
                 SoundManager.PlaySound("new_card");
-                base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
                 cardInfo.DrawingCards();
                 cardsInDeck.Add(Instantiate(card, playerDeck.transform));
-                base.photonView.RPC("RPC_EnemyCard", RpcTarget.OthersBuffered);
+                base.photonView.RPC("RPC_EnemyCard", RpcTarget.AllBufferedViaServer);
+                base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
             }
         }
     }
@@ -130,7 +133,10 @@ public class GameController : MonoBehaviourPun
             c.GetComponent<Button>().interactable = isEnable;
         }
     }
-
+    public Player turnPlayer()
+    {
+        return PhotonNetwork.CurrentRoom.GetPlayer(PlayerTurnNumber);
+    }
     [PunRPC]
     public void RPC_Rotation(bool rotation)
     {
@@ -192,9 +198,18 @@ public class GameController : MonoBehaviourPun
     [PunRPC]
     private void RPC_EnemyCard()
     {
-        enemyCardPanel = GameObject.Find("EnemyCardsPanel");
-        cardInfo.DrawEnemyCards();
-        enemyCardsinHand.Add(Instantiate(enemyCard, enemyCardPanel.transform));
+        Player pl = PhotonNetwork.LocalPlayer;
+        Debug.Log(turnPlayer().NickName + " " + pl);
+        if (playerOn == turnPlayer().NickName)
+        {
+            if (enemyCardPanel.name == playerOn)
+            {
+                cardInfo.DrawEnemyCards();
+                enemyCardsinHand.Add(Instantiate(enemyCard, enemyCardPanel.transform));
+            }
+            
+            
+        }
     }
 
     [PunRPC]
@@ -233,6 +248,17 @@ public class GameController : MonoBehaviourPun
     private void RPC_randomPlayerTurn(int rand)
     {
         PlayerTurnNumber = rand;
+        foreach(GameObject playerN in GameObject.FindGameObjectsWithTag("players"))
+        {
+            playerNames.Add(playerN);
+        }
+        foreach(GameObject names in playerNames)
+        {
+            playerOn = names.GetComponent<Text>().text;
+            parentName = names;
+            enemyCardPanel = GameObject.Find("EnemyCardsPanel");
+            enemyCardPanel.name = playerOn;
+        }
     }
 
 }
