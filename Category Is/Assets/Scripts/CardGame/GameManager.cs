@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public GameObject playerDeck;
     public GameObject enemyPanel;
     public GameObject enemyDeck;
-    public GameObject playerAvatar;
-
+    public Sprite playerAvatar;
+    public PlayerListings pl;
     public Card cardInfo;
     public Deck deckInfo;
     public Text playerText;
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     void AssignPlayers()
     {
         playerText.text = PhotonNetwork.LocalPlayer.NickName;
-
+        playerAvatar = pl.Avatar.sprite;
         //can spawn up to 3 opponents from the player list
         foreach (Player plr in PhotonNetwork.PlayerList)
         {
@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                 //GameObject curDeck = PhotonNetwork.Instantiate("EnemyHand", new Vector3(enemyPanel.transform.position.x, enemyPanel.transform.position.y, 0), Quaternion.identity);
                 //curDeck.transform.SetParent(enemyPanel.transform);
                 Text enemyName = curDeck.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
+                
                 enemyName.text = plr.NickName;
             }
         }

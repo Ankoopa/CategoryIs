@@ -17,6 +17,7 @@ public class GameController : MonoBehaviourPun
     public GameObject playerDeck;
     public GameObject enemyCardPanel;
     public GameObject parentName;
+    public GameObject enemyPanel;
     public string playerOn;
     public Text timerText;
     public bool isMyTurn;
@@ -30,10 +31,10 @@ public class GameController : MonoBehaviourPun
     public static float timeLeft;
     public static bool isTime;
     public List<GameObject> playerNames = new List<GameObject>();
-    public List<GameObject> StolenCards = new List<GameObject>();
+    public List<Transform> EnemyPlayers = new List<Transform>();
     public List<GameObject> cardsInDeck = new List<GameObject>();
     public List<GameObject> enemyCardsinHand = new List<GameObject>();
-
+    //public List<GameObject> enemyCards = new List<GameObject>();
     private List<int> endedPlayers = new List<int>();
     private int activePlayers;
     private InputField wordInput;
@@ -43,11 +44,14 @@ public class GameController : MonoBehaviourPun
     {
         activePlayers = PhotonNetwork.CurrentRoom.PlayerCount;
         Debug.Log("Active players: " + activePlayers);
-        timeLeft = 15f;
+        timeLeft = 20f;
         isTimeRunning = true;
         isReverseClockwise = false;
         wordInput = wordTextbox.GetComponent<InputField>();
-
+        foreach(Transform ep in enemyPanel.GetComponentsInChildren<Transform>())
+        {
+            EnemyPlayers.Add(ep);
+        }
         if (PhotonNetwork.IsMasterClient)
         {
             int RandTurnNumber = Random.Range(1, PhotonNetwork.CurrentRoom.PlayerCount + 1);
@@ -105,7 +109,19 @@ public class GameController : MonoBehaviourPun
         }
         
     }
-
+    // public void pickRandomPlayer()
+    // {
+    //     int rand = Random.Range(0, EnemyPlayers.Count);
+    //     for (int i = 0; i < EnemyPlayers.Count; i++)
+    //     {
+    //         if (rand == i)
+    //         {
+    //             int randCard = Random.Range(0, enemyCardsinHand.Count);
+    //             Debug.Log(randCard);
+    //             base.photonView.RPC("RPC_DestroyCard", RpcTarget.OthersBuffered, randCard);
+    //         }
+    //     }
+    // }
     public void OnClickEndTurn()
     {  
         if (isValid)
@@ -138,6 +154,22 @@ public class GameController : MonoBehaviourPun
     {
         return PhotonNetwork.CurrentRoom.GetPlayer(PlayerTurnNumber);
     }
+
+    // [PunRPC]
+    // public void RPC_DestroyCard(int rand)
+    // {
+    //     Debug.Log("Destroyed card");
+    //     for (int i = 0; i < enemyCardsinHand.Count; i++)
+    //     {
+    //         if (rand == i)
+    //         {
+    //             Debug.Log("Destroyed card");
+    //             cardsInDeck.RemoveAt(rand);
+    //             Destroy(cardsInDeck[rand]);
+    //             base.photonView.RPC("RPC_EnemyCard", RpcTarget.AllBufferedViaServer);
+    //         }
+    //     }
+    // }
     [PunRPC]
     public void RPC_Rotation(bool rotation)
     {
@@ -165,14 +197,14 @@ public class GameController : MonoBehaviourPun
             if (PlayerTurnNumber < PhotonNetwork.CurrentRoom.PlayerCount)
             {
                 isMyTurn = false;
-                timeLeft = 15f;
+                timeLeft = 20f;
                 PlayerTurnNumber += 1;          
             }
             else
             {
                 if (PlayerTurnNumber >= PhotonNetwork.CurrentRoom.PlayerCount)
                 {
-                    timeLeft = 15f;
+                    timeLeft = 20f;
                     PlayerTurnNumber = 1;
                 }
             }
@@ -182,13 +214,13 @@ public class GameController : MonoBehaviourPun
             if (PlayerTurnNumber <= PhotonNetwork.CurrentRoom.PlayerCount && PlayerTurnNumber != 1)
             {
                 isMyTurn = false;
-                timeLeft = 15f;
+                timeLeft = 20f;
                 PlayerTurnNumber -= 1;          
             }
             else
                 if (PlayerTurnNumber > 0)
                 {
-                    timeLeft = 15f;
+                    timeLeft = 20f;
                     PlayerTurnNumber = PhotonNetwork.CurrentRoom.PlayerCount;
                 }
         }
@@ -236,7 +268,7 @@ public class GameController : MonoBehaviourPun
             Debug.Log("Players left: " + activePlayers);
             if(activePlayers <= 1)
             {
-                PhotonNetwork.LoadLevel("GameOverScene");
+                //PhotonNetwork.LoadLevel("GameOverScene");
             }
             else
             {

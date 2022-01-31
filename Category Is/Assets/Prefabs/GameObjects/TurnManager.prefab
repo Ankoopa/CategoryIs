@@ -52,8 +52,16 @@ MonoBehaviour:
   enemyCard: {fileID: 8498560827668261192, guid: 8bf7744e229366a44ab0b5887f4ecf2c, type: 3}
   playerDeck: {fileID: 0}
   enemyCardPanel: {fileID: 0}
+  parentName: {fileID: 0}
+  enemyPanel: {fileID: 7434387507007697749, guid: 5f905c9d747b7c940816d1accbc8d634, type: 3}
+  playerOn: 
   timerText: {fileID: 0}
   isMyTurn: 0
+  playerNames: []
+  EnemyPlayers: []
+  cardsInDeck: []
+  enemyCardsinHand: []
+  enemyCards: []
 --- !u!114 &5313552424912421088
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -46,6 +46,10 @@ public class Abilities : MonoBehaviourPun
             {
                 GM.DrawCards();
             }
+            // else if (ability.dead)
+            // {
+            //     GM.pickRandomPlayer();
+            // }
         }
         GM.cardsInDeck.Remove(this.gameObject);
         Destroy(this.gameObject);

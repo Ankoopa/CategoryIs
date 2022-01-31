@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 507279344061100925}
   m_Layer: 0
   m_Name: EnemyCard
-  m_TagString: Untagged
+  m_TagString: cards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -194,6 +194,7 @@ MonoBehaviour:
   cardFaces: {fileID: 5351573751359912026}
   searchCardID: 00
   cardAmount: 5
+  cardAbility: []
 --- !u!225 &507279344061100925
 CanvasGroup:
   m_ObjectHideFlags: 0

@@ -15,12 +15,16 @@ MonoBehaviour:
   UCardID: 01
   cardImage: {fileID: 21300000, guid: 3eaf6029ab653ea4599de7913bfeff17, type: 3}
   CardName: Death
-  CardAmount: 5
+  CardAmount: 15
   ability:
   - abilityType: 2
+    saved: 0
     dead: 1
     shuffle: 0
+    isGreed: 0
     CardsToPick: 0
+    clockwise: 0
     skip: 0
+    isTime: 0
     TimeIncrease: 0
   Description: 
