@@ -9,9 +9,10 @@ public class WordGame : MonoBehaviourPun
     public List<TextAsset> textFile;
     public InputField wordInput;
     public Text msg;
-    public Text scoreTxt;
+    //public Text scoreTxt;
     public Text lastWordTxt;
     public Text categoryTxt;
+    public Text categoryReminder;
     public GameController GM;
     private int score;
     private int indexFile;
@@ -47,6 +48,7 @@ public class WordGame : MonoBehaviourPun
             Debug.Log(indexFile); 
             Debug.Log(textFile[indexFile].name);
             categoryTxt.text = textFile[indexFile].name;
+            categoryReminder.text = textFile[indexFile].name;
             string content = textFile[indexFile].text;
             string[] allWords = content.Split('\n');
             wordList = new List<string>(allWords);
@@ -88,10 +90,9 @@ public class WordGame : MonoBehaviourPun
         {
             lastWord = submittedWord;
             submittedWords.Add(submittedWord);
-            Debug.Log("accepted word");
-            score++;
-            scoreTxt.text = "Score: " + score.ToString();
-            msg.text = submittedWord + "Word accepted";
+            // score++;
+            // scoreTxt.text = "Score: " + score.ToString();
+            msg.text = submittedWord + " Word accepted";
             base.photonView.RPC("lastWordChanged", RpcTarget.AllBufferedViaServer, lastWord);
             base.photonView.RPC("UpdateValues", RpcTarget.AllBufferedViaServer, submittedWords.ToArray(), lastWord);
             GameController.isValid = true;
