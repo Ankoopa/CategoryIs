@@ -41,7 +41,8 @@ public class GameController : MonoBehaviourPun
 
     void Start()
     {
-        activePlayers = PhotonNetwork.CountOfPlayers;
+        activePlayers = PhotonNetwork.CurrentRoom.PlayerCount;
+        Debug.Log("Active players: " + activePlayers);
         timeLeft = 15f;
         isTimeRunning = true;
         isReverseClockwise = false;
@@ -232,6 +233,7 @@ public class GameController : MonoBehaviourPun
             timerText.text = "0";
             isTimeRunning = false;
             activePlayers -= 1;
+            Debug.Log("Players left: " + activePlayers);
             if(activePlayers <= 1)
             {
                 PhotonNetwork.LoadLevel("GameOverScene");
