@@ -155,11 +155,22 @@ public class WordGame : MonoBehaviourPun
     void UpdateValuesBlinded(string[] subWords, string prevWord)
     {
         submittedWords = new List<string>(subWords);
-        for (int i = prevWord.ToString().Length-2; i < prevWord.ToString().Length; i++)
+        if (prevWord.ToString().Length < 4)
+        {
+            for (int i = prevWord.ToString().Length-2; i < prevWord.ToString().Length; i++)
             {
                 blindedWord = prevWord.ToString().Replace(prevWord[i].ToString(), "*");
                 prevWord = blindedWord;
             }
+        }else
+        {
+             for (int i = prevWord.ToString().Length-4; i < prevWord.ToString().Length; i++)
+            {
+                blindedWord = prevWord.ToString().Replace(prevWord[i].ToString(), "*");
+                prevWord = blindedWord;
+            }
+        }
+        
         lastWord = blindedWord;
         Debug.Log(lastWord);
         base.photonView.RPC("lastWordChanged", RpcTarget.AllBufferedViaServer, lastWord);
