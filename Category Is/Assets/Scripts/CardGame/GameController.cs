@@ -269,6 +269,7 @@ public class GameController : MonoBehaviourPun
             if(activePlayers <= 1)
             {
                 //PhotonNetwork.LoadLevel("GameOverScene");
+                PhotonNetwork.LeaveRoom();
             }
             else
             {

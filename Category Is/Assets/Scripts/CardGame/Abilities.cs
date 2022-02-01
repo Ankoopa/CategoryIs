@@ -34,6 +34,7 @@ public class Abilities : MonoBehaviourPun
             else if(ability.skip)
             {
                 GameController.isSkip = true;
+                GM.DrawCards();
                 GM.OnClickEndTurn(); 
             }
             else if(ability.isTime)
