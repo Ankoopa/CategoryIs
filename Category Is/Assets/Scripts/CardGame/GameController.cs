@@ -39,12 +39,14 @@ public class GameController : MonoBehaviourPunCallbacks
     private int activePlayers;
     private InputField wordInput;
     private bool isTimeRunning;
+    private bool isLastPlayer;
 
     public enum State {Winner, Loser};
     public static State myState;
 
     void Start()
     {
+        isLastPlayer = false;
         activePlayers = PhotonNetwork.CurrentRoom.PlayerCount;
         Debug.Log("Active players: " + activePlayers);
         timeLeft = 20f;
@@ -73,7 +75,12 @@ public class GameController : MonoBehaviourPunCallbacks
                     timeLeft += 10f;
                     isTime = false;
                 }
-                base.photonView.RPC("RPC_timerCountDown", RpcTarget.AllViaServer);
+                if(isLastPlayer)
+                {
+                    myState = State.Winner;
+                    StartCoroutine(ReturnToLobby());
+                }
+                //base.photonView.RPC("RPC_timerCountDown", RpcTarget.AllViaServer);
             }
             foreach(var player in PhotonNetwork.PlayerList)
             {
@@ -85,6 +92,7 @@ public class GameController : MonoBehaviourPunCallbacks
                         endTurnButton.SetActive(true);
                         wordInput.interactable = true;
                         EnableDisableCards(true);
+                        timerCountDown();
                     }
                     else
                     {
@@ -257,19 +265,18 @@ public class GameController : MonoBehaviourPunCallbacks
         Destroy(deletedCard);
     }
 
-    [PunRPC]
-    private void RPC_timerCountDown()
+    //[PunRPC]
+    private void timerCountDown()
     {
-        timeLeft -=  .1f * Time.deltaTime;
+        timeLeft -=  1f * Time.deltaTime;
         timerText.text = Mathf.Round(timeLeft).ToString();
         if (timeLeft < 0 && isMyTurn)
         {
             timeLeft = 0;
             timerText.text = "0";
             isTimeRunning = false;
-            activePlayers -= 1;
             //Debug.Log("Players left: " + activePlayers);
-            if(activePlayers <= 1)
+            if(activePlayers <= 1 )
             {
                 myState = State.Winner;
                 StartCoroutine(ReturnToLobby());
@@ -278,12 +285,23 @@ public class GameController : MonoBehaviourPunCallbacks
             {
                 endedPlayers.Add(PlayerTurnNumber);
                 base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
+                activePlayers -= 1;
+                if(activePlayers <= 1 )
+                {
+                    isLastPlayer = true;
+                    base.photonView.RPC("RPC_LastPlayer", RpcTarget.OthersBuffered, isLastPlayer);
+                }
+                
                 myState = State.Loser;
                 StartCoroutine(ReturnToLobby());
             }
         }
     }
-
+    [PunRPC]
+    void RPC_LastPlayer(bool lastP)
+    {
+        isLastPlayer = lastP;
+    }
     [PunRPC]
     private void RPC_randomPlayerTurn(int rand)
     {
