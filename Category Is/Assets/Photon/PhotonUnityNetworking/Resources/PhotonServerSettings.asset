@@ -57,6 +57,7 @@ MonoBehaviour:
   - lastWordChangedBlinded
   - UpdateValuesBlinded
   - RPC_LastPlayer
+  - RPC_state
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

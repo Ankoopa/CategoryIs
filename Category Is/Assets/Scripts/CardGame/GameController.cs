@@ -49,7 +49,7 @@ public class GameController : MonoBehaviourPunCallbacks
         isLastPlayer = false;
         activePlayers = PhotonNetwork.CurrentRoom.PlayerCount;
         Debug.Log("Active players: " + activePlayers);
-        timeLeft = 20f;
+        timeLeft = 2f;
         isTimeRunning = true;
         isReverseClockwise = false;
         wordInput = wordTextbox.GetComponent<InputField>();
@@ -77,8 +77,11 @@ public class GameController : MonoBehaviourPunCallbacks
                 }
                 if(isLastPlayer)
                 {
-                    myState = State.Winner;
-                    StartCoroutine(ReturnToLobby());
+
+                    if (PhotonNetwork.IsConnected)
+                    {
+                        StartCoroutine(ReturnToLobbyWinner());
+                    }
                 }
                 //base.photonView.RPC("RPC_timerCountDown", RpcTarget.AllViaServer);
             }
@@ -235,7 +238,7 @@ public class GameController : MonoBehaviourPunCallbacks
                     PlayerTurnNumber = PhotonNetwork.CurrentRoom.PlayerCount;
                 }
         }
-      
+        timerText.text = "...";
         isTimeRunning = true;
                 
     }
@@ -278,22 +281,29 @@ public class GameController : MonoBehaviourPunCallbacks
             //Debug.Log("Players left: " + activePlayers);
             if(activePlayers <= 1 )
             {
-                myState = State.Winner;
-                StartCoroutine(ReturnToLobby());
+                if (PhotonNetwork.IsConnected)
+                {
+                    StartCoroutine(ReturnToLobbyWinner());
+                }
             }
             else
             {
                 endedPlayers.Add(PlayerTurnNumber);
                 base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
                 activePlayers -= 1;
+                
                 if(activePlayers <= 1 )
                 {
                     isLastPlayer = true;
                     base.photonView.RPC("RPC_LastPlayer", RpcTarget.OthersBuffered, isLastPlayer);
                 }
+                if (PhotonNetwork.IsConnected)
+                {
+                    Debug.Log("called"); 
+                    StartCoroutine(ReturnToLobbyLoser());
+                   
+                }
                 
-                myState = State.Loser;
-                StartCoroutine(ReturnToLobby());
             }
         }
     }
@@ -318,12 +328,35 @@ public class GameController : MonoBehaviourPunCallbacks
             enemyCardPanel.name = playerOn;
         }
     }
-
-    IEnumerator ReturnToLobby()
+    IEnumerator ReturnToLobbyLoser()
     {
-        PhotonNetwork.LeaveRoom();
+        if (PhotonNetwork.InRoom)
+        {
+            PhotonNetwork.LeaveRoom();
+            myState = State.Loser;
+            Debug.Log(myState);
+        }
         while(PhotonNetwork.InRoom)
             yield return null;
+        
+        
+    }
+    IEnumerator ReturnToLobbyWinner()
+    {
+        yield return new WaitForSeconds(1f);
+        if (PhotonNetwork.InRoom)
+        {
+            PhotonNetwork.LeaveRoom();
+            myState = State.Winner;
+            Debug.Log(myState);
+        }
+        while(PhotonNetwork.InRoom)
+            yield return null;
+        
+        
+    }
+    public override void OnLeftRoom()
+    {
         SceneManager.LoadScene("GameOverScene");
     }
 }

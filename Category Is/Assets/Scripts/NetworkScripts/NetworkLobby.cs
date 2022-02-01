@@ -13,6 +13,7 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
     public Text RoomCode;
     public Text waitingRoomCode;
     public Text roomInputField;
+    public static string rCode;
     public PlayerNameField playerName;
     public PlayerListingMenu playerListScript;
     private RoomOptions rmOpts;
@@ -54,7 +55,7 @@ public class NetworkLobby : MonoBehaviourPunCallbacks
         if (!PhotonNetwork.IsConnected)
             return;
         int randRmName = Random.Range(100000, 1000000);
-        string rCode = randRmName.ToString();
+        rCode = randRmName.ToString();
 
         RoomCode.text = rCode;
         rmOpts = new RoomOptions() { IsVisible = true, IsOpen = true, MaxPlayers = 4 };
