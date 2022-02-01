@@ -265,7 +265,7 @@ public class GameController : MonoBehaviourPun
             timerText.text = "0";
             isTimeRunning = false;
             activePlayers -= 1;
-            Debug.Log("Players left: " + activePlayers);
+            //Debug.Log("Players left: " + activePlayers);
             if(activePlayers <= 1)
             {
                 //PhotonNetwork.LoadLevel("GameOverScene");

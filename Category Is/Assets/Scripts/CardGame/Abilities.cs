@@ -9,10 +9,12 @@ public class Abilities : MonoBehaviourPun
     public Deck deck;
     private GameObject clickedCard;
     private Card cardAbilities;
+    private WordGame wg;
 
     void Awake()
     {
         GM = GameObject.Find("TurnManager").GetComponent<GameController>();
+        wg = GameObject.FindWithTag("GM").GetComponent<WordGame>();
         deck = GameObject.FindWithTag("GM").GetComponent<Deck>();
     }
     public void OnClickCard()
@@ -45,6 +47,10 @@ public class Abilities : MonoBehaviourPun
             else if (ability.isGreed)
             {
                 GM.DrawCards();
+            }
+            else if (ability.dead)
+            {
+                wg.onClickBlinded();
             }
             // else if (ability.dead)
             // {

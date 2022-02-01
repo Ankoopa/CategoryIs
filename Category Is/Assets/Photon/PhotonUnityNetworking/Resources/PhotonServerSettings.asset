@@ -54,6 +54,8 @@ MonoBehaviour:
   - RPC_Rotation
   - RPC_EnemyUsedCard
   - RPC_DestroyCard
+  - lastWordChangedBlinded
+  - UpdateValuesBlinded
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -15,11 +15,14 @@ public class WordGame : MonoBehaviourPun
     public Text categoryReminder;
     public GameController GM;
     private int score;
+    private bool blinded;
     private int indexFile;
     private List<string> wordList;
-    private List<string> submittedWords = new List<string>();
+    public List<string> submittedWords = new List<string>();
+    private List<string> blindedletters = new List<string>();
     private string submittedWord;
     private string lastWord = "";
+    private string blindedWord;
     private bool wordFound;
     private bool categoryConfirmed;
 
@@ -83,7 +86,10 @@ public class WordGame : MonoBehaviourPun
 
         wordInput.text = "";
     }
-
+    public void onClickBlinded()
+    {
+        blinded = true;
+    }
     void ProcessWord()
     {
         if ((lastWord.Equals("") || submittedWord[0].Equals(lastWord[lastWord.Length - 1])) && !WordExists(submittedWord))
@@ -93,8 +99,16 @@ public class WordGame : MonoBehaviourPun
             // score++;
             // scoreTxt.text = "Score: " + score.ToString();
             msg.text = submittedWord + " Word accepted";
-            base.photonView.RPC("lastWordChanged", RpcTarget.AllBufferedViaServer, lastWord);
-            base.photonView.RPC("UpdateValues", RpcTarget.AllBufferedViaServer, submittedWords.ToArray(), lastWord);
+            if (blinded)
+            {
+                Debug.Log("blinded");
+                base.photonView.RPC("UpdateValuesBlinded", RpcTarget.OthersBuffered, submittedWords.ToArray(), lastWord);
+                Debug.Log("current word is: " + blindedWord);
+            }
+            else
+            {
+                base.photonView.RPC("UpdateValues", RpcTarget.AllBufferedViaServer, submittedWords.ToArray(), lastWord);
+            }
             GameController.isValid = true;
         }
         else if (WordExists(submittedWord))
@@ -124,6 +138,8 @@ public class WordGame : MonoBehaviourPun
     {
         if (lastWordTxt != null)
         {
+            Debug.Log(blindedWord);
+            lastWordTxt.text = blindedWord;
             lastWordTxt.text = word.ToUpper();
         }else
             return;
@@ -133,6 +149,21 @@ public class WordGame : MonoBehaviourPun
     {
         submittedWords = new List<string>(subWords);
         lastWord = prevWord;
+        base.photonView.RPC("lastWordChanged", RpcTarget.AllBufferedViaServer, lastWord);
+    }
+    [PunRPC]
+    void UpdateValuesBlinded(string[] subWords, string prevWord)
+    {
+        submittedWords = new List<string>(subWords);
+        for (int i = prevWord.ToString().Length-2; i < prevWord.ToString().Length; i++)
+            {
+                blindedWord = prevWord.ToString().Replace(prevWord[i].ToString(), "*");
+                prevWord = blindedWord;
+            }
+        lastWord = blindedWord;
+        Debug.Log(lastWord);
+        base.photonView.RPC("lastWordChanged", RpcTarget.AllBufferedViaServer, lastWord);
+        blinded = false;
     }
 
     [PunRPC]
