@@ -40,6 +40,9 @@ public class GameController : MonoBehaviourPunCallbacks
     private InputField wordInput;
     private bool isTimeRunning;
 
+    public enum State {Winner, Loser};
+    public static State myState;
+
     void Start()
     {
         activePlayers = PhotonNetwork.CurrentRoom.PlayerCount;
@@ -268,12 +271,15 @@ public class GameController : MonoBehaviourPunCallbacks
             //Debug.Log("Players left: " + activePlayers);
             if(activePlayers <= 1)
             {
+                myState = State.Winner;
                 StartCoroutine(ReturnToLobby());
             }
             else
             {
                 endedPlayers.Add(PlayerTurnNumber);
                 base.photonView.RPC("RPC_EndTurn", RpcTarget.AllBufferedViaServer);
+                myState = State.Loser;
+                StartCoroutine(ReturnToLobby());
             }
         }
     }
