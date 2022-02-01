@@ -31,7 +31,7 @@ public class Deck : MonoBehaviour
         {
             instance = this;
             
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {

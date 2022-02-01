@@ -5,8 +5,8 @@ using Photon.Pun;
 using Photon.Realtime;
 using Photon.Pun.UtilityScripts;
 using UnityEngine.UI;
-
-public class GameController : MonoBehaviourPun
+using UnityEngine.SceneManagement;
+public class GameController : MonoBehaviourPunCallbacks
 {
     public int PlayerTurnNumber;
     public Card cardInfo;
@@ -70,7 +70,7 @@ public class GameController : MonoBehaviourPun
                     timeLeft += 10f;
                     isTime = false;
                 }
-                base.photonView.RPC("RPC_timerCountDown", RpcTarget.AllBufferedViaServer);
+                base.photonView.RPC("RPC_timerCountDown", RpcTarget.AllViaServer);
             }
             foreach(var player in PhotonNetwork.PlayerList)
             {
@@ -257,9 +257,9 @@ public class GameController : MonoBehaviourPun
     [PunRPC]
     private void RPC_timerCountDown()
     {
-        timeLeft -=  0.1f * Time.deltaTime;
+        timeLeft -=  .1f * Time.deltaTime;
         timerText.text = Mathf.Round(timeLeft).ToString();
-        if (timeLeft < 0)
+        if (timeLeft < 0 && isMyTurn)
         {
             timeLeft = 0;
             timerText.text = "0";
@@ -268,8 +268,7 @@ public class GameController : MonoBehaviourPun
             //Debug.Log("Players left: " + activePlayers);
             if(activePlayers <= 1)
             {
-                //PhotonNetwork.LoadLevel("GameOverScene");
-                PhotonNetwork.LeaveRoom();
+                StartCoroutine(ReturnToLobby());
             }
             else
             {
@@ -296,4 +295,11 @@ public class GameController : MonoBehaviourPun
         }
     }
 
+    IEnumerator ReturnToLobby()
+    {
+        PhotonNetwork.LeaveRoom();
+        while(PhotonNetwork.InRoom)
+            yield return null;
+        SceneManager.LoadScene("GameOverScene");
+    }
 }

@@ -16,7 +16,7 @@ public class ChoosingAvatar : MonoBehaviour
         {
             instance = this;
             
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
