@@ -49,7 +49,7 @@ public class GameController : MonoBehaviourPunCallbacks
         isLastPlayer = false;
         activePlayers = PhotonNetwork.CurrentRoom.PlayerCount;
         Debug.Log("Active players: " + activePlayers);
-        timeLeft = 2f;
+        timeLeft = 20f;
         isTimeRunning = true;
         isReverseClockwise = false;
         wordInput = wordTextbox.GetComponent<InputField>();
